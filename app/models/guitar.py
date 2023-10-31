@@ -24,18 +24,24 @@ class Guitar(db.Model):
     inlays = db.Column(db.String, nullable=False)
     handedness = db.Column(db.String, nullable=False)
     description = db.Column(db.String(2000), nullable=False)
-    pickguard = db.Column(db.Boolean, nullable=False)
+    pickguard = db.Column(db.Boolean, default=False)
     pickup_selector = db.Column(db.String, nullable=False)
 
 
-    user = db.relationship(
+    merchant = db.relationship(
         'User',
         back_populates='guitars'
     )
 
     guitar_images = db.relationship(
         'GuitarImage',
-        back_populates='guitars',
+        back_populates='guitar',
+        cascade='all, delete-orphan'
+    )
+
+    cart_items = db.relationship(
+        'CartItem',
+        back_populates='guitar',
         cascade='all, delete-orphan'
     )
 

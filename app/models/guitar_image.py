@@ -11,7 +11,7 @@ class GuitarImage(db.Model):
     guitar_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')))
     url = db.Column(db.String, nullable=False)
 
-    guitars = db.relationship(
+    guitar = db.relationship(
         'Guitar',
         back_populates='guitar_images'
     )

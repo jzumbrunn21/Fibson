@@ -1,34 +1,32 @@
-# from app.models import db, GuitarImage, User, environment, SCHEMA
-# from sqlalchemy.sql import text
-# from faker import Faker
-# import random
+from app.models import db, GuitarImage, Guitar, environment, SCHEMA
+from sqlalchemy.sql import text
+from faker import Faker
+import random
 
-# fake = Faker()
+fake = Faker()
 
-# def seed_guitars_images():
-#     # guitars_num = db.session.query(Guitar).count()
-#     guitars_num = db.session.query(Guitar).count()
+def seed_guitar_images():
+    guitars = Guitar.query.all()
 
+    for guitar in guitars:
+        for _ in range(5):
 
-#     for _ in range(users_num):
-#         guitar_id = random.randint(1, guitars_num)
+            guitar_image = GuitarImage(
+                guitar_id = guitar.id,
+                url = fake.image_url()
+            )
 
-#         guitar_images = GuitarImage(
-#             guitar_id = guitar_id,
-#             url =
-#         )
-
-#         db.session.add(guitar_images)
+            db.session.add(guitar_image)
 
 
-#     db.session.commit()
+    db.session.commit()
 
 
 
-# def undo_guitars():
-#     if environment == "production":
-#         db.session.execute(f"TRUNCATE table {SCHEMA}.guitar_images RESTART IDENTITY CASCADE;")
-#     else:
-#         db.session.execute(text("DELETE FROM guitar_images"))
+def undo_guitar_images():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.guitar_images RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM guitar_images"))
 
-#     db.session.commit()
+    db.session.commit()

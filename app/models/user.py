@@ -18,6 +18,12 @@ class User(db.Model, UserMixin):
 
     guitars = db.relationship(
         'Guitar',
+        back_populates='merchant',
+        cascade='all, delete-orphan'
+    )
+
+    shopping_carts = db.relationship(
+        'ShoppingCart',
         back_populates='user',
         cascade='all, delete-orphan'
     )
