@@ -8,7 +8,7 @@ class GuitarForm(FlaskForm):
 
     make = StringField('make', validators=[DataRequired(), Length(min=1, max=50, message='Guitar make must be between 1 and 50 characters')])
     model = StringField('model', validators=[DataRequired(), Length(min=1, max=50, message='Guitar model must be between 1 and 50 characters')])
-    year = IntegerField('year', validators=[DataRequired(), NumberRange(min=1700, max=2024, message='Year must be')])
+    year = IntegerField('year', validators=[DataRequired(), NumberRange(min=1900, max=2024, message='Year must be')])
     guitar_type = SelectField('guitar_type', choices=[('Electric', 'Electric'), ('Acoustic', 'Acoustic'), ('Bass', 'Bass'), ('Other', 'Other')], validators=[DataRequired()])
     body_type = SelectField('body_type', choices=[('Solid-Body', 'Solid-Body'), ('Semi-Hollow', 'Semi-Hollow'), ('Hollow', 'Hollow')], validators=[DataRequired()])
     wood_type = SelectField('wood_type', choices=[('Alder', 'Alder'), ('Ash', 'Ash'), ('Mahogony', 'Mahogony') ('Maple', 'Maple'), ('Rosewood', 'Rosewood'), ('Walnut', 'Walnut'), ('Exotic', 'Exotic')], validators=[DataRequired()])
