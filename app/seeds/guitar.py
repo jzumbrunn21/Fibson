@@ -1,12 +1,12 @@
 from app.models import db, Guitar, User, environment, SCHEMA
-
+from sqlalchemy.sql import text
 from faker import Faker
 import random
 
 fake = Faker()
 
 def seed_guitars():
-    guitars_num = db.session.query(Guitar).count()
+    # guitars_num = db.session.query(Guitar).count()
     users_num = db.session.query(User).count()
     makeCat = ['Gibson','Epiphone','Fender','PRS','Taylor','Martin','Ibanez','Gretsch']
     modelCat = ['Les Paul', 'Stratocaster', 'Telecaster', 'SG', 'Custom', 'ES-335' ,'110-Dreadnaught', 'Standard']

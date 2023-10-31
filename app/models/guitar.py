@@ -35,7 +35,7 @@ class Guitar(db.Model):
 
 
 
-    def to_dict(self){
+    def to_dict(self):
         return {
             'id': self.id,
             'merchant_id': self.merchant_id,
@@ -53,8 +53,6 @@ class Guitar(db.Model):
             'inlays': self.inlays,
             'handedness': self.handedness,
             'description': self.description,
-            'pickguard': self.pickguard
+            'pickguard': self.pickguard,
             'pickup_selector': self.pickup_selector
-
         }
-    }

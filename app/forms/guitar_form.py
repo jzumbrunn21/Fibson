@@ -11,7 +11,7 @@ class GuitarForm(FlaskForm):
     year = IntegerField('year', validators=[DataRequired(), NumberRange(min=1900, max=2024, message='Year must be')])
     guitar_type = SelectField('guitar_type', choices=[('Electric', 'Electric'), ('Acoustic', 'Acoustic'), ('Bass', 'Bass'), ('Other', 'Other')], validators=[DataRequired()])
     body_type = SelectField('body_type', choices=[('Solid-Body', 'Solid-Body'), ('Semi-Hollow', 'Semi-Hollow'), ('Hollow', 'Hollow')], validators=[DataRequired()])
-    wood_type = SelectField('wood_type', choices=[('Alder', 'Alder'), ('Ash', 'Ash'), ('Mahogony', 'Mahogony') ('Maple', 'Maple'), ('Rosewood', 'Rosewood'), ('Walnut', 'Walnut'), ('Exotic', 'Exotic')], validators=[DataRequired()])
+    wood_type = SelectField('wood_type', choices=[('Alder', 'Alder'), ('Ash', 'Ash'), ('Mahogony', 'Mahogony'), ('Maple', 'Maple'), ('Rosewood', 'Rosewood'), ('Walnut', 'Walnut'), ('Exotic', 'Exotic')], validators=[DataRequired()])
     color = StringField('color', validators=[DataRequired(), Length(min=1, max=50, message='Guitar color must be between 1 and 50 characters')])
     pickup_type = SelectField('pickup_type', choices=[('Single-Coil', 'Single-Coil'), ('Humbucker', 'Humbucker'), ('Both', 'Both'), ('None','None')], validators=[DataRequired()])
     joint_type = SelectField('joint_type', choices=[('Glued-Neck', 'Glued-Neck'), ('Bolt-on-Neck', 'Bolt-on-Neck')], validators=[DataRequired()])
