@@ -12,6 +12,7 @@ class Guitar(db.Model):
     make = db.Column(db.String(50), nullable=False)
     model = db.Column(db.String(50), nullable=False)
     year = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
     guitar_type = db.Column(db.String, nullable=False)
     body_type = db.Column(db.String, nullable=False)
     wood_type = db.Column(db.String, nullable=False)
@@ -32,6 +33,12 @@ class Guitar(db.Model):
         back_populates='guitars'
     )
 
+    guitar_images = db.relationship(
+        'GuitarImage',
+        back_populates='guitars',
+        cascade='all, delete-orphan'
+    )
+
 
 
 
@@ -42,6 +49,7 @@ class Guitar(db.Model):
             'make': self.make,
             'model': self.model,
             'year': self.year,
+            'price': self.price,
             'guitar_type': self.guitar_type,
             'body_type': self.body_type,
             'wood_type': self.wood_type,

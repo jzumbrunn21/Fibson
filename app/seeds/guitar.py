@@ -19,6 +19,7 @@ def seed_guitars():
             make = random.choice(makeCat),
             model = random.choice(modelCat),
             year = random.randint(1901, 2024),
+            price = random.randint(100, 500000),
             guitar_type = random.choice(['Electric', 'Acoustic', 'Bass', 'Other']),
             body_type = random.choice(['Solid-Body', 'Semi-Hollow', 'Hollow' ]),
             wood_type = random.choice(['Alder', 'Ash', 'Mahogany', 'Maple', 'Rosewood', 'Walnut', 'Exotic']),
