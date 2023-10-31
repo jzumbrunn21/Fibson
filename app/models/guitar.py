@@ -43,7 +43,7 @@ class Guitar(db.Model):
             'model': self.model,
             'year': self.year,
             'guitar_type': self.guitar_type,
-            'body_type': self.body_shape,
+            'body_type': self.body_type,
             'wood_type': self.wood_type,
             'color': self.color,
             'pickup_type': self.pickup_type,

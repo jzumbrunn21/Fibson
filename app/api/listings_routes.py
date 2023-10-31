@@ -8,7 +8,5 @@ listings_routes = Blueprint("listings", __name__)
 
 @listings_routes.route('/')
 def all_listings():
-    listings = Guitar.query.all()
-
-    response = [listings.to_dict() for listing in listings]
-    return {'listings': response}
+    response = [listing.to_dict() for listing in Guitar.query.all()]
+    return {"listings": response}
