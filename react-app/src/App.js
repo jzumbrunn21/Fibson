@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
+import AllListingsPage from "./components/AllListingsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,12 +23,9 @@ function App() {
           <Route exact path="/">
             <SplashPage />
           </Route>
-          {/* <Route path="/login">
-            <LoginFormPage />
+          <Route exact path="/listings">
+            <AllListingsPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
         </Switch>
       )}
     </>

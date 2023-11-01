@@ -14,6 +14,9 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/">
           <img src={logo} alt={"Home Button"} />
         </NavLink>
+        <NavLink exact to="/listings">
+          <button>All Listings</button>
+        </NavLink>
       </div>
       <div>{isLoaded && <ProfileButton user={sessionUser} />}</div>
     </div>

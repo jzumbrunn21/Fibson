@@ -32,12 +32,14 @@ const deleteListing = (guitarId) => ({
 export const createListingThunk = (listingData) => async (dispatch) => {};
 
 export const readAllListingsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/listings");
+  const response = await fetch("/api/listings", {
+    method: "GET",
+  });
 
   if (response.ok) {
     const data = await response.json();
     dispatch(readAllListings(data));
-    return data;
+    // return data;
   } else {
     return "Listing Not Found";
   }
@@ -55,15 +57,15 @@ const initialState = { listings: {} };
 // REDUCER
 
 export default function listingsReducer(state = initialState, action) {
-  let newState;
+  // let newState;
   switch (action.type) {
-    case CREATE_LISTING:
-      return newState;
     case READ_ALL_LISTINGS:
-      newState = { ...state };
+      const newState = { ...state };
       action.listings.listings.forEach((listing) => {
-        newState.listings[listing.id] = listing;
+        newState.listings[listing.guitar.id] = listing;
       });
+      return newState;
+    case CREATE_LISTING:
       return newState;
     case UPDATE_LISTING:
       return newState;

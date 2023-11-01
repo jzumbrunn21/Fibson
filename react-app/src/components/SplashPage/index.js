@@ -1,18 +1,6 @@
-import React, { useEffect } from "react";
-import { readAllListingsThunk } from "../../store/listings";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 
 const SplashPage = () => {
-  const dispatch = useDispatch();
-
-  const listings = useSelector((state) =>
-    Object.values(state.listings.listings)
-  );
-
-  useEffect(() => {
-    dispatch(readAllListingsThunk());
-  }, [dispatch]);
-
   return <h1>Welcome to Fibson</h1>;
 };
 
