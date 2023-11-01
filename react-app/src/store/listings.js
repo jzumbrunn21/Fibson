@@ -35,7 +35,22 @@ const deleteListing = (guitarId) => ({
 
 // THUNK ACTION CREATORS
 
-export const createListingThunk = (listingData) => async (dispatch) => {};
+export const createListingThunk = (listingData) => async (dispatch) => {
+  const response = await fetch("/api/listings/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(listingData),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createListing(data));
+    return data;
+  } else {
+    return "Error making your listing";
+  }
+};
 
 export const readAllListingsThunk = () => async (dispatch) => {
   const response = await fetch("/api/listings", {
@@ -102,6 +117,8 @@ export default function listingsReducer(state = initialState, action) {
       newState.listing = action.listing;
       return newState;
     case CREATE_LISTING:
+      newState = { ...state };
+      newState.listing = action.listingData;
       return newState;
     case UPDATE_LISTING:
       return newState;
