@@ -65,6 +65,18 @@ export const readOneListingThunk = (guitarId) => async (dispatch) => {
   }
 };
 
+export const readAllUserListingsThunk = () => async (dispatch) => {
+  const response = await fetch("/api/listings/manage", {
+    method: "GET",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(readAllListings(data));
+    return data;
+  }
+};
+
 export const updateListingThunk =
   (listingData, guitarId) => async (dispatch) => {};
 
