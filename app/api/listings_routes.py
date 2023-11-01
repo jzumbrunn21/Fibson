@@ -1,12 +1,143 @@
-from flask import Blueprint, jsonify, request, redirect, render_template
-from app.models import db, Guitar
-# Forms need importing
-from app.forms import GuitarForm
+from flask import Blueprint
+from app.models import db, Guitar, GuitarImage
+from app.forms import GuitarForm, GuitarImageForm
+from flask_login import current_user, login_required
+
+
 listings_routes = Blueprint("listings", __name__)
 
 
 
 @listings_routes.route('/')
 def all_listings():
-    response = [listing.to_dict() for listing in Guitar.query.all()]
-    return {"listings": response}
+    guitars = Guitar.query.all()
+    response = []
+
+    for guitar in guitars:
+        guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+        images = [image.url for image in guitarImages]
+        response.append({
+            'guitar': guitar.to_dict(),
+            'images': images
+        })
+
+    return {'listings': response}
+
+
+@listings_routes.route('/create', methods=['POST'])
+@login_required
+def create_listing():
+    form = GuitarForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        guitar = Guitar(
+            merchant_id=current_user.id,
+            make=form.data['make'],
+            model=form.data['model'],
+            year=form.data['year'],
+            price=form.data['price'],
+            guitar_type=form.data['guitar_type'],
+            body_type=form.data['body_type'],
+            wood_type=form.data['wood_type'],
+            color=form.data['color'],
+            pickup_type=form.data['pickup_type'],
+            joint_type=form.data['joint_type'],
+            fretboard_material=form.data['fretboard_material'],
+            frets=form.data['frets'],
+            inlays=form.data['inlays'],
+            handedness=form.data['handedness'],
+            description=form.data['description'],
+            pickguard=form.data['pickguard'],
+            pickup_selector=form.data['pickup_selector']
+        )
+        db.session.add(guitar)
+        db.session.commit()
+
+        return guitar.to_dict, 201
+
+    else:
+
+        return {'Errors': form.errors}, 404
+    # Do I add images here or in a seperate route?
+    # Build out then come back to this.
+
+
+@listings_routes.route('/manage')
+@login_required
+def manage_listings():
+    guitars = Guitar.query.filter(Guitar.merchant_id == current_user.id).all()
+    response = []
+
+    for guitar in guitars:
+        guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+        images = [image.url for image in guitarImages]
+        response.append({
+            'guitars': guitar.to_dict(),
+            'images': images
+        })
+
+    return {'my_listings': response}
+
+
+
+@listings_routes.route('/<int:id>')
+def guitar_detail(id):
+    response = []
+    guitar = Guitar.query.get(id)
+    guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+    images = [image.url for image in guitarImages]
+    response.append({
+        'guitar': guitar.to_dict(),
+        'images': images
+    })
+
+    return {'listing': response}
+
+
+
+@listings_routes.route('/update/<int:id>', methods=['PUT'])
+@login_required
+def update_listing(id):
+    form = GuitarForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        guitarUpdated = Guitar.query.get(id)
+
+        guitarUpdated.make=form.data['make']
+        guitarUpdated.model=form.data['model']
+        guitarUpdated.year=form.data['year']
+        guitarUpdated.price=form.data['price']
+        guitarUpdated.guitar_type=form.data['guitar_type']
+        guitarUpdated.body_type=form.data['body_type']
+        guitarUpdated.wood_type=form.data['wood_type']
+        guitarUpdated.color=form.data['color']
+        guitarUpdated.pickup_type=form.data['pickup_type']
+        guitarUpdated.joint_type=form.data['joint_type']
+        guitarUpdated.fretboard_material=form.data['fretboard_material']
+        guitarUpdate.frets=form.data['frets']
+        guitarUpdated.inlays=form.data['inlays']
+        guitarUpdated.handedness=form.data['handedness']
+        guitarUpdated.description=form.data['description']
+        guitarUpdated.pickguard=form.data['pickguard']
+        guitarUpdated.pickup_selector=form.data['pickup_selector']
+
+        db.session.commit()
+
+        return guitarUpdated.to_dict(), 200
+
+    else:
+        return {'Errors': form.errors}, 404
+
+
+
+@listings_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_listing(id):
+    deleted_listing = Guitar.query.get(id)
+
+    if deleted_listing:
+        db.session.delete(deleted_listing)
+        db.session.commit()
+    else:
+        return "Error with deleting listing"
