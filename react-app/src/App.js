@@ -9,6 +9,7 @@ import SplashPage from "./components/SplashPage";
 import AllListingsPage from "./components/AllListingsPage";
 import GuitarDetail from "./components/GuitarDetail";
 import ManageListings from "./components/ManageListings";
+import CreateListing from "./components/CreateListing";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/manage">
             <ManageListings />
+          </Route>
+          <Route exact path="/create">
+            <CreateListing />
           </Route>
         </Switch>
       )}
