@@ -5,6 +5,10 @@ import random
 
 fake = Faker()
 
+def image_url_generator():
+    image_id = fake.random_int(min=1, max=1000)
+    return f"https://picsum.photos/350/380?image={image_id}"
+
 def seed_guitar_images():
     guitars = Guitar.query.all()
 
@@ -13,7 +17,7 @@ def seed_guitar_images():
 
             guitar_image = GuitarImage(
                 guitar_id = guitar.id,
-                url = fake.image_url()
+                url = image_url_generator()
             )
 
             db.session.add(guitar_image)
