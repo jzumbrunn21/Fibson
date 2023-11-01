@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 from app.models import db, Guitar, GuitarImage
 from app.forms import GuitarForm, GuitarImageForm
 from flask_login import current_user, login_required
@@ -55,7 +55,7 @@ def create_listing():
         db.session.add(guitar)
         db.session.commit()
 
-        return guitar.to_dict, 201
+        return guitar.to_dict(), 201
 
     else:
 

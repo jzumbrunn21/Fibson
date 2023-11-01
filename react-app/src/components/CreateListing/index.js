@@ -12,19 +12,19 @@ const CreateListing = () => {
   const [model, setModel] = useState("");
   const [year, setYear] = useState(0);
   const [price, setPrice] = useState(1);
-  const [guitar_type, set_guitar_type] = useState("");
-  const [body_type, set_body_type] = useState("");
-  const [wood_type, set_wood_type] = useState("");
+  const [guitar_type, set_guitar_type] = useState("Electric");
+  const [body_type, set_body_type] = useState("Solid-Body");
+  const [wood_type, set_wood_type] = useState("Alder");
   const [color, setColor] = useState("");
-  const [pickup_type, set_pickup_type] = useState("");
-  const [joint_type, set_joint_type] = useState("");
-  const [fretboard_material, set_fretboard_material] = useState("");
+  const [pickup_type, set_pickup_type] = useState("Single-Coil");
+  const [joint_type, set_joint_type] = useState("Glued-Neck");
+  const [fretboard_material, set_fretboard_material] = useState("Ebony");
   const [frets, setFrets] = useState(0);
-  const [inlays, setInlays] = useState("");
-  const [handedness, setHandedness] = useState("");
+  const [inlays, setInlays] = useState("Pearl-Dot");
+  const [handedness, setHandedness] = useState("Right");
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(false);
-  const [pickup_selector, set_pickup_selector] = useState("");
+  const [pickup_selector, set_pickup_selector] = useState("2-Switch");
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -206,7 +206,7 @@ const CreateListing = () => {
                 onChange={(e) => set_fretboard_material(e.target.value)}
               >
                 <option value="Ebony">Ebony</option>
-                <option value="Mahogony">Mahogony</option>
+                <option value="Mahogany">Mahogany</option>
                 <option value="Maple">Maple</option>
                 <option value="Rosewood">Rosewood</option>
                 <option value="Exotic">Exotic</option>
