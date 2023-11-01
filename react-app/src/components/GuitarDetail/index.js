@@ -21,7 +21,10 @@ const GuitarDetail = () => {
         {listing && (
           <>
             <div className="single-guitar-images-container">
-              <h3>Images</h3>
+              {/* <h3>Images</h3> */}
+              {listing[0].images.map((image, index) => (
+                <img key={index} src={image} alt={listing[0].guitar.model} />
+              ))}
             </div>
             <div className="single-guitar-info-container">
               <h2>
@@ -30,7 +33,8 @@ const GuitarDetail = () => {
               </h2>
               <h4>Finish: {listing[0].guitar.color}</h4>
               <h4>Handedness: {listing[0].guitar.handedness}</h4>
-              {/* <h4>Price: ${listing[0].guitar.price</h4> */}
+              <h4>Price: ${listing[0].guitar.price}</h4>
+              <button>Add to Cart</button>
             </div>
           </>
         )}
