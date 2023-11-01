@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { readAllListingsThunk } from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import "./AllListingsPage.css";
 
 const AllListingsPage = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ const AllListingsPage = () => {
   }, [dispatch]);
   return (
     <>
-      <h1>All Guitars</h1>
+      <div className="listings-filter">
+        <h1>All Guitars</h1>
+      </div>
       <div className="all-listings-container">
         {allListings.map((listing) => (
           <Link
@@ -23,12 +26,12 @@ const AllListingsPage = () => {
             className="single-listing-container"
           >
             <div className="all-listing-image">
-              <img
+              {/* <img
                 src={listing.images[0]}
                 alt={`${listing.guitar.make}, ${listing.guitar.model}`}
-              />
+              /> */}
             </div>
-            <div all-listings-info-container>
+            <div className="all-listings-info-container">
               <h3>
                 {listing.guitar.year} {listing.guitar.make}{" "}
                 {listing.guitar.model}
