@@ -26,10 +26,10 @@ const AllListingsPage = () => {
             className="single-listing-container"
           >
             <div className="all-listing-image">
-              {/* <img
+              <img
                 src={listing.images[0]}
                 alt={`${listing.guitar.make}, ${listing.guitar.model}`}
-              /> */}
+              />
             </div>
             <div className="all-listings-info-container">
               <h3>

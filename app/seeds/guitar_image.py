@@ -6,10 +6,8 @@ import random
 fake = Faker()
 
 def image_url_generator():
-    width = 350
-    height = 400
     image_id = fake.random_int(min=1, max=1000)
-    return f"https://picsum.photos/400/300?image={image_id}"
+    return f"https://picsum.photos/350/380?image={image_id}"
 
 def seed_guitar_images():
     guitars = Guitar.query.all()

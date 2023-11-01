@@ -15,10 +15,10 @@
 }
 
 .all-listing-image {
-  width: 100%;
-  height: 400px;
+  /* width: 99%; */
+  /* height: 500px; */
   object-fit: contain;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .single-listing-container {
@@ -29,8 +29,11 @@
   flex-direction: column;
   justify-items: flex-start;
   align-items: end;
+  /* overflow: auto; */
 }
 .all-listings-info-container {
-  border: 2px solid green;
+  /* border: 2px solid green; */
+  gap: 5px;
   align-self: flex-start;
+  /* gap: -104px; */
 }
