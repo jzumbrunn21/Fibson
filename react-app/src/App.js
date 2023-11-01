@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import AllListingsPage from "./components/AllListingsPage";
+import GuitarDetail from "./components/GuitarDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/listings">
             <AllListingsPage />
+          </Route>
+          <Route exact path="/listings/:guitarId">
+            <GuitarDetail />
           </Route>
         </Switch>
       )}

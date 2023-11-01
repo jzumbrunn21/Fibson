@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
-  align-items: end;
+  align-items: flex-end;
   /* overflow: auto; */
 }
 .all-listings-info-container {

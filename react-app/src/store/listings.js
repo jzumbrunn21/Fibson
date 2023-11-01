@@ -1,6 +1,7 @@
 // CONSTANTS
 const CREATE_LISTING = "listings/CREATE_LISTING";
 const READ_ALL_LISTINGS = "listings/READ__ALL_LISTINGS";
+const READ_ONE_LISTING = "listings/READ_ONE_LISTING";
 const UPDATE_LISTING = "listings/UPDATE_LISTING";
 const DELETE_LISTING = "listings/DELETE_LISTING";
 
@@ -14,6 +15,11 @@ const createListing = (listingData) => ({
 const readAllListings = (listings) => ({
   type: READ_ALL_LISTINGS,
   listings,
+});
+
+const readOneListing = (listing) => ({
+  type: READ_ONE_LISTING,
+  listing,
 });
 
 const updateListing = (listingData, guitarId) => ({
@@ -41,6 +47,20 @@ export const readAllListingsThunk = () => async (dispatch) => {
     dispatch(readAllListings(data));
     // return data;
   } else {
+    return "Listings Not Found";
+  }
+};
+
+export const readOneListingThunk = (guitarId) => async (dispatch) => {
+  const response = await fetch(`/api/listings/${guitarId}`, {
+    method: "GET",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(readOneListing(data));
+    return data;
+  } else {
     return "Listing Not Found";
   }
 };
@@ -52,18 +72,22 @@ export const deleteListingThunk = (guitarId) => async (dispatch) => {};
 
 // Initial State
 
-const initialState = { listings: {} };
+const initialState = { listings: {}, listing: {} };
 
 // REDUCER
 
 export default function listingsReducer(state = initialState, action) {
-  // let newState;
+  let newState;
   switch (action.type) {
     case READ_ALL_LISTINGS:
-      const newState = { ...state };
+      newState = { ...state };
       action.listings.listings.forEach((listing) => {
         newState.listings[listing.guitar.id] = listing;
       });
+      return newState;
+    case READ_ONE_LISTING:
+      newState = { ...state };
+      newState.listing = action.listing;
       return newState;
     case CREATE_LISTING:
       return newState;

@@ -1,0 +1,4 @@
+.main-guitar-detail {
+  display: flex;
+  justify-content: space-between;
+}
