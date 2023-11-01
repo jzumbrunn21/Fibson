@@ -1,8 +1,9 @@
-from flask import Blueprint, jsonify, request, redirect, render_template
+from flask import Blueprint
 from app.models import db, Guitar, GuitarImage
-# Forms need importing
 from app.forms import GuitarForm, GuitarImageForm
 from flask_login import current_user, login_required
+
+
 listings_routes = Blueprint("listings", __name__)
 
 
@@ -65,22 +66,37 @@ def create_listing():
 @listings_routes.route('/manage')
 @login_required
 def manage_listings():
+    guitars = Guitar.query.filter(Guitar.merchant_id == current_user.id).all()
+    response = []
 
-    response = [guitar.to_dict() for guitars in Guitar.query.filter(Guitar.merchant_id == current_user.id)]
+    for guitar in guitars:
+        guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+        images = [image.url for image in guitarImages]
+        response.append({
+            'guitars': guitar.to_dict(),
+            'images': images
+        })
 
     return {'my_listings': response}
 
 
 
-@listings_routes.routes('/<int:id>')
+@listings_routes.route('/<int:id>')
 def guitar_detail(id):
-
-    response = Guitar.query.get(id).to_dict()
+    response = []
+    guitar = Guitar.query.get(id)
+    guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+    images = [image.url for image in guitarImages]
+    response.append({
+        'guitar': guitar.to_dict(),
+        'images': images
+    })
 
     return {'listing': response}
 
 
-@listings_routes.routes('/update/<int:id>', methods=['PUT'])
+
+@listings_routes.route('/update/<int:id>', methods=['PUT'])
 @login_required
 def update_listing(id):
     form = GuitarForm()
