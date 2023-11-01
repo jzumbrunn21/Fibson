@@ -69,7 +69,12 @@ const CreateListing = () => {
     <>
       <div className="create-listing-form-container">
         <h2>Create your Guitar Listing</h2>
-        <form onSubmit={handleSubmit}>
+        <form
+          action="/create"
+          method="POST"
+          enctype="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           <div className="make-model-year">
             <label>
               Make

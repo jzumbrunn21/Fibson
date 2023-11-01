@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models import db, Guitar, GuitarImage
 from app.forms import GuitarForm, GuitarImageForm
 from flask_login import current_user, login_required
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
 listings_routes = Blueprint("listings", __name__)
@@ -62,6 +63,29 @@ def create_listing():
         return {'Errors': form.errors}, 404
     # Do I add images here or in a seperate route?
     # Build out then come back to this.
+
+@listings_routes.route('/<int:id>/upload-image', methods=['POST'])
+@login_required
+def upload_image():
+    form = GuitarImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        image = form.data["url"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print("**Upload**", upload)
+
+        if "url" not in upload:
+            return "URL NOT IN UPLOAD"
+        url = upload["url"]
+        new_image = GuitarImage(url=upload['url'])
+        db.session.add(new_image)
+        db.session.commit()
+
+    if form.errors:
+        return {'Errors': form.errors}, 404
+
 
 
 @listings_routes.route('/manage')
