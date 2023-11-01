@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { readAllUserListingsThunk } from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
 import "./ManageListings.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const ManageListings = () => {
   const dispatch = useDispatch();
   const listings = useSelector((state) =>
     Object.values(state.listings.listings)
   );
-  console.log("LISTINGS", listings);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(readAllUserListingsThunk());
@@ -27,7 +27,9 @@ const ManageListings = () => {
     <>
       <div className="listings-filter">
         <h1>Manage your Guitar Listings:</h1>
-        <button>Create a Guitar Listing</button>
+        <button onClick={() => history.push("/create")}>
+          Create a Guitar Listing
+        </button>
       </div>
       <div className="all-listings-container">
         {listings.map((listing) => (
