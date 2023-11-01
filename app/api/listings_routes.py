@@ -9,6 +9,7 @@ listings_routes = Blueprint("listings", __name__)
 
 
 @listings_routes.route('/')
+#Grabs all guitars and their images(images in a list)
 def all_listings():
     guitars = Guitar.query.all()
     response = []
