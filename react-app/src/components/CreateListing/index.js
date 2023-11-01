@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./CreateListing.css";
-import { createListingThunk } from "../../store/listings";
+import {
+  createListingThunk,
+  uploadListingImageThunk,
+} from "../../store/listings";
 
 const CreateListing = () => {
   const dispatch = useDispatch();
@@ -23,8 +26,9 @@ const CreateListing = () => {
   const [inlays, setInlays] = useState("Pearl-Dot");
   const [handedness, setHandedness] = useState("Right");
   const [description, setDescription] = useState("");
-  const [pickguard, setPickguard] = useState(false);
+  const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("2-Switch");
+  const [url, setUrl] = useState(null);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -32,6 +36,8 @@ const CreateListing = () => {
     const newErrors = {};
 
     // Validators will go here later
+    const formData = new FormData();
+    formData.append("url", url);
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -59,7 +65,13 @@ const CreateListing = () => {
     };
 
     const createdListing = await dispatch(createListingThunk(listingData));
-    if (createdListing) {
+    console.log("CREATED LISTING", createdListing);
+    const guitarId = createdListing.id;
+    console.log("GUITAR ID", guitarId);
+    const createdImage = await dispatch(
+      uploadListingImageThunk(formData, guitarId)
+    );
+    if (createdListing && createdImage) {
       history.push(`/listings/${createdListing.id}`);
     } else {
       return "Error creating your listing";
@@ -69,12 +81,7 @@ const CreateListing = () => {
     <>
       <div className="create-listing-form-container">
         <h2>Create your Guitar Listing</h2>
-        <form
-          action="/create"
-          method="POST"
-          enctype="multipart/form-data"
-          onSubmit={handleSubmit}
-        >
+        <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <div className="make-model-year">
             <label>
               Make
@@ -257,8 +264,26 @@ const CreateListing = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </label>
-            <button type="submit">Create your Guitar Listing</button>
+            <label>
+              Price
+              <input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </label>
           </div>
+          <div className="image-upload-container">
+            <label>
+              Upload your guitar image
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setUrl(e.target.files[0])}
+              />
+            </label>
+          </div>
+          <button type="submit">Create your Guitar Listing</button>
         </form>
       </div>
     </>
