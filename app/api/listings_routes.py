@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models import db, Guitar, GuitarImage
 from app.forms import GuitarForm, GuitarImageForm
 from flask_login import current_user, login_required
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 
 listings_routes = Blueprint("listings", __name__)
@@ -62,6 +63,32 @@ def create_listing():
         return {'Errors': form.errors}, 404
     # Do I add images here or in a seperate route?
     # Build out then come back to this.
+
+@listings_routes.route('/<int:id>/upload-image', methods=['POST'])
+@login_required
+def upload_image(id):
+    form = GuitarImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('HITTING THE ROUTE')
+
+    if form.validate_on_submit():
+        image = form.data["url"]
+        print("IMAGE", image)
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print("**Upload**", upload)
+
+        if "url" not in upload:
+            return "URL NOT IN UPLOAD"
+        url = upload["url"]
+        new_image = GuitarImage(url=upload['url'], guitar_id=id)
+        db.session.add(new_image)
+        db.session.commit()
+        return {'guitarImage': new_image.to_dict()}
+
+    if form.errors:
+        return {'Errors': form.errors}, 404
+
 
 
 @listings_routes.route('/manage')
@@ -142,3 +169,17 @@ def delete_listing(id):
         db.session.commit()
     else:
         return "Error with deleting listing"
+
+@listings_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_image(id):
+    deleted_image = GuitarImage.query.get(id)
+
+    file_to_delete = remove_file_from_s3(delete_image)
+
+    if file_to_delete:
+        db.session.delete(deleted_image)
+        db.session.commit()
+    else:
+        print("FILE TO DELETE",file_to_delete)
+        return "Error deleting your image"
