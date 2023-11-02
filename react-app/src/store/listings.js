@@ -125,7 +125,22 @@ export const readAllUserListingsThunk = () => async (dispatch) => {
 };
 
 export const updateListingThunk =
-  (listingData, guitarId) => async (dispatch) => {};
+  (listingData, guitarId) => async (dispatch) => {
+    const response = await fetch(`/api/listings/update/${guitarId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listingData),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateListing(data, guitarId));
+      return data;
+    } else {
+      return "ERROR UPDATING YOUR LISTING";
+    }
+  };
 
 export const deleteListingThunk = (guitarId) => async (dispatch) => {
   const response = await fetch(`/api/listings/${guitarId}`, {
@@ -169,6 +184,8 @@ export default function listingsReducer(state = initialState, action) {
       newState.listing = action.listingData;
       return newState;
     case UPDATE_LISTING:
+      newState = { ...state };
+      newState.listings[action.listingId] = action.listingData;
       return newState;
     case DELETE_LISTING:
       newState = { ...state };

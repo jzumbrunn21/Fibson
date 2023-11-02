@@ -24,7 +24,7 @@
 .single-listing-container {
   height: 500px;
   width: 100%;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
@@ -33,7 +33,8 @@
 }
 .all-listings-info-container {
   /* border: 2px solid green; */
-  gap: 5px;
+  /* gap: 5px; */
+  gap: -10px;
   align-self: flex-start;
   /* gap: -104px; */
 }
