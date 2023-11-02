@@ -167,10 +167,11 @@ def delete_listing(id):
     if deleted_listing:
         db.session.delete(deleted_listing)
         db.session.commit()
+        return "DELETED LISTING"
     else:
         return "Error with deleting listing"
 
-@listings_routes.route('/<int:id>', methods=['DELETE'])
+@listings_routes.route('/<int:id>/image', methods=['DELETE'])
 @login_required
 def delete_image(id):
     deleted_image = GuitarImage.query.get(id)
