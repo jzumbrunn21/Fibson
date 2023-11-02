@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import SubmitField
+from app.api.aws_helpers import ALLOWED_EXTENSIONS
 from app.models import GuitarImage
 
 
 class GuitarImageForm(FlaskForm):
 
-    url = StringField('url', validators=[DataRequired()])
+    url = FileField('Guitar Image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # submit = SubmitField('Submit Image')

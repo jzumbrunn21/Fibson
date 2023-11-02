@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
-import { readAllUserListingsThunk } from "../../store/listings";
+import {
+  readAllUserListingsThunk,
+  deleteListingThunk,
+} from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
 import "./ManageListings.css";
 import { Link, useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import DeleteListingModal from "../DeleteListingModal";
 
 const ManageListings = () => {
   const dispatch = useDispatch();
@@ -15,11 +20,22 @@ const ManageListings = () => {
     dispatch(readAllUserListingsThunk());
   }, [dispatch]);
 
-  const handleDelete = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
-  const handleUpdate = (e) => {
+  // const handleDelete = async (e) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   return (
+  //     <>
+  //       <OpenModalButton
+  //         className="delete-button"
+  //         buttonText="Delete"
+  //         modalComponent={<DeleteListingModal
+  //         guitarId={listing.guitar.id}
+  //         />}
+  //       />
+  //     </>
+  //   );
+  // };
+  const handleUpdate = async (e) => {
     e.stopPropagation();
     e.preventDefault();
   };
@@ -53,11 +69,18 @@ const ManageListings = () => {
                 <h5>{listing.guitar.color}</h5>
                 <h5>${listing.guitar.price}</h5>
               </div>
-              <div className="manage-button-container">
-                <button onClick={handleUpdate}>Update</button>
-                <button onClick={handleDelete}>Delete</button>
-              </div>
             </Link>
+            <div className="manage-button-container">
+              <button onClick={handleUpdate}>Update</button>
+              {/* <button onClick={handleDelete}>Delete</button> */}
+              <OpenModalButton
+                className="delete-button"
+                buttonText="Delete"
+                modalComponent={
+                  <DeleteListingModal guitarId={listing.guitar.id} />
+                }
+              />
+            </div>
           </>
         ))}
       </div>

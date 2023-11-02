@@ -4,12 +4,19 @@ const READ_ALL_LISTINGS = "listings/READ__ALL_LISTINGS";
 const READ_ONE_LISTING = "listings/READ_ONE_LISTING";
 const UPDATE_LISTING = "listings/UPDATE_LISTING";
 const DELETE_LISTING = "listings/DELETE_LISTING";
+const UPLOAD_IMAGE = "listings/UPLOAD_IMAGE";
+const DELETE_IMAGE = "listings/DELETE_IMAGE";
 
 // Regular Action Creators
 
 const createListing = (listingData) => ({
   type: CREATE_LISTING,
   listingData,
+});
+
+const uploadImage = (image) => ({
+  type: UPLOAD_IMAGE,
+  image,
 });
 
 const readAllListings = (listings) => ({
@@ -33,6 +40,11 @@ const deleteListing = (guitarId) => ({
   guitarId,
 });
 
+const deleteImage = (guitarId) => ({
+  type: DELETE_IMAGE,
+  guitarId,
+});
+
 // THUNK ACTION CREATORS
 
 export const createListingThunk = (listingData) => async (dispatch) => {
@@ -51,6 +63,26 @@ export const createListingThunk = (listingData) => async (dispatch) => {
     return "Error making your listing";
   }
 };
+
+export const uploadListingImageThunk =
+  (image, guitarId) => async (dispatch) => {
+    const response = await fetch(`/api/listings/${guitarId}/upload-image`, {
+      method: "POST",
+      body: image,
+    });
+    console.log("HITTING THUNK");
+    if (response.ok) {
+      const data = await response.json();
+      console.log("DATA", data);
+      dispatch(uploadImage(data));
+    } else {
+      console.log(
+        "Error in image upload!!",
+        response.status,
+        await response.text()
+      );
+    }
+  };
 
 export const readAllListingsThunk = () => async (dispatch) => {
   const response = await fetch("/api/listings", {
@@ -95,11 +127,23 @@ export const readAllUserListingsThunk = () => async (dispatch) => {
 export const updateListingThunk =
   (listingData, guitarId) => async (dispatch) => {};
 
-export const deleteListingThunk = (guitarId) => async (dispatch) => {};
+export const deleteListingThunk = (guitarId) => async (dispatch) => {
+  const response = await fetch(`/api/listings/${guitarId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteListing(guitarId));
+  } else {
+    return "Error deleting your listing";
+  }
+};
+
+// export const deleteImageThunk => (guitarId) => async (dispatch) => {}
 
 // Initial State
 
-const initialState = { listings: {}, listing: {} };
+const initialState = { listings: {}, listing: {}, images: {} };
 
 // REDUCER
 
@@ -116,6 +160,10 @@ export default function listingsReducer(state = initialState, action) {
       newState = { ...state };
       newState.listing = action.listing;
       return newState;
+    case UPLOAD_IMAGE:
+      newState = { ...state };
+      newState.images[action.image.id] = action.image;
+      return newState;
     case CREATE_LISTING:
       newState = { ...state };
       newState.listing = action.listingData;
@@ -123,6 +171,8 @@ export default function listingsReducer(state = initialState, action) {
     case UPDATE_LISTING:
       return newState;
     case DELETE_LISTING:
+      newState = { ...state };
+      delete newState.listings[action.guitarId];
       return newState;
     default:
       return state;
