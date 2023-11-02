@@ -10,6 +10,7 @@ import {
 const CreateListing = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -33,6 +34,7 @@ const CreateListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const newErrors = {};
 
     // Validators will go here later
@@ -65,18 +67,22 @@ const CreateListing = () => {
     };
 
     const createdListing = await dispatch(createListingThunk(listingData));
-    // console.log("CREATED LISTING", createdListing);
+    console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
     // console.log("GUITAR ID", guitarId);
     const createdImage = await dispatch(
       uploadListingImageThunk(formData, guitarId)
     );
-    if (createdListing && createdImage) {
-      history.push(`/listings/${createdListing.id}`);
+
+    setIsLoading(false);
+    if (createdListing) {
+      history.push(`/manage`);
     } else {
       return "Error creating your listing";
     }
   };
+
+  if (isLoading) return <div>...Loading...</div>;
   return (
     <>
       <div className="create-listing-form-container">
