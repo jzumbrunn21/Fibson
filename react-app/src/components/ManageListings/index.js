@@ -69,18 +69,18 @@ const ManageListings = () => {
                 <h5>{listing.guitar.color}</h5>
                 <h5>${listing.guitar.price}</h5>
               </div>
-              <div className="manage-button-container">
-                <button onClick={handleUpdate}>Update</button>
-                {/* <button onClick={handleDelete}>Delete</button> */}
-                <OpenModalButton
-                  className="delete-button"
-                  buttonText="Delete"
-                  modalComponent={
-                    <DeleteListingModal guitarId={listing.guitar.id} />
-                  }
-                />
-              </div>
             </Link>
+            <div className="manage-button-container">
+              <button onClick={handleUpdate}>Update</button>
+              {/* <button onClick={handleDelete}>Delete</button> */}
+              <OpenModalButton
+                className="delete-button"
+                buttonText="Delete"
+                modalComponent={
+                  <DeleteListingModal guitarId={listing.guitar.id} />
+                }
+              />
+            </div>
           </>
         ))}
       </div>
