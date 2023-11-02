@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   readAllUserListingsThunk,
   deleteListingThunk,
@@ -14,9 +14,11 @@ const ManageListings = () => {
   const listings = useSelector((state) =>
     Object.values(state.listings.listings)
   );
+  const [usersListings, setUsersListings] = useState(listings);
   const history = useHistory();
 
   useEffect(() => {
+    setUsersListings(listings);
     dispatch(readAllUserListingsThunk());
   }, [dispatch]);
 

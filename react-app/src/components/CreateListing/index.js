@@ -65,9 +65,9 @@ const CreateListing = () => {
     };
 
     const createdListing = await dispatch(createListingThunk(listingData));
-    console.log("CREATED LISTING", createdListing);
+    // console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
-    console.log("GUITAR ID", guitarId);
+    // console.log("GUITAR ID", guitarId);
     const createdImage = await dispatch(
       uploadListingImageThunk(formData, guitarId)
     );

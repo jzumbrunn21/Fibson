@@ -151,7 +151,7 @@ export default function listingsReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case READ_ALL_LISTINGS:
-      newState = { ...state };
+      newState = { ...state, listings: {} };
       action.listings.listings.forEach((listing) => {
         newState.listings[listing.guitar.id] = listing;
       });
