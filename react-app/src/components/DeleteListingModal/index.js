@@ -20,7 +20,7 @@ const DeleteListingModal = ({ guitarId }) => {
   };
   return (
     <>
-      <h3>Tryna delete this shit?</h3>
+      <h3>Are you sure you want to delete this guitar listing?</h3>
       <button className="yay-button" onClick={handleDelete}>
         Yay
       </button>

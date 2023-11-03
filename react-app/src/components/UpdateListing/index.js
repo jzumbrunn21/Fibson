@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { readOneListingThunk, updateListingThunk } from "../../store/listings";
+import {
+  readOneListingThunk,
+  updateListingThunk,
+  uploadListingImageThunk,
+  deleteListingImageThunk,
+} from "../../store/listings";
+
 
 const UpdateListing = () => {
   const dispatch = useDispatch();
@@ -26,7 +32,7 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
-  //   const [url, setUrl] = useState(null);
+  const [url, setUrl] = useState(null);
   const [errors, setErrors] = useState({});
 
   const prepopulateFields = async () => {
@@ -49,10 +55,14 @@ const UpdateListing = () => {
     setDescription(res.guitar.description);
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
+    setUrl(res.images[0]);
   };
+  console.log(url);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("url", url);
 
     const updatedListingData = {
       make,
@@ -76,6 +86,10 @@ const UpdateListing = () => {
     const updatedListing = await dispatch(
       updateListingThunk(updatedListingData, guitarId)
     );
+    await dispatch(deleteListingImageThunk(guitarId)).then(
+      dispatch(uploadListingImageThunk(formData, guitarId))
+    );
+
     if (updatedListing) {
       history.push(`/listings/${guitarId}`);
     } else {
@@ -286,11 +300,11 @@ const UpdateListing = () => {
           <div className="image-upload-container">
             <label>
               Upload your guitar image
-              {/* <input
+              <input
                 type="file"
                 accept="image/*"
                 onChange={(e) => setUrl(e.target.files[0])}
-              /> */}
+              />
             </label>
           </div>
           <button type="submit">Create your Guitar Listing</button>

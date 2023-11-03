@@ -177,9 +177,11 @@ def delete_image(id):
     deleted_image = GuitarImage.query.get(id)
 
     file_to_delete = remove_file_from_s3(delete_image)
+    print("*******************DELETED IMAGE", delete_image)
+
 
     if file_to_delete:
-        db.session.delete(deleted_image)
+        db.session.delete(deleted_image.url)
         db.session.commit()
     else:
         print("FILE TO DELETE",file_to_delete)
