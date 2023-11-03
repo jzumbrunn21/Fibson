@@ -31,7 +31,7 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
-  const [url, setUrl] = useState(null);
+  const [urls, setUrls] = useState(null);
   const [currentImageOne, setCurrentImageOne] = useState(null);
 
   const [errors, setErrors] = useState({});
@@ -56,7 +56,7 @@ const UpdateListing = () => {
     setDescription(res.guitar.description);
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
-    setUrl(res.images[0]);
+    setUrls(res.images[0]);
     setCurrentImageOne(res.images[0])
 
 
