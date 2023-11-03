@@ -86,7 +86,7 @@ const UpdateListing = () => {
       updateListingThunk(updatedListingData, guitarId)
     );
     await dispatch(deleteListingImageThunk(guitarId)).then(
-      dispatch(uploadListingImageThunk(formData, guitarId))
+      await dispatch(uploadListingImageThunk(formData, guitarId))
     );
 
     if (updatedListing) {
