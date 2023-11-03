@@ -24,7 +24,7 @@ const GuitarDetail = () => {
           <>
             <div className="single-guitar-images-container">
               {/* <h3>Images</h3> */}
-              {listing[0].images.map((image, index) => (
+              {listing[0].images && listing[0].images.map((image, index) => (
                 <img key={index} src={image} alt={listing[0].guitar.model} />
               ))}
             </div>

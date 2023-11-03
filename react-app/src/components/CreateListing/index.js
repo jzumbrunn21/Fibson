@@ -29,7 +29,7 @@ const CreateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("2-Switch");
-  const [url, setUrl] = useState(null);
+  const [urls, setUrls] = useState(null);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
@@ -38,8 +38,6 @@ const CreateListing = () => {
     const newErrors = {};
 
     // Validators will go here later
-    const formData = new FormData();
-    formData.append("url", url);
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -70,13 +68,17 @@ const CreateListing = () => {
     console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
     // console.log("GUITAR ID", guitarId);
-    const createdImage = await dispatch(
-      uploadListingImageThunk(formData, guitarId)
-    );
+    for (let url of urls) {
+      const formData = new FormData();
+      formData.append("url", url);
+      const createdImage = await dispatch(
+        uploadListingImageThunk(formData, guitarId)
+      );
+    }
 
     setIsLoading(false);
     if (createdListing && guitarId) {
-      history.push(`/listings/${guitarId}`);
+      history.push(`/manage`);
     } else {
       return "Error creating your listing";
     }
@@ -285,7 +287,8 @@ const CreateListing = () => {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(e) => setUrl(e.target.files[0])}
+                multiple
+                onChange={(e) => setUrls([...e.target.files])}
               />
             </label>
           </div>

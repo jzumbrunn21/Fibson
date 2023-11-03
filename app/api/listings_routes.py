@@ -73,10 +73,10 @@ def upload_image(id):
 
     if form.validate_on_submit():
         image = form.data["url"]
-        print("IMAGE", image)
+        # print("IMAGE", image)
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
-        print("**Upload**", upload)
+        # print("**Upload**", upload)
 
         if "url" not in upload:
             return "URL NOT IN UPLOAD"
