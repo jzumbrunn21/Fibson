@@ -99,7 +99,7 @@ def manage_listings():
 
     for guitar in guitars:
         guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
-        images = [image.url for image in guitarImages]
+        images = [{'id': image.id, 'url': image.url} for image in guitarImages]
         response.append({
             'guitar': guitar.to_dict(),
             'images': images
@@ -143,7 +143,7 @@ def update_listing(id):
         guitarUpdated.pickup_type=form.data['pickup_type']
         guitarUpdated.joint_type=form.data['joint_type']
         guitarUpdated.fretboard_material=form.data['fretboard_material']
-        guitarUpdate.frets=form.data['frets']
+        guitarUpdated.frets=form.data['frets']
         guitarUpdated.inlays=form.data['inlays']
         guitarUpdated.handedness=form.data['handedness']
         guitarUpdated.description=form.data['description']
@@ -174,13 +174,22 @@ def delete_listing(id):
 @listings_routes.route('/<int:id>/image', methods=['DELETE'])
 @login_required
 def delete_image(id):
-    deleted_image = GuitarImage.query.get(id)
+    guitar = Guitar.query.get(id)
+    # print("*******************DELETED LISTING", deleted_listing)
+    guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+    images = [{'id': image.id, 'url': image.url} for image in guitarImages]
+    first_image = images[0]['id']
+    guitarImage = GuitarImage.query.filter_by(id=first_image).first()
+    print('********************************************************', guitarImage)
 
-    file_to_delete = remove_file_from_s3(delete_image)
+
+    file_to_delete = remove_file_from_s3(guitarImage.url)
+
 
     if file_to_delete:
-        db.session.delete(deleted_image)
+        db.session.delete(guitarImage)
         db.session.commit()
+        return "Image Deleted"
     else:
         print("FILE TO DELETE",file_to_delete)
         return "Error deleting your image"

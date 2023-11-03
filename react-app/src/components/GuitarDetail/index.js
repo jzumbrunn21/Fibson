@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./GuitarDetail.css";
 import { readOneListingThunk } from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,14 +11,16 @@ const GuitarDetail = () => {
     (state) => Object.values(state.listings.listing)[0]
   );
   console.log("LISTING", listing);
+  const [listingEdit, setListingEdit] = useState(listing);
 
   useEffect(() => {
+    setListingEdit(listing);
     dispatch(readOneListingThunk(guitarId));
   }, [dispatch]);
   return (
     <>
       <div className="main-guitar-detail">
-        {listing && (
+        {listing && listing[0] && (
           <>
             <div className="single-guitar-images-container">
               {/* <h3>Images</h3> */}

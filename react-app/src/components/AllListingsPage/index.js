@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { readAllListingsThunk } from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,10 +9,15 @@ const AllListingsPage = () => {
   const allListings = useSelector((state) =>
     Object.values(state.listings.listings)
   );
+  const [listings, setListings] = useState(allListings);
 
   useEffect(() => {
+    setListings(allListings);
     dispatch(readAllListingsThunk());
-  }, [dispatch]);
+  }, []);
+
+
+
   return (
     <>
       <div className="listings-filter">

@@ -125,7 +125,22 @@ export const readAllUserListingsThunk = () => async (dispatch) => {
 };
 
 export const updateListingThunk =
-  (listingData, guitarId) => async (dispatch) => {};
+  (listingData, guitarId) => async (dispatch) => {
+    const response = await fetch(`/api/listings/update/${guitarId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listingData),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateListing(data, guitarId));
+      return data;
+    } else {
+      return "ERROR UPDATING YOUR LISTING";
+    }
+  };
 
 export const deleteListingThunk = (guitarId) => async (dispatch) => {
   const response = await fetch(`/api/listings/${guitarId}`, {
@@ -136,6 +151,18 @@ export const deleteListingThunk = (guitarId) => async (dispatch) => {
     dispatch(deleteListing(guitarId));
   } else {
     return "Error deleting your listing";
+  }
+};
+
+export const deleteListingImageThunk = (guitarId) => async (dispatch) => {
+  const response = await fetch(`/api/listings/${guitarId}/image`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteImage(guitarId));
+  } else {
+    return "Error deleting your image";
   }
 };
 
@@ -151,7 +178,7 @@ export default function listingsReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case READ_ALL_LISTINGS:
-      newState = { ...state };
+      newState = { ...state, listings: {} };
       action.listings.listings.forEach((listing) => {
         newState.listings[listing.guitar.id] = listing;
       });
@@ -169,10 +196,16 @@ export default function listingsReducer(state = initialState, action) {
       newState.listing = action.listingData;
       return newState;
     case UPDATE_LISTING:
+      newState = { ...state };
+      newState.listings[action.listingId] = action.listingData;
       return newState;
     case DELETE_LISTING:
       newState = { ...state };
       delete newState.listings[action.guitarId];
+      return newState;
+    case DELETE_IMAGE:
+      newState = { ...state };
+      delete newState.listing.listing[0].images.shift();
       return newState;
     default:
       return state;
