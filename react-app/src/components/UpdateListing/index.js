@@ -33,7 +33,16 @@ const UpdateListing = () => {
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
   const [url, setUrl] = useState(null);
+  const [urlOne, setUrlOne] = useState(null);
+  const [urlTwo, setUrlTwo] = useState(null);
+  const [urlThree, setUrlThree] = useState(null);
+  const [urlFour, setUrlFour] = useState(null);
+  const [urlFive, setUrlFive] = useState(null);
   const [currentImageOne, setCurrentImageOne] = useState(null);
+  const [currentImageTwo, setCurrentImageTwo] = useState(null);
+  const [currentImageThree, setCurrentImageThree] = useState(null);
+  const [currentImageFour, setCurrentImageFour] = useState(null);
+  const [currentImageFive, setCurrentImageFive] = useState(null);
 
   const [errors, setErrors] = useState({});
 
@@ -57,10 +66,20 @@ const UpdateListing = () => {
     setDescription(res.guitar.description);
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
+
     setUrl(res.images);
+    setUrlOne(res.images[0]);
+    setUrlTwo(res.images[1]);
+    setUrlThree(res.images[2]);
+    setUrlFour(res.images[3]);
+    setUrlFive(res.images[4]);
     setCurrentImageOne(res.images[0]);
+    setCurrentImageTwo(res.images[1]);
+    setCurrentImageThree(res.images[2]);
+    setCurrentImageFour(res.images[3]);
+    setCurrentImageFive(res.images[4]);
   };
-  // console.log(url);
+  // console.log(urlOne);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,14 +104,50 @@ const UpdateListing = () => {
       pickup_selector,
     };
 
-    if (url !== currentImageOne) {
+    if (urlOne !== currentImageOne) {
       const formData = new FormData();
-      formData.append("url", url);
+      formData.append("url", urlOne);
 
       await dispatch(deleteListingImageThunk(guitarId)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }
+    if (urlTwo !== currentImageTwo) {
+      const formData = new FormData();
+      formData.append("url", urlTwo);
+
+      await dispatch(deleteListingImageThunk(guitarId)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlThree !== currentImageThree) {
+      const formData = new FormData();
+      formData.append("url", urlThree);
+
+      await dispatch(deleteListingImageThunk(guitarId)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlFour !== currentImageFour) {
+      const formData = new FormData();
+      formData.append("url", urlFour);
+
+      await dispatch(deleteListingImageThunk(guitarId)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlFive !== currentImageFive) {
+      const formData = new FormData();
+      formData.append("url", urlFive);
+
+      await dispatch(deleteListingImageThunk(guitarId)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
     const updatedListing = await dispatch(
       updateListingThunk(updatedListingData, guitarId)
     );
@@ -318,7 +373,7 @@ const UpdateListing = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setUrl(e.target.files[0])}
+                      onChange={(e) => setUrlOne(e.target.files[0])}
                     />
                   </li>
                   <li className="indiv-option">
@@ -330,7 +385,7 @@ const UpdateListing = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setUrl(e.target.files[0])}
+                      onChange={(e) => setUrlTwo(e.target.files[0])}
                     />
                   </li>
                   <li className="indiv-option">
@@ -342,7 +397,7 @@ const UpdateListing = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setUrl(e.target.files[0])}
+                      onChange={(e) => setUrlThree(e.target.files[0])}
                     />
                   </li>
                   <li className="indiv-option">
@@ -354,7 +409,7 @@ const UpdateListing = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setUrl(e.target.files[0])}
+                      onChange={(e) => setUrlFour(e.target.files[0])}
                     />
                   </li>
                   <li className="indiv-option">
@@ -366,7 +421,7 @@ const UpdateListing = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setUrl(e.target.files[0])}
+                      onChange={(e) => setUrlFive(e.target.files[0])}
                     />
                   </li>
                 </ul>

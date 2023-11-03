@@ -35,7 +35,10 @@ const updateListing = (listingData, guitarId) => ({
   guitarId,
 });
 
-const deleteListing = (guitarId) => ({
+const deleteListing = (
+  guitarId
+  // imageId
+) => ({
   type: DELETE_LISTING,
   guitarId,
 });
@@ -43,6 +46,7 @@ const deleteListing = (guitarId) => ({
 const deleteImage = (guitarId) => ({
   type: DELETE_IMAGE,
   guitarId,
+  ImageID,
 });
 
 // THUNK ACTION CREATORS
