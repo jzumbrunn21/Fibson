@@ -32,6 +32,8 @@ const UpdateListing = () => {
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
   const [url, setUrl] = useState(null);
+  const [currentImageOne, setCurrentImageOne] = useState(null);
+
   const [errors, setErrors] = useState({});
 
   const prepopulateFields = async () => {
@@ -55,13 +57,14 @@ const UpdateListing = () => {
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
     setUrl(res.images[0]);
-    console.log(response);
+    setCurrentImageOne(res.images[0])
+
+
   };
+  // console.log(url);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("url", url);
 
     const updatedListingData = {
       make,
@@ -82,11 +85,17 @@ const UpdateListing = () => {
       pickguard,
       pickup_selector,
     };
+
+    if (url !== currentImageOne) {
+      const formData = new FormData();
+      formData.append("url", url);
+
+      await dispatch(deleteListingImageThunk(guitarId)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
     const updatedListing = await dispatch(
       updateListingThunk(updatedListingData, guitarId)
-    );
-    await dispatch(deleteListingImageThunk(guitarId)).then(
-      await dispatch(uploadListingImageThunk(formData, guitarId))
     );
 
     if (updatedListing) {
@@ -298,7 +307,7 @@ const UpdateListing = () => {
           </div>
           <div className="image-upload-container">
             <label>
-              Upload your guitar image
+              Update your guitar image
               <input
                 type="file"
                 accept="image/*"
@@ -306,7 +315,7 @@ const UpdateListing = () => {
               />
             </label>
           </div>
-          <button type="submit">Create your Guitar Listing</button>
+          <button type="submit">Update your Guitar Listing</button>
         </form>
       </div>
     </>
