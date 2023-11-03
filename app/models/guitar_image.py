@@ -22,5 +22,5 @@ class GuitarImage(db.Model):
         return {
             'id': self.id,
             'guitar_id': self.guitar_id,
-            'url': self.guitar_id
+            'url': self.url
         }

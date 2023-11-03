@@ -41,7 +41,7 @@ const ManageListings = () => {
               >
                 <div className="manage-all-listing-image">
                   <img
-                    src={listing.images[0]}
+                    src={listing.images[0].url}
                     alt={`${listing.guitar.make}, ${listing.guitar.model}`}
                   />
                 </div>

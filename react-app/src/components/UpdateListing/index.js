@@ -8,7 +8,6 @@ import {
   deleteListingImageThunk,
 } from "../../store/listings";
 
-
 const UpdateListing = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -56,8 +55,8 @@ const UpdateListing = () => {
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
     setUrl(res.images[0]);
+    console.log(response);
   };
-  console.log(url);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
