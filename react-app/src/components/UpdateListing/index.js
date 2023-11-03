@@ -7,6 +7,7 @@ import {
   uploadListingImageThunk,
   deleteListingImageThunk,
 } from "../../store/listings";
+import "./UpdateListing.css";
 
 const UpdateListing = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
-  const [urls, setUrls] = useState(null);
+  const [url, setUrl] = useState(null);
   const [currentImageOne, setCurrentImageOne] = useState(null);
 
   const [errors, setErrors] = useState({});
@@ -56,10 +57,8 @@ const UpdateListing = () => {
     setDescription(res.guitar.description);
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
-    setUrls(res.images[0]);
-    setCurrentImageOne(res.images[0])
-
-
+    setUrl(res.images);
+    setCurrentImageOne(res.images[0]);
   };
   // console.log(url);
 
@@ -306,14 +305,73 @@ const UpdateListing = () => {
             </label>
           </div>
           <div className="image-upload-container">
-            <label>
-              Update your guitar image
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setUrl(e.target.files[0])}
-              />
-            </label>
+            {url && (
+              <label>
+                Update your guitar image
+                <ul className="update-image-list">
+                  <li className="indiv-option">
+                    <img
+                      src={url[0]}
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrl(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={url[1]}
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrl(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={url[2]}
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrl(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={url[3]}
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrl(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={url[4]}
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrl(e.target.files[0])}
+                    />
+                  </li>
+                </ul>
+              </label>
+            )}
           </div>
           <button type="submit">Update your Guitar Listing</button>
         </form>
