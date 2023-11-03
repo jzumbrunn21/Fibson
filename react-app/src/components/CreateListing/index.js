@@ -75,8 +75,8 @@ const CreateListing = () => {
     );
 
     setIsLoading(false);
-    if (createdListing) {
-      history.push(`/manage`);
+    if (createdListing && guitarId) {
+      history.push(`/listings/${guitarId}`);
     } else {
       return "Error creating your listing";
     }

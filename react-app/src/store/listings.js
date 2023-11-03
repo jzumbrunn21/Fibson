@@ -154,6 +154,18 @@ export const deleteListingThunk = (guitarId) => async (dispatch) => {
   }
 };
 
+export const deleteListingImageThunk = (guitarId) => async (dispatch) => {
+  const response = await fetch(`/api/listings/${guitarId}/image`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(deleteImage(guitarId));
+  } else {
+    return "Error deleting your image";
+  }
+};
+
 // export const deleteImageThunk => (guitarId) => async (dispatch) => {}
 
 // Initial State
@@ -190,6 +202,10 @@ export default function listingsReducer(state = initialState, action) {
     case DELETE_LISTING:
       newState = { ...state };
       delete newState.listings[action.guitarId];
+      return newState;
+    case DELETE_IMAGE:
+      newState = { ...state };
+      delete newState.listing.listing[0].images.shift();
       return newState;
     default:
       return state;
