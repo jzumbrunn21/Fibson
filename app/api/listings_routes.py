@@ -143,7 +143,7 @@ def update_listing(id):
         guitarUpdated.pickup_type=form.data['pickup_type']
         guitarUpdated.joint_type=form.data['joint_type']
         guitarUpdated.fretboard_material=form.data['fretboard_material']
-        guitarUpdate.frets=form.data['frets']
+        guitarUpdated.frets=form.data['frets']
         guitarUpdated.inlays=form.data['inlays']
         guitarUpdated.handedness=form.data['handedness']
         guitarUpdated.description=form.data['description']
