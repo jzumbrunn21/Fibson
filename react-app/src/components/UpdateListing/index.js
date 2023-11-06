@@ -7,6 +7,7 @@ import {
   uploadListingImageThunk,
   deleteListingImageThunk,
 } from "../../store/listings";
+import "./UpdateListing.css";
 
 const UpdateListing = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,23 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
-  const [url, setUrl] = useState(null);
+  const [urls, setUrls] = useState(null);
+  const [urlOne, setUrlOne] = useState(null);
+  const [urlTwo, setUrlTwo] = useState(null);
+  const [urlThree, setUrlThree] = useState(null);
+  const [urlFour, setUrlFour] = useState(null);
+  const [urlFive, setUrlFive] = useState(null);
+  const [currentImageOne, setCurrentImageOne] = useState(null);
+  const [currentImageTwo, setCurrentImageTwo] = useState(null);
+  const [currentImageThree, setCurrentImageThree] = useState(null);
+  const [currentImageFour, setCurrentImageFour] = useState(null);
+  const [currentImageFive, setCurrentImageFive] = useState(null);
+  const [imageIdOne, setImageIdOne] = useState(null);
+  const [imageIdTwo, setImageIdTwo] = useState(null);
+  const [imageIdThree, setImageIdThree] = useState(null);
+  const [imageIdFour, setImageIdFour] = useState(null);
+  const [imageIdFive, setImageIdFive] = useState(null);
+
   const [errors, setErrors] = useState({});
 
   const prepopulateFields = async () => {
@@ -54,14 +71,59 @@ const UpdateListing = () => {
     setDescription(res.guitar.description);
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
-    setUrl(res.images[0]);
-    console.log(response);
+
+    setUrls(res.images);
+    setUrlOne(res.images[0].url);
+    setUrlTwo(
+      res.images.length > 1 && res.images[1].url ? res.images[1].url : null
+    );
+    setUrlThree(
+      res.images.length > 2 && res.images[2].url ? res.images[2].url : null
+    );
+    setUrlFour(
+      res.images.length > 3 && res.images[3].url ? res.images[3].url : null
+    );
+    setUrlFive(
+      res.images.length > 4 && res.images[4].url ? res.images[4].url : null
+    );
+
+    setCurrentImageOne(
+      res.images.length > 0 && res.images[0].url ? res.images[0].url : null
+    );
+    setCurrentImageTwo(
+      res.images.length > 1 && res.images[1].url ? res.images[1].url : null
+    );
+    setCurrentImageThree(
+      res.images.length > 2 && res.images[2].url ? res.images[2].url : null
+    );
+    setCurrentImageFour(
+      res.images.length > 3 && res.images[3].url ? res.images[3].url : null
+    );
+    setCurrentImageFive(
+      res.images.length > 4 && res.images[4].url ? res.images[4].url : null
+    );
+
+    setImageIdOne(
+      res.images.length > 0 && res.images[0].id ? res.images[0].id : null
+    );
+    setImageIdTwo(
+      res.images.length > 1 && res.images[1].id ? res.images[1].id : null
+    );
+    setImageIdThree(
+      res.images.length > 2 && res.images[2].id ? res.images[2].id : null
+    );
+    setImageIdFour(
+      res.images.length > 3 && res.images[3].id ? res.images[3].id : null
+    );
+    setImageIdFive(
+      res.images.length > 4 && res.images[4].id ? res.images[4].id : null
+    );
   };
+
+  console.log(imageIdOne, imageIdTwo);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("url", url);
 
     const updatedListingData = {
       make,
@@ -82,11 +144,53 @@ const UpdateListing = () => {
       pickguard,
       pickup_selector,
     };
+
+    if (urlOne !== currentImageOne) {
+      const formData = new FormData();
+      formData.append("url", urlOne);
+
+      await dispatch(deleteListingImageThunk(guitarId, imageIdOne)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+    if (urlTwo !== currentImageTwo) {
+      const formData = new FormData();
+      formData.append("url", urlTwo);
+
+      await dispatch(deleteListingImageThunk(guitarId, imageIdTwo)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlThree !== currentImageThree) {
+      const formData = new FormData();
+      formData.append("url", urlThree);
+
+      await dispatch(deleteListingImageThunk(guitarId, imageIdThree)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlFour !== currentImageFour) {
+      const formData = new FormData();
+      formData.append("url", urlFour);
+
+      await dispatch(deleteListingImageThunk(guitarId, imageIdFour)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
+    if (urlFive !== currentImageFive) {
+      const formData = new FormData();
+      formData.append("url", urlFive);
+
+      await dispatch(deleteListingImageThunk(guitarId, imageIdFive)).then(
+        await dispatch(uploadListingImageThunk(formData, guitarId))
+      );
+    }
+
     const updatedListing = await dispatch(
       updateListingThunk(updatedListingData, guitarId)
-    );
-    await dispatch(deleteListingImageThunk(guitarId)).then(
-      await dispatch(uploadListingImageThunk(formData, guitarId))
     );
 
     if (updatedListing) {
@@ -297,16 +401,95 @@ const UpdateListing = () => {
             </label>
           </div>
           <div className="image-upload-container">
-            <label>
-              Upload your guitar image
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setUrl(e.target.files[0])}
-              />
-            </label>
+            {urls && (
+              <label>
+                Update your guitar image
+                <ul className="update-image-list">
+                  <li className="indiv-option">
+                    <img
+                      src={
+                        urls && urls.length > 0 && urls[0].url
+                          ? urls[0].url
+                          : null
+                      }
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrlOne(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={
+                        urls && urls.length > 1 && urls[1].url
+                          ? urls[1].url
+                          : null
+                      }
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrlTwo(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={
+                        urls && urls.length > 2 && urls[2].url
+                          ? urls[2].url
+                          : null
+                      }
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrlThree(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={
+                        urls && urls.length > 3 && urls[3].url
+                          ? urls[3].url
+                          : null
+                      }
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrlFour(e.target.files[0])}
+                    />
+                  </li>
+                  <li className="indiv-option">
+                    <img
+                      src={
+                        urls && urls.length > 4 && urls[4].url
+                          ? urls[4].url
+                          : null
+                      }
+                      alt={"Image Url"}
+                      className="update-image-small-view"
+                    ></img>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setUrlFive(e.target.files[0])}
+                    />
+                  </li>
+                </ul>
+              </label>
+            )}
           </div>
-          <button type="submit">Create your Guitar Listing</button>
+          <button type="submit">Update your Guitar Listing</button>
         </form>
       </div>
     </>

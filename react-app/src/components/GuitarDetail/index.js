@@ -12,11 +12,16 @@ const GuitarDetail = () => {
   );
   console.log("LISTING", listing);
   const [listingEdit, setListingEdit] = useState(listing);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setListingEdit(listing);
-    dispatch(readOneListingThunk(guitarId));
+    dispatch(readOneListingThunk(guitarId)).then(() => setIsLoading(false));
   }, [dispatch]);
+
+  if (isLoading) {
+    return <div>...Loading</div>;
+  }
   return (
     <>
       <div className="main-guitar-detail">
@@ -24,9 +29,10 @@ const GuitarDetail = () => {
           <>
             <div className="single-guitar-images-container">
               {/* <h3>Images</h3> */}
-              {listing[0].images.map((image, index) => (
-                <img key={index} src={image} alt={listing[0].guitar.model} />
-              ))}
+              {listing[0].images &&
+                listing[0].images.map((image, index) => (
+                  <img key={index} src={image.url} alt={listing[0].guitar.model} />
+                ))}
             </div>
             <div className="single-guitar-info-container">
               <h2>
