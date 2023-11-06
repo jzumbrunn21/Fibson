@@ -44,6 +44,10 @@ const UpdateListing = () => {
   const [currentImageFour, setCurrentImageFour] = useState(null);
   const [currentImageFive, setCurrentImageFive] = useState(null);
   const [imageIdOne, setImageIdOne] = useState(null);
+  const [imageIdTwo, setImageIdTwo] = useState(null);
+  const [imageIdThree, setImageIdThree] = useState(null);
+  const [imageIdFour, setImageIdFour] = useState(null);
+  const [imageIdFive, setImageIdFive] = useState(null);
 
   const [errors, setErrors] = useState({});
 
@@ -99,8 +103,24 @@ const UpdateListing = () => {
       res.images.length > 4 && res.images[4].url ? res.images[4].url : null
     );
 
-    console.log("IAMGE ID ONE", res);
+    setImageIdOne(
+      res.images.length > 0 && res.images[0].id ? res.images[0].id : null
+    );
+    setImageIdTwo(
+      res.images.length > 1 && res.images[1].id ? res.images[1].id : null
+    );
+    setImageIdThree(
+      res.images.length > 2 && res.images[2].id ? res.images[2].id : null
+    );
+    setImageIdFour(
+      res.images.length > 3 && res.images[3].id ? res.images[3].id : null
+    );
+    setImageIdFive(
+      res.images.length > 4 && res.images[4].id ? res.images[4].id : null
+    );
   };
+
+  console.log(imageIdOne, imageIdTwo);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,7 +149,7 @@ const UpdateListing = () => {
       const formData = new FormData();
       formData.append("url", urlOne);
 
-      await dispatch(deleteListingImageThunk(guitarId)).then(
+      await dispatch(deleteListingImageThunk(guitarId, imageIdOne)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }
@@ -137,7 +157,7 @@ const UpdateListing = () => {
       const formData = new FormData();
       formData.append("url", urlTwo);
 
-      await dispatch(deleteListingImageThunk(guitarId)).then(
+      await dispatch(deleteListingImageThunk(guitarId, imageIdTwo)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }
@@ -146,7 +166,7 @@ const UpdateListing = () => {
       const formData = new FormData();
       formData.append("url", urlThree);
 
-      await dispatch(deleteListingImageThunk(guitarId)).then(
+      await dispatch(deleteListingImageThunk(guitarId, imageIdThree)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }
@@ -155,7 +175,7 @@ const UpdateListing = () => {
       const formData = new FormData();
       formData.append("url", urlFour);
 
-      await dispatch(deleteListingImageThunk(guitarId)).then(
+      await dispatch(deleteListingImageThunk(guitarId, imageIdFour)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }
@@ -164,7 +184,7 @@ const UpdateListing = () => {
       const formData = new FormData();
       formData.append("url", urlFive);
 
-      await dispatch(deleteListingImageThunk(guitarId)).then(
+      await dispatch(deleteListingImageThunk(guitarId, imageIdFive)).then(
         await dispatch(uploadListingImageThunk(formData, guitarId))
       );
     }

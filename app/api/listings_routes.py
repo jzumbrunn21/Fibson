@@ -171,15 +171,16 @@ def delete_listing(id):
     else:
         return "Error with deleting listing"
 
-@listings_routes.route('/<int:id>/image', methods=['DELETE'])
+@listings_routes.route('/<int:id>/image/<int:image_id>', methods=['DELETE'])
 @login_required
-def delete_image(id):
+def delete_image(id, image_id):
     guitar = Guitar.query.get(id)
     # print("*******************DELETED LISTING", deleted_listing)
-    guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
-    images = [{'id': image.id, 'url': image.url} for image in guitarImages]
-    first_image = images[0]['id']
-    guitarImage = GuitarImage.query.filter_by(id=first_image).first()
+    # guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
+    # images = [{'id': image.id, 'url': image.url} for image in guitarImages]
+    # first_image = images[0]['id']
+    # guitarImage = GuitarImage.query.filter_by(id=first_image).first()
+    guitarImage = GuitarImage.query.get(image_id)
     print('********************************************************', guitarImage)
 
 

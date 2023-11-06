@@ -40,9 +40,10 @@ const deleteListing = (guitarId) => ({
   guitarId,
 });
 
-const deleteImage = (guitarId) => ({
+const deleteImage = (guitarId, imageId) => ({
   type: DELETE_IMAGE,
   guitarId,
+  imageId,
 });
 
 // THUNK ACTION CREATORS
@@ -154,17 +155,18 @@ export const deleteListingThunk = (guitarId) => async (dispatch) => {
   }
 };
 
-export const deleteListingImageThunk = (guitarId) => async (dispatch) => {
-  const response = await fetch(`/api/listings/${guitarId}/image`, {
-    method: "DELETE",
-  });
+export const deleteListingImageThunk =
+  (guitarId, imageId) => async (dispatch) => {
+    const response = await fetch(`/api/listings/${guitarId}/image/${imageId}`, {
+      method: "DELETE",
+    });
 
-  if (response.ok) {
-    dispatch(deleteImage(guitarId));
-  } else {
-    return "Error deleting your image";
-  }
-};
+    if (response.ok) {
+      dispatch(deleteImage(guitarId, imageId));
+    } else {
+      return "Error deleting your image";
+    }
+  };
 
 // export const deleteImageThunk => (guitarId) => async (dispatch) => {}
 
@@ -205,7 +207,13 @@ export default function listingsReducer(state = initialState, action) {
       return newState;
     case DELETE_IMAGE:
       newState = { ...state };
-      delete newState.listing.listing[0].images.shift();
+      const imageIndex = newState.listing.listing[0].images.findIndex(
+        (image) => image.id === action.imageId
+      );
+
+      if (imageIndex !== -1) {
+        newState.listing.listing[0].images.splice(imageIndex, 1);
+      }
       return newState;
     default:
       return state;
