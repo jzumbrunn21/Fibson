@@ -32,7 +32,7 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
-  const [url, setUrl] = useState(null);
+  const [urls, setUrls] = useState(null);
   const [urlOne, setUrlOne] = useState(null);
   const [urlTwo, setUrlTwo] = useState(null);
   const [urlThree, setUrlThree] = useState(null);
@@ -43,6 +43,7 @@ const UpdateListing = () => {
   const [currentImageThree, setCurrentImageThree] = useState(null);
   const [currentImageFour, setCurrentImageFour] = useState(null);
   const [currentImageFive, setCurrentImageFive] = useState(null);
+  const [imageIdOne, setImageIdOne] = useState(null);
 
   const [errors, setErrors] = useState({});
 
@@ -67,19 +68,39 @@ const UpdateListing = () => {
     setPickguard(res.guitar.pickguard);
     set_pickup_selector(res.guitar.pickup_selector);
 
-    setUrl(res.images);
-    setUrlOne(res.images[0]);
-    setUrlTwo(res.images[1]);
-    setUrlThree(res.images[2]);
-    setUrlFour(res.images[3]);
-    setUrlFive(res.images[4]);
-    setCurrentImageOne(res.images[0]);
-    setCurrentImageTwo(res.images[1]);
-    setCurrentImageThree(res.images[2]);
-    setCurrentImageFour(res.images[3]);
-    setCurrentImageFive(res.images[4]);
+    setUrls(res.images);
+    setUrlOne(res.images[0].url);
+    setUrlTwo(
+      res.images.length > 1 && res.images[1].url ? res.images[1].url : null
+    );
+    setUrlThree(
+      res.images.length > 2 && res.images[2].url ? res.images[2].url : null
+    );
+    setUrlFour(
+      res.images.length > 3 && res.images[3].url ? res.images[3].url : null
+    );
+    setUrlFive(
+      res.images.length > 4 && res.images[4].url ? res.images[4].url : null
+    );
+
+    setCurrentImageOne(
+      res.images.length > 0 && res.images[0].url ? res.images[0].url : null
+    );
+    setCurrentImageTwo(
+      res.images.length > 1 && res.images[1].url ? res.images[1].url : null
+    );
+    setCurrentImageThree(
+      res.images.length > 2 && res.images[2].url ? res.images[2].url : null
+    );
+    setCurrentImageFour(
+      res.images.length > 3 && res.images[3].url ? res.images[3].url : null
+    );
+    setCurrentImageFive(
+      res.images.length > 4 && res.images[4].url ? res.images[4].url : null
+    );
+
+    console.log("IAMGE ID ONE", res);
   };
-  // console.log(urlOne);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -360,13 +381,17 @@ const UpdateListing = () => {
             </label>
           </div>
           <div className="image-upload-container">
-            {url && (
+            {urls && (
               <label>
                 Update your guitar image
                 <ul className="update-image-list">
                   <li className="indiv-option">
                     <img
-                      src={url[0]}
+                      src={
+                        urls && urls.length > 0 && urls[0].url
+                          ? urls[0].url
+                          : null
+                      }
                       alt={"Image Url"}
                       className="update-image-small-view"
                     ></img>
@@ -378,7 +403,11 @@ const UpdateListing = () => {
                   </li>
                   <li className="indiv-option">
                     <img
-                      src={url[1]}
+                      src={
+                        urls && urls.length > 1 && urls[1].url
+                          ? urls[1].url
+                          : null
+                      }
                       alt={"Image Url"}
                       className="update-image-small-view"
                     ></img>
@@ -390,7 +419,11 @@ const UpdateListing = () => {
                   </li>
                   <li className="indiv-option">
                     <img
-                      src={url[2]}
+                      src={
+                        urls && urls.length > 2 && urls[2].url
+                          ? urls[2].url
+                          : null
+                      }
                       alt={"Image Url"}
                       className="update-image-small-view"
                     ></img>
@@ -402,7 +435,11 @@ const UpdateListing = () => {
                   </li>
                   <li className="indiv-option">
                     <img
-                      src={url[3]}
+                      src={
+                        urls && urls.length > 3 && urls[3].url
+                          ? urls[3].url
+                          : null
+                      }
                       alt={"Image Url"}
                       className="update-image-small-view"
                     ></img>
@@ -414,7 +451,11 @@ const UpdateListing = () => {
                   </li>
                   <li className="indiv-option">
                     <img
-                      src={url[4]}
+                      src={
+                        urls && urls.length > 4 && urls[4].url
+                          ? urls[4].url
+                          : null
+                      }
                       alt={"Image Url"}
                       className="update-image-small-view"
                     ></img>

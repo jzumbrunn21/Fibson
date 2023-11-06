@@ -114,7 +114,7 @@ def guitar_detail(id):
     response = []
     guitar = Guitar.query.get(id)
     guitarImages = GuitarImage.query.filter_by(guitar_id=guitar.id).all()
-    images = [image.url for image in guitarImages]
+    images = [image.to_dict() for image in guitarImages]
     response.append({
         'guitar': guitar.to_dict(),
         'images': images
