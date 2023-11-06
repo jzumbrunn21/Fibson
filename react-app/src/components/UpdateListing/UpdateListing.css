@@ -1,0 +1,19 @@
+.update-image-small-view {
+  height: 50px;
+  width: 50px;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.update-image-list {
+  list-style-type: none;
+  /* margin: 20px; */
+}
+
+.indiv-option {
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
