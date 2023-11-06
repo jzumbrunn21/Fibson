@@ -7,6 +7,7 @@ import logo from "./logo.png";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  console.log(sessionUser);
 
   return (
     <div className="navigation">
@@ -17,6 +18,13 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/listings">
           <button>All Listings</button>
         </NavLink>
+      </div>
+      <div>
+        {sessionUser && (
+          <NavLink exact to={`/cart/${sessionUser.id}`}>
+            <button>My Cart</button>
+          </NavLink>
+        )}
       </div>
       <div>{isLoaded && <ProfileButton user={sessionUser} />}</div>
     </div>
