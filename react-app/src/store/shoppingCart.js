@@ -6,7 +6,7 @@ const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
 
 // Regular Action Creators
 
-const readUserCart = (listings, user_id) => ({
+const readUserCart = (listings) => ({
   type: READ_USER_CART,
   listings,
 });
@@ -30,6 +30,24 @@ export const readUserCartThunk = (user_id) => async (dispatch) => {
   }
 };
 
+export const addToCartThunk =
+  (listing, user_id, guitar_id) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${user_id}/add/${guitar_id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(listing),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addToCart(data));
+    } else {
+      return "ERROR IN ADDING TO CART";
+    }
+  };
+
 // Initial State
 const initialState = { cart: {} };
 
@@ -41,6 +59,10 @@ export default function cartReducer(state = initialState, action) {
     case READ_USER_CART:
       newState = { ...state };
       newState.cart = action.listings;
+      return newState;
+    case ADD_TO_CART:
+      newState = { ...state };
+      newState.cart[action.listing.id] = action.listing;
       return newState;
 
     default:

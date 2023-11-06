@@ -61,10 +61,10 @@ def upgrade():
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('cart_id', sa.Integer(), nullable=True),
-    sa.Column('guitarId', sa.Integer(), nullable=True),
+    sa.Column('guitar_id', sa.Integer(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cart_id'], ['shopping_carts.id'], ),
-    sa.ForeignKeyConstraint(['guitarId'], ['guitars.id'], ),
+    sa.ForeignKeyConstraint(['guitar_id'], ['guitars.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('guitar_images',

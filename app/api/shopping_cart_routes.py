@@ -24,9 +24,9 @@ def view_shopping_cart(id):
 def add_to_cart(id, guitar_id):
     shopping_cart = ShoppingCart.query.get(id == current_user.id)
     cart_item = CartItem(
-        cart_id = shopping_cart.id,
-        guitar_id = guitar_id,
-        quantity = 1
+        cart_id=shopping_cart.id,
+        guitar_id=guitar_id,
+        quantity=1
     )
 
     db.session.add(cart_item)

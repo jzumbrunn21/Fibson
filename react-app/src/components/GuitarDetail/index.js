@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./GuitarDetail.css";
 import { readOneListingThunk } from "../../store/listings";
+import { addToCartThunk, readUserCartThunk } from "../../store/shoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -10,6 +11,7 @@ const GuitarDetail = () => {
   const listing = useSelector(
     (state) => Object.values(state.listings.listing)[0]
   );
+  const sessionUser = useSelector((state) => state.session.user);
   console.log("LISTING", listing);
   const [listingEdit, setListingEdit] = useState(listing);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +20,12 @@ const GuitarDetail = () => {
     setListingEdit(listing);
     dispatch(readOneListingThunk(guitarId)).then(() => setIsLoading(false));
   }, [dispatch]);
+
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+
+    await dispatch(addToCartThunk(listing, sessionUser.id, guitarId));
+  };
 
   if (isLoading) {
     return <div>...Loading</div>;
@@ -31,7 +39,11 @@ const GuitarDetail = () => {
               {/* <h3>Images</h3> */}
               {listing[0].images &&
                 listing[0].images.map((image, index) => (
-                  <img key={index} src={image.url} alt={listing[0].guitar.model} />
+                  <img
+                    key={index}
+                    src={image.url}
+                    alt={listing[0].guitar.model}
+                  />
                 ))}
             </div>
             <div className="single-guitar-info-container">
@@ -42,7 +54,7 @@ const GuitarDetail = () => {
               <h4>Finish: {listing[0].guitar.color}</h4>
               <h4>Handedness: {listing[0].guitar.handedness}</h4>
               <h4>Price: ${listing[0].guitar.price}</h4>
-              <button>Add to Cart</button>
+              <button onClick={handleAddToCart}>Add to Cart</button>
             </div>
           </>
         )}

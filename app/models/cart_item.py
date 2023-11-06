@@ -10,7 +10,7 @@ class CartItem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shopping_carts.id')))
-    guitarId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')))
+    guitar_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')))
     quantity = db.Column(db.Integer, default=1)
 
     shopping_cart = db.relationship(
