@@ -12,10 +12,12 @@ cart_routes = Blueprint("cart", __name__)
 def view_shopping_cart(id):
     cart = ShoppingCart.query.get(id == current_user.id)
     items = CartItem.query.filter_by(cart_id=cart.id).all()
-    items_to_dict = items.to_dict()
+    items_to_dict = [item.to_dict() for item in items]
 
 
     return {"cart": items_to_dict}
+
+
 
 @cart_routes.route('/<int:id>/add/<int:guitar_id>', methods=['POST'])
 @login_required
