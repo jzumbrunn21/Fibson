@@ -59,7 +59,8 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case READ_USER_CART:
       newState = { ...state };
-      newState.cart = { ...action.listings, ...state.cart };
+      // newState.cart = { ...action.listings, ...state.cart };
+      newState.cart = action.listings;
       return newState;
     case ADD_TO_CART:
       newState = { ...state };

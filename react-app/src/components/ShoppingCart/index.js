@@ -13,9 +13,10 @@ const ShoppingCart = () => {
   console.log("USER CART", userCart[0]);
 
   useEffect(() => {
-    setUsersCart(userCart);
-    dispatch(readUserCartThunk(userId));
-  }, [dispatch, userId]);
+    if (sessionUser) {
+      dispatch(readUserCartThunk(sessionUser.id));
+    }
+  }, [dispatch, sessionUser]);
 
   return (
     <>
