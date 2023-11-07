@@ -9,6 +9,7 @@ import {
 } from "../../store/shoppingCart";
 import DeleteCartItemModal from "../DeleteCartItemModal";
 import "./ShoppingCart.css";
+
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
@@ -21,11 +22,18 @@ const ShoppingCart = () => {
     }
   }, [dispatch, sessionUser]);
 
-  return (
-    <>
-      <h1>{sessionUser.first_name}'s Gigbag</h1>
+  console.log("USER CART", userCart[0]);
 
+  const subtotalCalc = userCart[0]?.reduce(
+    (total, item) => total + item.guitar.price * item.quantity,
+    0
+  );
+
+
+  return (
+    <div className="shopping-cart-container">
       <div className="cart-items-container">
+        <h1>{sessionUser.first_name}'s Gigbag</h1>
         <ul>
           {userCart[0] &&
             userCart[0].length > 0 &&
@@ -81,8 +89,8 @@ const ShoppingCart = () => {
             ))}
         </ul>
       </div>
-      <div>
-        <h2>Subtotal: Loop to add prices</h2>
+      <div className="price-checkout-container">
+        <h2>Subtotal: ${subtotalCalc}</h2>
         <button
           onClick={() => {
             alert("Feature Coming Soon");
@@ -91,7 +99,7 @@ const ShoppingCart = () => {
           Checkout
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
