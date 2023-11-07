@@ -28,18 +28,19 @@ def view_shopping_cart(id):
 @login_required
 def add_to_cart(id, guitar_id):
     shopping_cart = ShoppingCart.query.filter_by(id = current_user.id).first()
-    # print("*********************ID", id)
-    print('CUURRENT USER Id', current_user.id)
-    # print('**********', shopping_cart)
-    # print('**********', shopping_cart.id)
-    cart_item = CartItem(
-        cart_id=shopping_cart.id,
-        guitar_id=guitar_id,
-        quantity=1
-    )
+    cart_item = CartItem.query.filter_by(cart_id=shopping_cart.id, guitar_id=guitar_id).first()
+    if cart_item:
+        cart_item.quantity += 1
+        db.session.commit()
+    else:
+        cart_item = CartItem(
+            cart_id=shopping_cart.id,
+            guitar_id=guitar_id,
+            quantity=1
+        )
 
-    db.session.add(cart_item)
-    db.session.commit()
+        db.session.add(cart_item)
+        db.session.commit()
 
     return cart_item.to_dict(), 201
 
@@ -62,3 +63,31 @@ def remove_from_cart(id, guitar_id):
 
     else:
         return "Error finding your cart"
+
+
+
+@cart_routes.route('/<int:id>/increment/<int:guitar_id>', methods=['PUT'])
+@login_required
+def increment_cart_item(id, guitar_id):
+    users_cart = ShoppingCart.query.filter_by(user_id=id).first()
+    cart_item = CartItem.query.filter_by(cart_id=users_cart.id, guitar_id=guitar_id).first()
+
+    if cart_item:
+        cart_item.quantity += 1
+        db.session.commit()
+        return cart_item.to_dict()
+    else:
+        return 'Could not find cart item'
+
+@cart_routes.route('/<int:id>/decrement/<int:guitar_id>', methods=['PUT'])
+@login_required
+def decrement_cart_item(id, guitar_id):
+    users_cart = ShoppingCart.query.filter_by(user_id=id).first()
+    cart_item = CartItem.query.filter_by(cart_id=users_cart.id, guitar_id=guitar_id).first()
+
+    if cart_item:
+        cart_item.quantity -= 1
+        db.session.commit()
+        return cart_item.to_dict()
+    else:
+        return 'Could not find cart item'
