@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
-import { readUserCartThunk } from "../../store/shoppingCart";
+import {
+  readUserCartThunk,
+  incrementItemThunk,
+  decrementItemThunk,
+} from "../../store/shoppingCart";
 import DeleteCartItemModal from "../DeleteCartItemModal";
 import "./ShoppingCart.css";
 const ShoppingCart = () => {
@@ -16,7 +20,6 @@ const ShoppingCart = () => {
       dispatch(readUserCartThunk(sessionUser.id));
     }
   }, [dispatch, sessionUser]);
-  console.log(userCart[0]);
 
   return (
     <>
@@ -49,13 +52,44 @@ const ShoppingCart = () => {
                     }
                   />
                   <div>
-                    <button>-</button>Quantity: {item.quantity}
-                    <button>+</button>
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          decrementItemThunk(sessionUser.id, item.guitar.id)
+                        ).then(() => {
+                          dispatch(readUserCartThunk(sessionUser.id));
+                        });
+                      }}
+                    >
+                      -
+                    </button>
+                    Quantity: {item.quantity}
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          incrementItemThunk(sessionUser.id, item.guitar.id)
+                        ).then(() => {
+                          dispatch(readUserCartThunk(sessionUser.id));
+                        });
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </li>
             ))}
         </ul>
+      </div>
+      <div>
+        <h2>Subtotal: Loop to add prices</h2>
+        <button
+          onClick={() => {
+            alert("Feature Coming Soon");
+          }}
+        >
+          Checkout
+        </button>
       </div>
     </>
   );

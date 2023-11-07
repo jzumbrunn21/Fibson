@@ -79,6 +79,7 @@ def increment_cart_item(id, guitar_id):
     else:
         return 'Could not find cart item'
 
+
 @cart_routes.route('/<int:id>/decrement/<int:guitar_id>', methods=['PUT'])
 @login_required
 def decrement_cart_item(id, guitar_id):
