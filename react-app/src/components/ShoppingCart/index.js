@@ -16,6 +16,7 @@ const ShoppingCart = () => {
       dispatch(readUserCartThunk(sessionUser.id));
     }
   }, [dispatch, sessionUser]);
+  console.log(userCart[0]);
 
   return (
     <>
@@ -37,9 +38,6 @@ const ShoppingCart = () => {
                   <div>${item.guitar.price}</div>
                 </div>
                 <div>
-                  <button>Update</button>
-                </div>
-                <div>
                   <OpenModalButton
                     className="delete-button"
                     buttonText="Delete"
@@ -50,6 +48,10 @@ const ShoppingCart = () => {
                       />
                     }
                   />
+                  <div>
+                    <button>-</button>Quantity: {item.quantity}
+                    <button>+</button>
+                  </div>
                 </div>
               </li>
             ))}
