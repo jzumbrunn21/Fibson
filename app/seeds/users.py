@@ -16,10 +16,12 @@ def seed_users():
         )
 
         db.session.add(user)
+        db.session.commit()
 
-        cart = ShoppingCart(userId=user.id)
+        cart = ShoppingCart(user_id=user.id)
 
         db.session.add(cart)
+        db.session.commit()
 
     demo = User(
         username = 'Rockstar123',
@@ -29,8 +31,9 @@ def seed_users():
         last_name = 'User'
     )
     db.session.add(demo)
+    db.session.commit()
 
-    demo_cart = ShoppingCart(userId=demo.id)
+    demo_cart = ShoppingCart(user_id=demo.id)
     db.session.add(demo_cart)
 
     db.session.commit()

@@ -8,12 +8,14 @@ const ShoppingCart = () => {
   const { userId } = useParams();
   const userCart = useSelector((state) => Object.values(state.cart.cart));
   const sessionUser = useSelector((state) => state.session.user);
+  const [usersCart, setUsersCart] = useState(userCart);
 
   console.log("USER CART", userCart[0]);
 
   useEffect(() => {
+    setUsersCart(userCart);
     dispatch(readUserCartThunk(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return (
     <>
@@ -22,6 +24,7 @@ const ShoppingCart = () => {
       <div className="cart-items-container">
         <ul>
           {userCart[0] &&
+            userCart[0].length > 0 &&
             userCart[0].map((item) => (
               <li key={item.id} className="cart-item">
                 <div className="cart-image">

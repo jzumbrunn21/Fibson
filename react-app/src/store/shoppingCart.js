@@ -24,7 +24,7 @@ export const readUserCartThunk = (user_id) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(readUserCart(data));
-    return data;
+    // return data;
   } else {
     return "Could not find your cart";
   }
@@ -32,6 +32,7 @@ export const readUserCartThunk = (user_id) => async (dispatch) => {
 
 export const addToCartThunk =
   (listing, user_id, guitar_id) => async (dispatch) => {
+    console.log("USERID", user_id);
     const response = await fetch(`/api/cart/${user_id}/add/${guitar_id}`, {
       method: "POST",
       headers: {
@@ -58,7 +59,7 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case READ_USER_CART:
       newState = { ...state };
-      newState.cart = action.listings;
+      newState.cart = { ...action.listings, ...state.cart };
       return newState;
     case ADD_TO_CART:
       newState = { ...state };
