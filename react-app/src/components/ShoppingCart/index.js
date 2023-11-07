@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
-import { readUserCartThunk } from "../../store/shoppingCart";
+import {
+  readUserCartThunk,
+  incrementItemThunk,
+  decrementItemThunk,
+} from "../../store/shoppingCart";
 import DeleteCartItemModal from "../DeleteCartItemModal";
 import "./ShoppingCart.css";
+
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
@@ -17,11 +22,18 @@ const ShoppingCart = () => {
     }
   }, [dispatch, sessionUser]);
 
-  return (
-    <>
-      <h1>{sessionUser.first_name}'s Gigbag</h1>
+  console.log("USER CART", userCart[0]);
 
+  const subtotalCalc = userCart[0]?.reduce(
+    (total, item) => total + item.guitar.price * item.quantity,
+    0
+  );
+
+
+  return (
+    <div className="shopping-cart-container">
       <div className="cart-items-container">
+        <h1>{sessionUser.first_name}'s Gigbag</h1>
         <ul>
           {userCart[0] &&
             userCart[0].length > 0 &&
@@ -37,9 +49,6 @@ const ShoppingCart = () => {
                   <div>${item.guitar.price}</div>
                 </div>
                 <div>
-                  <button>Update</button>
-                </div>
-                <div>
                   <OpenModalButton
                     className="delete-button"
                     buttonText="Delete"
@@ -50,12 +59,47 @@ const ShoppingCart = () => {
                       />
                     }
                   />
+                  <div>
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          decrementItemThunk(sessionUser.id, item.guitar.id)
+                        ).then(() => {
+                          dispatch(readUserCartThunk(sessionUser.id));
+                        });
+                      }}
+                    >
+                      -
+                    </button>
+                    Quantity: {item.quantity}
+                    <button
+                      onClick={() => {
+                        dispatch(
+                          incrementItemThunk(sessionUser.id, item.guitar.id)
+                        ).then(() => {
+                          dispatch(readUserCartThunk(sessionUser.id));
+                        });
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
         </ul>
       </div>
-    </>
+      <div className="price-checkout-container">
+        <h2>Subtotal: ${subtotalCalc}</h2>
+        <button
+          onClick={() => {
+            alert("Feature Coming Soon");
+          }}
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
   );
 };
 
