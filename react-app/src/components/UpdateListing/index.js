@@ -32,17 +32,20 @@ const UpdateListing = () => {
   const [description, setDescription] = useState("");
   const [pickguard, setPickguard] = useState(true);
   const [pickup_selector, set_pickup_selector] = useState("");
+
   const [urls, setUrls] = useState(null);
   const [urlOne, setUrlOne] = useState(null);
   const [urlTwo, setUrlTwo] = useState(null);
   const [urlThree, setUrlThree] = useState(null);
   const [urlFour, setUrlFour] = useState(null);
   const [urlFive, setUrlFive] = useState(null);
+
   const [currentImageOne, setCurrentImageOne] = useState(null);
   const [currentImageTwo, setCurrentImageTwo] = useState(null);
   const [currentImageThree, setCurrentImageThree] = useState(null);
   const [currentImageFour, setCurrentImageFour] = useState(null);
   const [currentImageFive, setCurrentImageFive] = useState(null);
+  
   const [imageIdOne, setImageIdOne] = useState(null);
   const [imageIdTwo, setImageIdTwo] = useState(null);
   const [imageIdThree, setImageIdThree] = useState(null);

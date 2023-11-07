@@ -10,7 +10,7 @@ class CartItem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shopping_carts.id')))
-    guitarId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')))
+    guitar_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')))
     quantity = db.Column(db.Integer, default=1)
 
     shopping_cart = db.relationship(
@@ -29,5 +29,6 @@ class CartItem(db.Model):
             'cart_id': self.cart_id,
             'guitar_id': self.guitar_id,
             'quantity': self.quantity,
-            'guitar': self.guitar.to_dict()
+            'guitar': self.guitar.to_dict(),
+            'images': [image.to_dict() for image in self.guitar.guitar_images]
         }
