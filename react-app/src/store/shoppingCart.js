@@ -16,6 +16,11 @@ const addToCart = (listing) => ({
   listing,
 });
 
+const removeFromCart = (guitarId) => ({
+  type: REMOVE_FROM_CART,
+  guitarId,
+});
+
 // THUNKS
 
 export const readUserCartThunk = (user_id) => async (dispatch) => {
@@ -49,6 +54,17 @@ export const addToCartThunk =
     }
   };
 
+export const removeFromCartThunk = (user_id, guitarId) => async (dispatch) => {
+  const response = await fetch(`/api/cart/${user_id}/delete/${guitarId}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    dispatch(removeFromCart(guitarId));
+  } else {
+    return "Error deleting your item from thunk";
+  }
+};
+
 // Initial State
 const initialState = { cart: {} };
 
@@ -59,12 +75,15 @@ export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case READ_USER_CART:
       newState = { ...state };
-      // newState.cart = { ...action.listings, ...state.cart };
       newState.cart = action.listings;
       return newState;
     case ADD_TO_CART:
       newState = { ...state };
       newState.cart[action.listing.id] = action.listing;
+      return newState;
+    case REMOVE_FROM_CART:
+      newState = { ...state };
+      delete newState.cart[action.guitarId];
       return newState;
 
     default:

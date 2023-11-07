@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
 import { readUserCartThunk } from "../../store/shoppingCart";
+import DeleteCartItemModal from "../DeleteCartItemModal";
 import "./ShoppingCart.css";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const userCart = useSelector((state) => Object.values(state.cart.cart));
   const sessionUser = useSelector((state) => state.session.user);
-  const [usersCart, setUsersCart] = useState(userCart);
-
-  console.log("USER CART", userCart[0]);
 
   useEffect(() => {
     if (sessionUser) {
@@ -41,7 +40,16 @@ const ShoppingCart = () => {
                   <button>Update</button>
                 </div>
                 <div>
-                  <button>Delete</button>
+                  <OpenModalButton
+                    className="delete-button"
+                    buttonText="Delete"
+                    modalComponent={
+                      <DeleteCartItemModal
+                        guitarId={item.guitar.id}
+                        userId={sessionUser.id}
+                      />
+                    }
+                  />
                 </div>
               </li>
             ))}
