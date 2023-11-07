@@ -1,4 +1,4 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, User, environment, SCHEMA, ShoppingCart
 from sqlalchemy.sql import text
 from faker import Faker
 
@@ -16,6 +16,12 @@ def seed_users():
         )
 
         db.session.add(user)
+        db.session.commit()
+
+        cart = ShoppingCart(user_id=user.id)
+
+        db.session.add(cart)
+        db.session.commit()
 
     demo = User(
         username = 'Rockstar123',
@@ -25,6 +31,10 @@ def seed_users():
         last_name = 'User'
     )
     db.session.add(demo)
+    db.session.commit()
+
+    demo_cart = ShoppingCart(user_id=demo.id)
+    db.session.add(demo_cart)
 
     db.session.commit()
 

@@ -8,7 +8,7 @@ class ShoppingCart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
     user = db.relationship(
         'User',
@@ -24,6 +24,6 @@ class ShoppingCart(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'userId': self.userId,
+            'user_id': self.user_id,
             'cart_items': [item.to_dict() for item in self.cart_items]
         }

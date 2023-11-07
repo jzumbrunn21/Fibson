@@ -1,0 +1,7 @@
+.cart-item {
+  display: flex;
+}
+.cart-info-section {
+  display: flex;
+  flex-direction: column;
+}
