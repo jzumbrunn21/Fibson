@@ -29,5 +29,6 @@ class CartItem(db.Model):
             'cart_id': self.cart_id,
             'guitar_id': self.guitar_id,
             'quantity': self.quantity,
-            'guitar': self.guitar.to_dict()
+            'guitar': self.guitar.to_dict(),
+            'images': [image.to_dict() for image in self.guitar.guitar_images]
         }
