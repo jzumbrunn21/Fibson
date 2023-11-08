@@ -11,6 +11,7 @@ const AllListingsPage = () => {
   const allListings = useSelector((state) =>
     Object.values(state.listings.listings)
   );
+  const allListingsReverse = allListings.reverse();
   const [listings, setListings] = useState(allListings);
   console.log("ALL", allListings);
 
@@ -25,7 +26,7 @@ const AllListingsPage = () => {
         <h1>All Guitars</h1>
       </div>
       <div className="all-listings-container">
-        {allListings.map((listing) => (
+        {allListingsReverse.map((listing) => (
           <Link
             to={`/listings/${listing.guitar.id}`}
             key={listing.guitar.id}

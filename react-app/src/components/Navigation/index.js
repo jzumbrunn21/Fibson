@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import logo from "./logo.png";
+import cart from "./cart.png";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -11,22 +12,37 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="navigation">
-      <div className="nav-logo">
-        <NavLink exact to="/">
-          <img src={logo} alt={"Home Button"} />
-        </NavLink>
-        <NavLink exact to="/listings">
-          <button>All Listings</button>
-        </NavLink>
+      <div className="nav-grey">
+        <div className="nav-links">
+          <div className="nav-logo">
+            <NavLink exact to="/">
+              <img src={logo} alt={"Home Button"} />
+            </NavLink>
+
+            <ul>
+              <li>
+                <h4>Electric</h4>
+              </li>
+              <li>
+                <h4>Acoustic</h4>
+              </li>
+              <li>
+                <h4>Bass</h4>
+              </li>
+            </ul>
+          </div>
+          <div className="directory">
+            <div>
+              {sessionUser && (
+                <NavLink exact to={`/cart/${sessionUser.id}`}>
+                  <img className="cart-icon" src={cart} alt="Shopping Cart" />
+                </NavLink>
+              )}
+            </div>
+            <div>{isLoaded && <ProfileButton user={sessionUser} />}</div>
+          </div>
+        </div>
       </div>
-      <div>
-        {sessionUser && (
-          <NavLink exact to={`/cart/${sessionUser.id}`}>
-            <button>My Cart</button>
-          </NavLink>
-        )}
-      </div>
-      <div>{isLoaded && <ProfileButton user={sessionUser} />}</div>
     </div>
   );
 }
