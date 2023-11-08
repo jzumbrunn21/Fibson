@@ -67,13 +67,6 @@
   margin-left: 50px;
 }
 
-.nav-logo {
-  /* height: 98%; */
-  /* box-shadow: 0px 2px darkgray; */
-  position: relative;
-  top: 2px;
-}
-
 .cart-icon {
   height: 50px;
 }
@@ -82,4 +75,27 @@
   height: 50px;
   cursor: pointer;
   background-color: transparent;
+}
+
+.nav-logo {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  top: 2px;
+}
+
+.nav-logo ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.nav-logo li {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  margin-right: 30px;
 }

@@ -6,7 +6,6 @@ import "./Navigation.css";
 import logo from "./logo.png";
 import cart from "./cart.png";
 
-
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   console.log(sessionUser);
@@ -19,6 +18,18 @@ function Navigation({ isLoaded }) {
             <NavLink exact to="/">
               <img src={logo} alt={"Home Button"} />
             </NavLink>
+
+            <ul>
+              <li>
+                <h4>Electric</h4>
+              </li>
+              <li>
+                <h4>Acoustic</h4>
+              </li>
+              <li>
+                <h4>Bass</h4>
+              </li>
+            </ul>
           </div>
           <div className="directory">
             <div>
