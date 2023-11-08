@@ -1,5 +1,24 @@
 .profile-dropdown {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  justify-content: space-around;
+  align-items: baseline;
+  background-color: #212529;
+  top: -20;
+  left: 1200;
+  z-index: 99;
+  height: 200px;
+  width: 150px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+}
+
+.profile-dropdown button {
+  background-color: #84734d;
+  color: white;
+  height: 28px;
 }
 
 .hidden {
@@ -9,18 +28,18 @@
 .navigation {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-content: center;
   align-items: center;
   background-color: black;
-  border: 2px solid greenyellow;
+  /* height: auto; */
+  /* border: 2px solid greenyellow; */
   height: 150px;
-  align-content: center;
 }
 
 .nav-grey {
   width: 100%;
-  height: auto;
+  height: 60%;
   background-color: #212529;
 }
 
@@ -34,4 +53,33 @@
 
 .header-title {
   color: white;
+}
+
+.directory {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: space-between;
+  margin-right: 15px;
+}
+
+.directory div {
+  margin-left: 50px;
+}
+
+.nav-logo {
+  /* height: 98%; */
+  /* box-shadow: 0px 2px darkgray; */
+  position: relative;
+  top: 2px;
+}
+
+.cart-icon {
+  height: 50px;
+}
+
+.profile-icon {
+  height: 50px;
+  cursor: pointer;
+  background-color: transparent;
 }
