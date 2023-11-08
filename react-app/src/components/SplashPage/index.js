@@ -98,6 +98,15 @@ const SplashPage = () => {
           <li>
             <img
               src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-ee30d18005405a5b3834b59504affcd3.jpg"
+              }
+              alt="Ibanez"
+            />{" "}
+            <h4>Ibanez ▸</h4>
+          </li>
+          <li>
+            <img
+              src={
                 "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-a51a32c0d34978c1aae618063eb8a7a9.jpg"
               }
               alt="Taylor"

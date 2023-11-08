@@ -95,6 +95,7 @@
   display: grid;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .splash-categories h2 {
   display: flex;
@@ -105,8 +106,8 @@
 .splash-categories ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 1440px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .splash-categories li {
@@ -114,6 +115,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 40px;
+  padding: 10px;
 }
 
 .splash-categories img {
