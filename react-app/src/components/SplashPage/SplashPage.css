@@ -1,0 +1,42 @@
+.splash-page-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  background-color: black;
+}
+.splash-page-header-image {
+  max-height: 450px;
+  max-width: 1440px;
+  width: 1440px;
+  /* border: 1px solid greenyellow; */
+}
+
+.header-title {
+  position: absolute;
+  top: 10%;
+  left: 14%;
+}
+
+.header-all-listings {
+  display: flex;
+  position: absolute;
+  top: 80%;
+  left: 72%;
+  align-items: center;
+}
+
+.header-all-listings button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 250px;
+  background-color: #84734d;
+  color: white;
+  cursor: pointer;
+}
+
+.all-listings-navlink {
+  text-decoration: none;
+}
