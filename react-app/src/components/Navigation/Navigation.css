@@ -18,7 +18,9 @@
 .profile-dropdown button {
   background-color: #84734d;
   color: white;
-  height: 28px;
+  height: 35px;
+  width: 80%;
+  cursor: pointer;
 }
 
 .hidden {
@@ -98,4 +100,8 @@
   justify-content: space-between;
   align-content: space-between;
   margin-right: 30px;
+}
+
+#logout-button {
+  width: 140px;
 }

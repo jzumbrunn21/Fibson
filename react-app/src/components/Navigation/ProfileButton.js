@@ -37,6 +37,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
     history.push("/");
+    closeMenu();
   };
   const handleManage = (e) => {
     e.preventDefault();
@@ -59,7 +60,7 @@ function ProfileButton({ user }) {
             <li>
               <button onClick={handleManage}>Manage your Guitars</button>
             </li>
-            <li>
+            <li id='logout-button'>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
@@ -69,12 +70,14 @@ function ProfileButton({ user }) {
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
+              className="logged-out-buttons"
             />
 
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
+              className="logged-out-buttons"
             />
           </>
         )}
