@@ -46,12 +46,6 @@ const ManageListings = () => {
                           showIndicators={false}
                           interval={2000}
                         >
-                          {/* {listing.images && listing.images.length > 0 && (
-                          <img
-                            src={listing.images[0].url}
-                            alt={`${listing.guitar.make}, ${listing.guitar.model}`}
-                          />
-                        )} */}
                           {listing.images &&
                             listing.images.map((image, index) => (
                               <img

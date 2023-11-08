@@ -12,13 +12,12 @@ const AllListingsPage = () => {
     Object.values(state.listings.listings)
   );
   const [listings, setListings] = useState(allListings);
+  console.log("ALL", allListings);
 
   useEffect(() => {
     setListings(allListings);
     dispatch(readAllListingsThunk());
   }, []);
-
-
 
   return (
     <>
@@ -33,10 +32,22 @@ const AllListingsPage = () => {
             className="single-listing-container"
           >
             <div className="all-listing-image">
-              <img
+              {/* <img
                 src={listing.images[0]}
                 alt={`${listing.guitar.make}, ${listing.guitar.model}`}
-              />
+              /> */}
+              <Carousel
+                showThumbs={false}
+                showArrows={false}
+                autoPlay={true}
+                showIndicators={false}
+                interval={5000}
+              >
+                {listing.images &&
+                  listing.images.map((image, index) => (
+                    <img key={index} src={image} alt={listing.guitar.model} />
+                  ))}
+              </Carousel>
             </div>
             <div className="all-listings-info-container">
               <h3>
