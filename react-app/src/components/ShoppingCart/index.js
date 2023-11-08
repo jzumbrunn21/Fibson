@@ -22,13 +22,13 @@ const ShoppingCart = () => {
     }
   }, [dispatch, sessionUser]);
 
-  console.log("USER CART", userCart[0]);
-
-  const subtotalCalc = userCart[0]?.reduce(
-    (total, item) => total + item.guitar.price * item.quantity,
-    0
-  );
-
+  let subtotalCalc = 0;
+  if (userCart && userCart[0] instanceof Array) {
+    subtotalCalc = userCart[0]?.reduce(
+      (total, item) => total + item.guitar.price * item.quantity,
+      0
+    );
+  }
 
   return (
     <div className="shopping-cart-container">
@@ -68,6 +68,7 @@ const ShoppingCart = () => {
                           dispatch(readUserCartThunk(sessionUser.id));
                         });
                       }}
+                      disabled={item.quantity < 2}
                     >
                       -
                     </button>
@@ -80,6 +81,7 @@ const ShoppingCart = () => {
                           dispatch(readUserCartThunk(sessionUser.id));
                         });
                       }}
+                      disabled={item.quantity > 9}
                     >
                       +
                     </button>

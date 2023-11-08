@@ -25,6 +25,8 @@ const GuitarDetail = () => {
     e.preventDefault();
 
     await dispatch(addToCartThunk(listing, sessionUser.id, guitarId));
+
+    alert("Added to cart");
   };
 
   if (isLoading) {
@@ -54,7 +56,9 @@ const GuitarDetail = () => {
               <h4>Finish: {listing[0].guitar.color}</h4>
               <h4>Handedness: {listing[0].guitar.handedness}</h4>
               <h4>Price: ${listing[0].guitar.price}</h4>
-              <button onClick={handleAddToCart}>Add to Cart</button>
+              {sessionUser && (
+                <button onClick={handleAddToCart}>Add to Cart</button>
+              )}
             </div>
           </>
         )}
