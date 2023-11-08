@@ -1,4 +1,32 @@
 .main-guitar-detail {
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
+  width: fit-content;
+  margin: 0, auto;
+  margin-top: 20px;
+  justify-content: center;
   justify-content: space-between;
+}
+
+.carousel {
+  width: fit-content;
+  /* border: 1px solid black; */
+  /* padding: 10px; */
+  /* margin-right: 50px; */
+}
+
+.single-guitar-info-container {
+  /* display: grid; */
+  /* justify-content: center; */
+  margin-left: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: fit-content;
+  padding: 10px;
+}
+
+.single-guitar-description {
+  max-width: 1440px;
+  margin: 0 auto;
 }

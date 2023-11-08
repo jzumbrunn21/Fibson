@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  readAllUserListingsThunk,
-} from "../../store/listings";
+import { readAllUserListingsThunk } from "../../store/listings";
 import { useSelector, useDispatch } from "react-redux";
 import "./ManageListings.css";
 import { Link, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import DeleteListingModal from "../DeleteListingModal";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ManageListings = () => {
   const dispatch = useDispatch();
@@ -36,16 +36,28 @@ const ManageListings = () => {
               <div key={listing.guitar.id}>
                 {/* <h1>{listing.guitar.id}</h1> */}
                 <div className="manage-single-listing-container">
-                  <Link to={`/listings/${listing.guitar.id}`}>
-                    <div className="manage-all-listing-image">
-                      {listing.images && listing.images.length > 0 && (
-                        <img
-                          src={listing.images[0].url}
-                          alt={`${listing.guitar.make}, ${listing.guitar.model}`}
-                        />
-                      )}
-                    </div>
-                  </Link>
+                  {listing && listings[0] && (
+                    <Link to={`/listings/${listing.guitar.id}`}>
+                      <div className="manage-all-listing-image">
+                        <Carousel
+                          showThumbs={false}
+                          showArrows={false}
+                          autoPlay={true}
+                          showIndicators={false}
+                          interval={2000}
+                        >
+                          {listing.images &&
+                            listing.images.map((image, index) => (
+                              <img
+                                key={index}
+                                src={image.url}
+                                alt={listing.guitar.model}
+                              />
+                            ))}
+                        </Carousel>
+                      </div>
+                    </Link>
+                  )}
                   <div className="manage-all-listings-info-container">
                     <h3>
                       {listing.guitar.year} {listing.guitar.make}{" "}
