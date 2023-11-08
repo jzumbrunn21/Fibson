@@ -34,7 +34,7 @@ const SplashPage = () => {
             className="black-box-image"
           />
           <div className="black-box-deets1">
-            <h3>Free Shipping</h3>
+            <h2>Free Shipping</h2>
             <h5>On online orders over $50.</h5>
           </div>
         </div>
@@ -47,7 +47,7 @@ const SplashPage = () => {
             className="black-box-image"
           />
           <div className="black-box-deets2">
-            <h3>Lifetime Warranty</h3>
+            <h2>Lifetime Warranty</h2>
             <h5>Free, limited warranty on material and workmanship</h5>
           </div>
         </div>
@@ -60,10 +60,60 @@ const SplashPage = () => {
             className="black-box-image"
           />
           <div className="black-box-deets3">
-            <h3>Financing Available</h3>
+            <h2>Financing Available</h2>
             <h5>Options available through your wallet at checkout.</h5>
           </div>
         </div>
+      </div>
+      <div className="splash-categories">
+        <h2>Shop by Category</h2>
+        <ul>
+          <li>
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
+              }
+              alt="Gibson"
+            />{" "}
+            <h4>Gibson ▸ </h4>
+          </li>
+          <li>
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-57de9073231835d223baf4c6f759fae3.jpg"
+              }
+              alt="Fender"
+            />{" "}
+            <h4>Fender ▸</h4>
+          </li>
+          <li>
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-318bf1e9f2d567cbff3e388f316482fe.jpg"
+              }
+              alt="PRS"
+            />{" "}
+            <h4>PRS ▸</h4>
+          </li>
+          <li>
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-a51a32c0d34978c1aae618063eb8a7a9.jpg"
+              }
+              alt="Taylor"
+            />{" "}
+            <h4>Taylor ▸</h4>
+          </li>
+          <li>
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_48136-165007dfb2a0ed24e91646c479093d05.jpg"
+              }
+              alt="Martin"
+            />{" "}
+            <h4>Martin ▸</h4>
+          </li>
+        </ul>
       </div>
     </>
   );
