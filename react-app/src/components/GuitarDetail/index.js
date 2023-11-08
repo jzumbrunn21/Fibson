@@ -4,6 +4,8 @@ import { readOneListingThunk } from "../../store/listings";
 import { addToCartThunk, readUserCartThunk } from "../../store/shoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const GuitarDetail = () => {
   const dispatch = useDispatch();
@@ -39,14 +41,16 @@ const GuitarDetail = () => {
           <>
             <div className="single-guitar-images-container">
               {/* <h3>Images</h3> */}
-              {listing[0].images &&
-                listing[0].images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image.url}
-                    alt={listing[0].guitar.model}
-                  />
-                ))}
+              <Carousel className="carousel" autoPlay={true} width={800}>
+                {listing[0].images &&
+                  listing[0].images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image.url}
+                      alt={listing[0].guitar.model}
+                    />
+                  ))}
+              </Carousel>
             </div>
             <div className="single-guitar-info-container">
               <h2>
