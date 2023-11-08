@@ -42,6 +42,7 @@ const AllListingsPage = () => {
                 autoPlay={true}
                 showIndicators={false}
                 interval={5000}
+                infiniteLoop={true}
               >
                 {listing.images &&
                   listing.images.map((image, index) => (

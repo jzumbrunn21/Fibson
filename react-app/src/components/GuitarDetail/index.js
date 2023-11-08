@@ -41,7 +41,12 @@ const GuitarDetail = () => {
           <>
             <div className="single-guitar-images-container">
               {/* <h3>Images</h3> */}
-              <Carousel className="carousel" autoPlay={true} width={800}>
+              <Carousel
+                className="carousel"
+                autoPlay={true}
+                width={800}
+                infiniteLoop={true}
+              >
                 {listing[0].images &&
                   listing[0].images.map((image, index) => (
                     <img
