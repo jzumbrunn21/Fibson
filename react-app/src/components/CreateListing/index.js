@@ -34,10 +34,44 @@ const CreateListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     const newErrors = {};
 
     // Validators will go here later
+    if (!make || make.length < 1 || make.length > 50) {
+      newErrors.make =
+        "Make is required and must be between 1 and 50 characters";
+    }
+    if (!model || model.length < 1 || model.length > 50) {
+      newErrors.model =
+        "Model is required and must be between 1 and 50 characters";
+    }
+
+    if (year < 1900 || year > 2024) {
+      newErrors.year = "Year must be between 1900 and 2024";
+    }
+
+    if (!color || color.length < 1 || color.length > 50) {
+      newErrors.color =
+        "Color is required and must be between 1 and 50 characters";
+    }
+
+    if (frets < 18 || frets > 26) {
+      newErrors.frets = "Fret count must be between 18 and 26";
+    }
+
+    if (!description || description.length < 25 || description.length > 2000) {
+      newErrors.description =
+        "Description is required and must be between 25 and 2000 characters";
+    }
+    if (price < 1 || price >= 1000001) {
+      newErrors.price = "Price must be between $1 and $1,000,000";
+    }
+    if (!urls) {
+      newErrors.images = "You must add at least one image";
+    }
+    if (urls && urls.length > 5) {
+      newErrors.images = "Only 5 images can be added to your listing";
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -64,6 +98,7 @@ const CreateListing = () => {
       pickup_selector,
     };
 
+    setIsLoading(true);
     const createdListing = await dispatch(createListingThunk(listingData));
     console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
@@ -98,6 +133,7 @@ const CreateListing = () => {
                 value={make}
                 onChange={(e) => setMake(e.target.value)}
               />
+              {errors.make && <span className="error">{errors.make}</span>}
             </label>
             <label>
               Model
@@ -106,6 +142,7 @@ const CreateListing = () => {
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
               />
+              {errors.model && <span className="error">{errors.model}</span>}
             </label>
             <label>
               Year
@@ -114,6 +151,7 @@ const CreateListing = () => {
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
               />
+              {errors.year && <span className="error">{errors.year}</span>}
             </label>
           </div>
           <div className="guitar-body-wood-type">
@@ -162,6 +200,7 @@ const CreateListing = () => {
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {errors.color && <span className="error">{errors.color}</span>}
             </label>
           </div>
           <div className="pickups">
@@ -239,6 +278,7 @@ const CreateListing = () => {
                 value={frets}
                 onChange={(e) => setFrets(e.target.value)}
               />
+              {errors.frets && <span className="error">{errors.frets}</span>}
             </label>
             <label>
               Inlays
@@ -271,6 +311,9 @@ const CreateListing = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+              {errors.description && (
+                <span className="error">{errors.description}</span>
+              )}
             </label>
             <label>
               Price
@@ -279,6 +322,7 @@ const CreateListing = () => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
+              {errors.price && <span className="error">{errors.price}</span>}
             </label>
           </div>
           <div className="image-upload-container">
@@ -288,8 +332,11 @@ const CreateListing = () => {
                 type="file"
                 accept="image/*"
                 multiple
-                onChange={(e) => setUrls([...e.target.files])}
+                onChange={(e) => {
+                  setUrls([...e.target.files]);
+                }}
               />
+              {errors.images && <span className="error">{errors.images}</span>}
             </label>
           </div>
           <button type="submit">Create your Guitar Listing</button>

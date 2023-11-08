@@ -45,7 +45,7 @@ const UpdateListing = () => {
   const [currentImageThree, setCurrentImageThree] = useState(null);
   const [currentImageFour, setCurrentImageFour] = useState(null);
   const [currentImageFive, setCurrentImageFive] = useState(null);
-  
+
   const [imageIdOne, setImageIdOne] = useState(null);
   const [imageIdTwo, setImageIdTwo] = useState(null);
   const [imageIdThree, setImageIdThree] = useState(null);
@@ -127,6 +127,42 @@ const UpdateListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = {};
+
+    if (!make || make.length < 1 || make.length > 50) {
+      newErrors.make =
+        "Make is required and must be between 1 and 50 characters";
+    }
+    if (!model || model.length < 1 || model.length > 50) {
+      newErrors.model =
+        "Model is required and must be between 1 and 50 characters";
+    }
+
+    if (year < 1900 || year > 2024) {
+      newErrors.year = "Year must be between 1900 and 2024";
+    }
+
+    if (!color || color.length < 1 || color.length > 50) {
+      newErrors.color =
+        "Color is required and must be between 1 and 50 characters";
+    }
+
+    if (frets < 18 || frets > 26) {
+      newErrors.frets = "Fret count must be between 18 and 26";
+    }
+
+    if (!description || description.length < 25 || description.length > 2000) {
+      newErrors.description =
+        "Description is required and must be between 25 and 2000 characters";
+    }
+    if (price < 1 || price >= 1000001) {
+      newErrors.price = "Price must be between $1 and $1,000,000";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
     const updatedListingData = {
       make,
@@ -220,6 +256,7 @@ const UpdateListing = () => {
                 value={make}
                 onChange={(e) => setMake(e.target.value)}
               />
+              {errors.make && <span className="error">{errors.make}</span>}
             </label>
             <label>
               Model
@@ -228,6 +265,7 @@ const UpdateListing = () => {
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
               />
+              {errors.model && <span className="error">{errors.model}</span>}
             </label>
             <label>
               Year
@@ -236,6 +274,7 @@ const UpdateListing = () => {
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
               />
+              {errors.year && <span className="error">{errors.year}</span>}
             </label>
           </div>
           <div className="guitar-body-wood-type">
@@ -284,6 +323,7 @@ const UpdateListing = () => {
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
               />
+              {errors.color && <span className="error">{errors.color}</span>}
             </label>
           </div>
           <div className="pickups">
@@ -361,6 +401,7 @@ const UpdateListing = () => {
                 value={frets}
                 onChange={(e) => setFrets(e.target.value)}
               />
+              {errors.frets && <span className="error">{errors.frets}</span>}
             </label>
             <label>
               Inlays
@@ -393,6 +434,9 @@ const UpdateListing = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+              {errors.description && (
+                <span className="error">{errors.description}</span>
+              )}
             </label>
             <label>
               Price
@@ -401,6 +445,7 @@ const UpdateListing = () => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
+              {errors.price && <span className="error">{errors.price}</span>}
             </label>
           </div>
           <div className="image-upload-container">
