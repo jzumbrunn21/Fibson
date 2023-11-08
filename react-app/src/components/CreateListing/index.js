@@ -121,10 +121,11 @@ const CreateListing = () => {
 
   if (isLoading) return <div>...Loading...</div>;
   return (
-    <>
-      <div className="create-listing-form-container">
+    <div className="create-listing-form-container">
+      <div className="form-container">
         <h2>Create your Guitar Listing</h2>
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
+          <h4>Let's start with some basic information</h4>
           <div className="make-model-year">
             <label>
               Make
@@ -154,6 +155,8 @@ const CreateListing = () => {
               {errors.year && <span className="error">{errors.year}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>What is your guitar made of?</h4>
           <div className="guitar-body-wood-type">
             <label>
               Guitar Type
@@ -203,6 +206,8 @@ const CreateListing = () => {
               {errors.color && <span className="error">{errors.color}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Pickup Information</h4>
           <div className="pickups">
             <label>
               Pickup Type
@@ -257,6 +262,8 @@ const CreateListing = () => {
               </select>
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Onto the neck</h4>
           <div className="frets-neck">
             <label>
               Fretboard Material
@@ -303,6 +310,8 @@ const CreateListing = () => {
               </select>
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Tell the world about your axe</h4>
           <div className="create-description">
             <label>
               Description
@@ -325,6 +334,8 @@ const CreateListing = () => {
               {errors.price && <span className="error">{errors.price}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Let's see that guitar!</h4>
           <div className="image-upload-container">
             <label>
               Upload your guitar image
@@ -339,10 +350,13 @@ const CreateListing = () => {
               {errors.images && <span className="error">{errors.images}</span>}
             </label>
           </div>
-          <button type="submit">Create your Guitar Listing</button>
+          <div className="line-break"></div>
+          <div>
+            <button type="submit">Create your Guitar Listing</button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
