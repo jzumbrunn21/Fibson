@@ -19,15 +19,15 @@ const DeleteListingModal = ({ guitarId }) => {
     closeModal();
   };
   return (
-    <>
-      <h3>Are you sure you want to delete this guitar listing?</h3>
+    <div className="delete-modal">
+      <h2>Are you sure you want to delete this guitar?</h2>
       <button className="yay-button" onClick={handleDelete}>
-        Yay
+        Delete Guitar
       </button>
       <button className="nay-button" onClick={handleCancel}>
-        Nay
+        Cancel
       </button>
-    </>
+    </div>
   );
 };
 

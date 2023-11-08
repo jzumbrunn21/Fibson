@@ -1,0 +1,41 @@
+.signup-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+.signup-modal-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-modal-container label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 5px;
+}
+
+.signup-modal-container div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.signup-modal-container button {
+  background-color: #84734d;
+  color: white;
+  width: auto;
+  height: 40px;
+  cursor: pointer;
+}
+.signup-modal-container ul {
+  color: red;
+}
