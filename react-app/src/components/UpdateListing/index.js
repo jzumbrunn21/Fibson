@@ -244,10 +244,11 @@ const UpdateListing = () => {
   }, []);
 
   return (
-    <>
-      <div className="create-listing-form-container">
+    <div className="create-listing-form-container">
+      <div className="form-container">
         <h2>Let's restring that guitar</h2>
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
+          <h4>Let's start with some basic information</h4>
           <div className="make-model-year">
             <label>
               Make
@@ -277,6 +278,8 @@ const UpdateListing = () => {
               {errors.year && <span className="error">{errors.year}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>What is your guitar made of?</h4>
           <div className="guitar-body-wood-type">
             <label>
               Guitar Type
@@ -326,6 +329,8 @@ const UpdateListing = () => {
               {errors.color && <span className="error">{errors.color}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Pickup Information</h4>
           <div className="pickups">
             <label>
               Pickup Type
@@ -380,6 +385,8 @@ const UpdateListing = () => {
               </select>
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Onto the neck</h4>
           <div className="frets-neck">
             <label>
               Fretboard Material
@@ -426,6 +433,8 @@ const UpdateListing = () => {
               </select>
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Tell the world about your axe</h4>
           <div className="create-description">
             <label>
               Description
@@ -448,6 +457,8 @@ const UpdateListing = () => {
               {errors.price && <span className="error">{errors.price}</span>}
             </label>
           </div>
+          <div className="line-break"></div>
+          <h4>Let's see that guitar!</h4>
           <div className="image-upload-container">
             {urls && (
               <label>
@@ -540,7 +551,7 @@ const UpdateListing = () => {
           <button type="submit">Update your Guitar Listing</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
