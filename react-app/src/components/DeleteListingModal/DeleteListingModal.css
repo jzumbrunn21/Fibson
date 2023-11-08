@@ -1,0 +1,16 @@
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.delete-modal button {
+  background-color: #84734d;
+  color: white;
+  width: 130px;
+  height: 40px;
+  cursor: pointer;
+  margin: 10px;
+}

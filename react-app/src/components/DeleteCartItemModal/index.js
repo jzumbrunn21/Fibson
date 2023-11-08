@@ -23,15 +23,15 @@ const DeleteCartItemModal = ({ userId, guitarId }) => {
     closeModal();
   };
   return (
-    <>
-      <h3>Are you sure you want to delete this guitar listing?</h3>
+    <div className="delete-modal">
+      <h2>Are you sure you want to remove this item?</h2>
       <button className="yay-button" onClick={handleDelete}>
-        Yay
+        Remove Item
       </button>
       <button className="nay-button" onClick={handleCancel}>
-        Nay
+        Cancel
       </button>
-    </>
+    </div>
   );
 };
 
