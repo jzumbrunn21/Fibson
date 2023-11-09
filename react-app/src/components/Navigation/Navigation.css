@@ -1,26 +1,6 @@
-.profile-dropdown {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  justify-content: space-around;
-  align-items: baseline;
-  background-color: #212529;
-  top: -20;
-  left: 1200;
-  z-index: 99;
-  height: 200px;
-  width: 150px;
-  border: 1px solid black;
-  border-radius: 5px;
-  color: white;
-}
-
-.profile-dropdown button {
-  background-color: #84734d;
-  color: white;
-  height: 35px;
-  width: 80%;
-  cursor: pointer;
+.profile-button {
+  position: absolute;
+  top: -90px;
 }
 
 .hidden {
@@ -34,8 +14,6 @@
   align-content: center;
   align-items: center;
   background-color: black;
-  /* height: auto; */
-  /* border: 2px solid greenyellow; */
   height: 150px;
 }
 
@@ -103,5 +81,5 @@
 }
 
 #logout-button {
-  width: 140px;
+  width: 131px;
 }

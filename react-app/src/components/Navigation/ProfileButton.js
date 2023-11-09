@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./ProfileButton.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
@@ -52,7 +53,7 @@ function ProfileButton({ user }) {
       <button style={{ backgroundColor: "transparent" }} onClick={openMenu}>
         <img className="profile-icon" src={guitar} alt="Profile Menu" />
       </button>
-      <ul className={ulClassName} style={{ position: "fixed" }} ref={ulRef}>
+      <ul className={ulClassName} style={{ position: "absolute" }} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
@@ -60,7 +61,7 @@ function ProfileButton({ user }) {
             <li>
               <button onClick={handleManage}>Manage your Guitars</button>
             </li>
-            <li id='logout-button'>
+            <li id="logout-button">
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
