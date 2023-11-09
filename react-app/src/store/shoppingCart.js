@@ -4,6 +4,7 @@ const ADD_TO_CART = "cart/ADD_TO_CART";
 const INCREMENT_ITEM = "cart/INCREMENT_ITEM";
 const DECREMENT_ITEM = "cart/DECREMENT_ITEM";
 const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
+const CLEAR_CART = "cart/CLEAR_CART";
 
 // Regular Action Creators
 
@@ -30,6 +31,10 @@ const incrementItem = (guitarId) => ({
 const decrementItem = (guitarId) => ({
   type: DECREMENT_ITEM,
   guitarId,
+});
+
+const clearCart = () => ({
+  type: CLEAR_CART,
 });
 
 // THUNKS
@@ -102,6 +107,20 @@ export const decrementItemThunk = (user_id, guitarId) => async (dispatch) => {
   }
 };
 
+export const clearCartThunk = (user_id) => async (dispatch) => {
+  const response = await fetch(`/api/cart/${user_id}/clear`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(clearCart(user_id));
+    return data;
+  } else {
+    return "Error clearing your cart";
+  }
+};
+
 // Initial State
 const initialState = { cart: {} };
 
@@ -130,6 +149,8 @@ export default function cartReducer(state = initialState, action) {
       newState = { ...state };
       newState.cart[action.listing] = action.listing;
       return newState;
+    case CLEAR_CART:
+      return state;
     default:
       return state;
   }
