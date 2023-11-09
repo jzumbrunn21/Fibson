@@ -89,7 +89,7 @@ const GuitarDetail = () => {
           <p>Fretboard Wood: {listing[0].guitar.fretboard_material}</p>
           <p>Fret Count: {listing[0].guitar.frets}</p>
           <p>Inlay Design: {listing[0].guitar.inlays}</p>
-          <p>Pickguard: {listing[0].guitar.pickguard}</p>
+          <p>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</p>
           <p>Pickup Selector: {listing[0].guitar.pickup_selector}</p>
         </div>
       )}

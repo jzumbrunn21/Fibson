@@ -21,6 +21,6 @@ class GuitarForm(FlaskForm):
     inlays = SelectField('inlays', choices=[('Pearl-Dot', 'Pearl-Dot'), ('Trapezoid', 'Trapezoid'), ('Other', 'Other'), ('None','None')], validators=[DataRequired()])
     handedness = SelectField('handedness', choices=[('Right', 'Right'), ('Left', 'Left')], validators=[DataRequired()])
     description = StringField('description', validators=[DataRequired(), Length(min=25, max=2000, message='Description must be between 25 and 2000 characters')])
-    pickguard = BooleanField('pickguard', validators=[DataRequired()])
+    pickguard = BooleanField('pickguard')
     pickup_selector = SelectField('pickup_selector', choices=[('2-Switch', '2-Switch'), ('3-Switch', '3-Switch'), ('5-Switch', '5-Switch'), ('None', 'None')], validators=[DataRequired()])
     submit = SubmitField('submit')

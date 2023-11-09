@@ -123,3 +123,8 @@
   width: 90px;
   height: 150px;
 }
+
+.splash-nav {
+  color: black;
+  text-decoration: none;
+}
