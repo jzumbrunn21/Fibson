@@ -21,13 +21,20 @@ function Navigation({ isLoaded }) {
 
             <ul>
               <li>
-                <h4>Electric</h4>
+                <NavLink exact to="/listings/filter/guitar_type/Electric">
+                  <h4>Electric</h4>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink exact to="/listings/filter/guitar_type/Acoustic">
+                  <h4>Acoustic</h4>
+                </NavLink>
               </li>
               <li>
-                <h4>Acoustic</h4>
-              </li>
-              <li>
-                <h4>Bass</h4>
+                <NavLink exact to="/listings/filter/guitar_type/Bass">
+                  <h4>Bass</h4>
+                </NavLink>
               </li>
             </ul>
           </div>

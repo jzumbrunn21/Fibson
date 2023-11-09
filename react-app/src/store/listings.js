@@ -85,8 +85,9 @@ export const uploadListingImageThunk =
     }
   };
 
-export const readAllListingsThunk = () => async (dispatch) => {
-  const response = await fetch("/api/listings", {
+export const readAllListingsThunk = (type, category) => async (dispatch) => {
+  // query param conditional to filter from direct route
+  const response = await fetch(`/api/listings?${type}=${category}`, {
     method: "GET",
   });
 

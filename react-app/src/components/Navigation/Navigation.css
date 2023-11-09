@@ -80,6 +80,12 @@
   margin-right: 30px;
 }
 
+.nav-logo a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #logout-button {
   width: 131px;
 }
