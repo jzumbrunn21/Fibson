@@ -1,0 +1,47 @@
+.footy-container {
+  /* width: 100%; */
+  height: 250px;
+  border: 1px solid black;
+  background-color: #212529;
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+}
+
+.tech-used {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-used ul,
+li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+.tech-used img {
+  height: 50px;
+  width: 50px;
+}
+
+.footy-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footy-me {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+
+.footy-me h5 {
+  margin-top: 15px;
+  margin-bottom: -3px;
+}
