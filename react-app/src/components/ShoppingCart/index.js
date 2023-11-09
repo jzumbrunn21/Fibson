@@ -6,6 +6,7 @@ import {
   readUserCartThunk,
   incrementItemThunk,
   decrementItemThunk,
+  clearCartThunk,
 } from "../../store/shoppingCart";
 import DeleteCartItemModal from "../DeleteCartItemModal";
 import "./ShoppingCart.css";
@@ -29,6 +30,15 @@ const ShoppingCart = () => {
       0
     );
   }
+
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    await dispatch(clearCartThunk(sessionUser.id));
+    dispatch(readUserCartThunk(sessionUser.id));
+    alert(
+      "Thank you for your purchase! Items will be delivered in 3-10 buisness years"
+    );
+  };
 
   return (
     <div className="shopping-cart-container">
@@ -93,13 +103,7 @@ const ShoppingCart = () => {
       </div>
       <div className="price-checkout-container">
         <h2>Subtotal: ${subtotalCalc}</h2>
-        <button
-          onClick={() => {
-            alert("Feature Coming Soon");
-          }}
-        >
-          Checkout
-        </button>
+        <button onClick={handleCheckout}>Checkout</button>
       </div>
     </div>
   );

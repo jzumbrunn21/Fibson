@@ -92,3 +92,15 @@ def decrement_cart_item(id, guitar_id):
         return cart_item.to_dict()
     else:
         return 'Could not find cart item'
+
+
+@cart_routes.route('/<int:id>/clear', methods=['DELETE'])
+@login_required
+def clear_cart(id):
+    users_cart = ShoppingCart.query.filter_by(user_id=id).first()
+    if users_cart:
+        CartItem.query.filter_by(cart_id=users_cart.id).delete()
+        db.session.commit()
+        return jsonify('Cart Cleared')
+    else:
+        return "Could not find your cart!"
