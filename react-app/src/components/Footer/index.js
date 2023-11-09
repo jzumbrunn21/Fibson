@@ -47,6 +47,16 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+      <div className="footy-me">
+        <h5>Fibson by Josh Zumbrunn</h5>
+        <h5>Check out Github!</h5>
+        <a href="https://github.com/jzumbrunn21">
+          <img
+            src={"https://img.icons8.com/?size=64&id=52539&format=png"}
+            alt="Github"
+          />
+        </a>
+      </div>
     </div>
   );
 };

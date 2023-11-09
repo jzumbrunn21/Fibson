@@ -32,3 +32,16 @@ li {
   justify-content: center;
   align-items: center;
 }
+
+.footy-me {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+
+.footy-me h5 {
+  margin-top: 15px;
+  margin-bottom: -3px;
+}
