@@ -25,7 +25,7 @@ const ShoppingCart = () => {
 
   useEffect(() => {
     userCart.sort((a, b) => a.id - b.id);
-  });
+  }, [userCart]);
 
   let subtotalCalc = 0;
   if (userCart && userCart[0] instanceof Array) {
