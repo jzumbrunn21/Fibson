@@ -23,6 +23,10 @@ const ShoppingCart = () => {
     }
   }, [dispatch, sessionUser]);
 
+  useEffect(() => {
+    userCart.sort((a, b) => a.id - b.id);
+  });
+
   let subtotalCalc = 0;
   if (userCart && userCart[0] instanceof Array) {
     subtotalCalc = userCart[0]?.reduce(
