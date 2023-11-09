@@ -30,7 +30,7 @@ const UpdateListing = () => {
   const [inlays, setInlays] = useState("");
   const [handedness, setHandedness] = useState("");
   const [description, setDescription] = useState("");
-  const [pickguard, setPickguard] = useState(true);
+  const [pickguard, setPickguard] = useState(false);
   const [pickup_selector, set_pickup_selector] = useState("");
 
   const [urls, setUrls] = useState(null);

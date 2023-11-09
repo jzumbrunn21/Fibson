@@ -14,6 +14,7 @@ import CreateListing from "./components/CreateListing";
 import UpdateListing from "./components/UpdateListing";
 import ShoppingCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
+import FilteredPage from "./components/FilteredPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path="/listings/:guitarId">
             <GuitarDetail />
+          </Route>
+          <Route exact path="/listings/filter/:type/:category">
+            <FilteredPage />
           </Route>
           <Route exact path="/manage">
             <ManageListings />

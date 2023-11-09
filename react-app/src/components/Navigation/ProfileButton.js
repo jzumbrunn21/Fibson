@@ -50,7 +50,13 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button style={{ backgroundColor: "transparent" }} onClick={openMenu}>
+      <button
+        style={{
+          background: "transparent",
+          border: "none",
+        }}
+        onClick={openMenu}
+      >
         <img className="profile-icon" src={guitar} alt="Profile Menu" />
       </button>
       <ul className={ulClassName} style={{ position: "absolute" }} ref={ulRef}>

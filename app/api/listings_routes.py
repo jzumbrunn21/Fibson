@@ -12,7 +12,17 @@ listings_routes = Blueprint("listings", __name__)
 @listings_routes.route('/')
 #Grabs all guitars and their images(images in a list)
 def all_listings():
-    guitars = Guitar.query.all()
+    # Passing make and guitar_type to filter results from params, so no 8 (yuck) different routes
+    make = request.args.get('make')
+    guitar_type = request.args.get('guitar_type')
+
+    if make:
+        guitars = Guitar.query.filter_by(make=make).all()
+    elif guitar_type:
+        guitars = Guitar.query.filter_by(guitar_type=guitar_type).all()
+    else:
+
+        guitars = Guitar.query.all()
     response = []
 
     for guitar in guitars:
