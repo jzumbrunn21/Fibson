@@ -71,7 +71,7 @@ export const uploadListingImageThunk =
       method: "POST",
       body: image,
     });
-    console.log("HITTING THUNK");
+    // console.log("HITTING THUNK");
     if (response.ok) {
       const data = await response.json();
       console.log("DATA", data);
