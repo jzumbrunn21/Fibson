@@ -1,0 +1,22 @@
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  /* position: relative; */
+  justify-content: space-around;
+  align-items: baseline;
+  background-color: #212529;
+  z-index: 1;
+  height: 200px;
+  width: 150px;
+  border: 3px solid #84734d;
+  border-radius: 5px;
+  color: white;
+}
+
+.profile-dropdown button {
+  background-color: #84734d;
+  color: white;
+  height: 35px;
+  width: 80%;
+  cursor: pointer;
+}
