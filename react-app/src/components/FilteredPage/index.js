@@ -21,7 +21,9 @@ const FilteredPage = () => {
 
   return (
     <>
-      <h2>Check out our {category} collection:</h2>
+      <div className="listings-filter">
+        <h2>Check out our {category} collection:</h2>
+      </div>
       <div className="all-listings-container">
         {listings.map(
           (listing) =>
