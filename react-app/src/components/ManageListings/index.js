@@ -59,13 +59,8 @@ const ManageListings = () => {
                     </Link>
                   )}
                   <div className="manage-all-listings-info-container">
-                    <h3>
-                      {listing.guitar.year} {listing.guitar.make}{" "}
-                      {listing.guitar.model}
-                    </h3>
-                    <h5>{listing.guitar.color}</h5>
-                    <h5>${listing.guitar.price}</h5>
                     <div className="manage-button-container">
+                      <div></div>
                       <button
                         onClick={() => {
                           history.push(`/update/${listing.guitar.id}`);
@@ -81,6 +76,18 @@ const ManageListings = () => {
                           <DeleteListingModal guitarId={listing.guitar.id} />
                         }
                       />
+                    </div>
+                    <div className="manage-info">
+                      <div>
+                        <h3>
+                          {listing.guitar.year} {listing.guitar.make}{" "}
+                          {listing.guitar.model}
+                        </h3>
+                      </div>
+                      <div>
+                        <h5>Color: {listing.guitar.color}</h5>
+                        <h5>${listing.guitar.price}</h5>
+                      </div>
                     </div>
                   </div>
                 </div>
