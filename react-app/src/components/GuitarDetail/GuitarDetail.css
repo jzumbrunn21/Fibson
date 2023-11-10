@@ -2,31 +2,66 @@
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
-  width: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin: 0, auto;
   margin-top: 20px;
-  justify-content: center;
-  justify-content: space-between;
+}
+.single-guitar-images-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .carousel {
-  width: fit-content;
-  /* border: 1px solid black; */
-  /* padding: 10px; */
-  /* margin-right: 50px; */
+  align-self: flex-start;
+  justify-content: flex-start;
+  /* width: 90%; */
+  margin-bottom: 20px;
 }
 
 .single-guitar-info-container {
-  /* display: grid; */
-  /* justify-content: center; */
-  margin-left: 50px;
-  border: 1px solid black;
-  border-radius: 5px;
-  height: fit-content;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .single-guitar-description {
   max-width: 1440px;
   margin: 0 auto;
+  /* border: 2px solid #84734d; */
+}
+
+.carousel-root.carousel {
+  border: 3px solid #84734d;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.line-break {
+  border: 1px solid #84734d;
+  width: 50%;
+}
+
+.single-guitar-info-container button {
+  background-color: #84734d;
+  margin-top: 10px;
+  color: white;
+  height: 40px;
+  width: 225px;
+  cursor: pointer;
+}
+
+.new-line-break {
+  border: 1px solid #84734d;
+}
+
+.specs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
