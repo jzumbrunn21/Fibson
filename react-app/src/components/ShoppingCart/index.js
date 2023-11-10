@@ -57,12 +57,12 @@ const ShoppingCart = () => {
                   {item.images && <img src={item.images[0].url} alt="Guitar" />}
                 </div>
                 <div className="cart-info-section">
-                  <div>
-                    <h4>
+                  <div className="cart-title-price">
+                    <h2>
                       {item.guitar.year} {item.guitar.make} {item.guitar.model}
-                    </h4>
+                    </h2>
+                    <div>${item.guitar.price}</div>
                   </div>
-                  <div>${item.guitar.price}</div>
 
                   <div>
                     <OpenModalButton
