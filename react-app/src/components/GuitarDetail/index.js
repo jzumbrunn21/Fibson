@@ -62,13 +62,13 @@ const GuitarDetail = () => {
                   {listing[0].guitar.year} {listing[0].guitar.make}{" "}
                   {listing[0].guitar.model}
                 </h2>
-                <div className="line-break"></div>
+                <div className="newer-line-break"></div>
                 <h4>Finish: {listing[0].guitar.color}</h4>
-                <div className="line-break"></div>
+                <div className="newer-line-break"></div>
                 <h4>Handedness: {listing[0].guitar.handedness}</h4>
-                <div className="line-break"></div>
+                <div className="newer-line-break"></div>
                 <h4>Price: ${listing[0].guitar.price}</h4>
-                <div className="line-break"></div>
+                <div className="newer-line-break"></div>
                 {sessionUser && (
                   <button onClick={handleAddToCart}>Add to Cart</button>
                 )}
@@ -86,7 +86,7 @@ const GuitarDetail = () => {
           </h2>
           <h4>{listing[0].guitar.description}</h4>
           <div className="new-line-break"></div>
-            <h2>Specs</h2>
+          <h2>Specs</h2>
           <div className="specs">
             <div>
               <h3>Materials</h3>
