@@ -1,6 +1,6 @@
 .update-image-small-view {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
 }
 
 .image-upload-container {
@@ -13,7 +13,11 @@
 }
 
 .indiv-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   margin-bottom: 20px;
-  border: 1px solid black;
+  border: 1px solid #84734d;
   border-radius: 5px;
+  padding: 3px;
 }
