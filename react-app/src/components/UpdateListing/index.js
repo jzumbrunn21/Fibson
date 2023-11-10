@@ -485,7 +485,7 @@ const UpdateListing = () => {
                       src={
                         urls && urls.length > 0 && urls[0].url
                           ? urls[0].url
-                          : null
+                          : "https://www.firstcolonyfoundation.org/wp-content/uploads/2022/01/no-photo-available.jpeg"
                       }
                       alt={"Image Url"}
                       className="update-image-small-view"
@@ -501,7 +501,7 @@ const UpdateListing = () => {
                       src={
                         urls && urls.length > 1 && urls[1].url
                           ? urls[1].url
-                          : null
+                          : "https://www.firstcolonyfoundation.org/wp-content/uploads/2022/01/no-photo-available.jpeg"
                       }
                       alt={"Image Url"}
                       className="update-image-small-view"
@@ -517,7 +517,7 @@ const UpdateListing = () => {
                       src={
                         urls && urls.length > 2 && urls[2].url
                           ? urls[2].url
-                          : null
+                          : "https://www.firstcolonyfoundation.org/wp-content/uploads/2022/01/no-photo-available.jpeg"
                       }
                       alt={"Image Url"}
                       className="update-image-small-view"
@@ -533,7 +533,7 @@ const UpdateListing = () => {
                       src={
                         urls && urls.length > 3 && urls[3].url
                           ? urls[3].url
-                          : null
+                          : "https://www.firstcolonyfoundation.org/wp-content/uploads/2022/01/no-photo-available.jpeg"
                       }
                       alt={"Image Url"}
                       className="update-image-small-view"
@@ -549,7 +549,7 @@ const UpdateListing = () => {
                       src={
                         urls && urls.length > 4 && urls[4].url
                           ? urls[4].url
-                          : null
+                          : "https://www.firstcolonyfoundation.org/wp-content/uploads/2022/01/no-photo-available.jpeg"
                       }
                       alt={"Image Url"}
                       className="update-image-small-view"

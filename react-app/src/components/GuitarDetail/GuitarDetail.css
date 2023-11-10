@@ -65,3 +65,8 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.vert-line {
+  border: 1px solid #84734d;
+  height: 100px;
+}

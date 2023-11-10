@@ -3,7 +3,7 @@ import "./GuitarDetail.css";
 import { readOneListingThunk } from "../../store/listings";
 import { addToCartThunk, readUserCartThunk } from "../../store/shoppingCart";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -14,6 +14,7 @@ const GuitarDetail = () => {
     (state) => Object.values(state.listings.listing)[0]
   );
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
   console.log("LISTING", listing);
   const [listingEdit, setListingEdit] = useState(listing);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +29,7 @@ const GuitarDetail = () => {
 
     await dispatch(addToCartThunk(listing, sessionUser.id, guitarId));
 
-    alert("Added to cart");
+    history.push(`/cart/${sessionUser.id}`);
   };
 
   if (isLoading) {
@@ -70,7 +71,9 @@ const GuitarDetail = () => {
                 <h4>Price: ${listing[0].guitar.price}</h4>
                 <div className="newer-line-break"></div>
                 {sessionUser && (
-                  <button onClick={handleAddToCart}>Add to Cart</button>
+                  <button onClick={handleAddToCart}>
+                    <h3>Add to Cart</h3>
+                  </button>
                 )}
               </div>
             </div>
@@ -94,12 +97,14 @@ const GuitarDetail = () => {
               <p>Body Type: {listing[0].guitar.body_type}</p>
               <p>Wood: {listing[0].guitar.wood_type}</p>
             </div>
+            <div className="vert-line"></div>
             <div>
               <h3>Pickups</h3>
               <p>Pickup Type: {listing[0].guitar.pickup_type}</p>
               <p>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</p>
               <p>Pickup Selector: {listing[0].guitar.pickup_selector}</p>
             </div>
+            <div className="vert-line"></div>
             <div>
               <h3>Neck</h3>
               <p>Joint: {listing[0].guitar.joint_type}</p>
