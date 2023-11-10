@@ -58,52 +58,55 @@ const ShoppingCart = () => {
                 </div>
                 <div className="cart-info-section">
                   <div>
-                    {item.guitar.year} {item.guitar.make} {item.guitar.model}
+                    <h4>
+                      {item.guitar.year} {item.guitar.make} {item.guitar.model}
+                    </h4>
                   </div>
                   <div>${item.guitar.price}</div>
-                </div>
-                <div>
-                  <OpenModalButton
-                    className="delete-button"
-                    buttonText="Delete"
-                    modalComponent={
-                      <DeleteCartItemModal
-                        guitarId={item.guitar.id}
-                        userId={sessionUser.id}
-                      />
-                    }
-                  />
+
                   <div>
-                    <button
-                      onClick={async () => {
-                        dispatch(
-                          await decrementItemThunk(
-                            sessionUser.id,
-                            item.guitar.id
-                          )
-                        );
-                        // .then(() => {
-                        await dispatch(readUserCartThunk(sessionUser.id));
-                        // });
-                      }}
-                      disabled={item.quantity < 2}
-                    >
-                      -
-                    </button>
-                    Quantity: {item.quantity}
-                    <button
-                      onClick={async () => {
-                        await dispatch(
-                          incrementItemThunk(sessionUser.id, item.guitar.id)
-                        );
-                        // .then(() => {
-                        await dispatch(readUserCartThunk(sessionUser.id));
-                        // });
-                      }}
-                      disabled={item.quantity > 9}
-                    >
-                      +
-                    </button>
+                    <OpenModalButton
+                      className="delete-button"
+                      buttonText="Delete"
+                      modalComponent={
+                        <DeleteCartItemModal
+                          guitarId={item.guitar.id}
+                          userId={sessionUser.id}
+                        />
+                      }
+                    />
+                    <div>
+                      <button
+                        onClick={async () => {
+                          dispatch(
+                            await decrementItemThunk(
+                              sessionUser.id,
+                              item.guitar.id
+                            )
+                          );
+                          // .then(() => {
+                          await dispatch(readUserCartThunk(sessionUser.id));
+                          // });
+                        }}
+                        disabled={item.quantity < 2}
+                      >
+                        -
+                      </button>
+                      Quantity: {item.quantity}
+                      <button
+                        onClick={async () => {
+                          await dispatch(
+                            incrementItemThunk(sessionUser.id, item.guitar.id)
+                          );
+                          // .then(() => {
+                          await dispatch(readUserCartThunk(sessionUser.id));
+                          // });
+                        }}
+                        disabled={item.quantity > 9}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </li>
