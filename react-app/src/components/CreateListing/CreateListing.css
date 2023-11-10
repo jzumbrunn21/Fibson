@@ -10,9 +10,6 @@
   align-items: center;
   gap: 20px;
   padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  max-width: fit-content;
 }
 .create-listing-form-container button {
   display: flex;
@@ -24,43 +21,92 @@
 .form-container {
   display: grid;
   justify-items: center;
+  border: 10px solid #84734d;
+  border-radius: 5px;
+  background-color: #212529;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  width: 60%;
+}
+
+.form-container button {
+  background-color: #84734d;
+  color: white;
+  height: 45px;
+  width: 250px;
+  font-size: large;
+  cursor: pointer;
 }
 
 .make-model-year {
-  margin: 10px;
+  margin: 8px;
   display: flex;
+  justify-content: space-evenly;
 }
 
 .line-break {
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid #84734d;
+  margin: 15px;
 }
 
 .guitar-body-wood-type {
   margin: 10px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
 
 .pickups {
   margin: 10px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
 
 .frets-neck {
   margin: 10px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
 
 .create-description {
   margin: 10px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
 
 .image-upload-container {
   margin: 10px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
+
+#pickguard {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.form-container input {
+  border-radius: 5px;
+  height: 25px;
+}
+
+.form-container select {
+  border-radius: 5px;
+  height: 25px;
+  width: 155px;
+  cursor: pointer;
+}
+
+.form-container textarea {
+  border-radius: 5px;
+  width: 300px;
+}
+
+.form-container div {
+  text-align: center;
+  margin: 10px;
+  gap: 5px;
+}
+
+

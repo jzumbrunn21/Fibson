@@ -251,38 +251,55 @@ const UpdateListing = () => {
           <h4>Let's start with some basic information</h4>
           <div className="make-model-year">
             <label>
-              Make
+              <div>Make</div>
               <input
                 type="text"
                 value={make}
                 onChange={(e) => setMake(e.target.value)}
               />
-              {errors.make && <span className="error">{errors.make}</span>}
+              <div>
+                {errors.make && <span className="error">{errors.make}</span>}
+              </div>
             </label>
             <label>
-              Model
+              <div>Model</div>
               <input
                 type="text"
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
               />
-              {errors.model && <span className="error">{errors.model}</span>}
+              <div>
+                {errors.model && <span className="error">{errors.model}</span>}
+              </div>
             </label>
             <label>
-              Year
+              <div>Year</div>
               <input
                 type="number"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
               />
-              {errors.year && <span className="error">{errors.year}</span>}
+              <div>
+                {errors.year && <span className="error">{errors.year}</span>}
+              </div>
+            </label>
+            <label>
+              <div>Color</div>
+              <input
+                type="text"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+              />
+              <div>
+                {errors.color && <span className="error">{errors.color}</span>}
+              </div>
             </label>
           </div>
           <div className="line-break"></div>
           <h4>What is your guitar made of?</h4>
           <div className="guitar-body-wood-type">
             <label>
-              Guitar Type
+              <div>Guitar Type</div>
               <select
                 value={guitar_type}
                 onChange={(e) => set_guitar_type(e.target.value)}
@@ -294,7 +311,7 @@ const UpdateListing = () => {
               </select>
             </label>
             <label>
-              Body Type
+              <div>Body Type</div>
               <select
                 value={body_type}
                 onChange={(e) => set_body_type(e.target.value)}
@@ -305,7 +322,7 @@ const UpdateListing = () => {
               </select>
             </label>
             <label>
-              Wood Type
+              <div>Wood Type</div>
               <select
                 value={wood_type}
                 onChange={(e) => set_wood_type(e.target.value)}
@@ -319,21 +336,12 @@ const UpdateListing = () => {
                 <option value="Exotic">Exotic</option>
               </select>
             </label>
-            <label>
-              Color
-              <input
-                type="text"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
-              {errors.color && <span className="error">{errors.color}</span>}
-            </label>
           </div>
           <div className="line-break"></div>
           <h4>Pickup Information</h4>
           <div className="pickups">
             <label>
-              Pickup Type
+              <div>Pickup Type</div>
               <select
                 value={pickup_type}
                 onChange={(e) => set_pickup_type(e.target.value)}
@@ -345,7 +353,7 @@ const UpdateListing = () => {
               </select>
             </label>
             <label>
-              Pickup Selector
+              <div>Pickup Selector</div>
               <select
                 value={pickup_selector}
                 onChange={(e) => set_pickup_selector(e.target.value)}
@@ -356,6 +364,7 @@ const UpdateListing = () => {
                 <option value="None">None</option>
               </select>
             </label>
+
             <label>
               Pickguard
               <input
@@ -374,22 +383,12 @@ const UpdateListing = () => {
                 onChange={(e) => setPickguard(e.target.value === "true")}
               />
             </label>
-            <label>
-              Handedness
-              <select
-                value={handedness}
-                onChange={(e) => setHandedness(e.target.value)}
-              >
-                <option value="Right">Right</option>
-                <option value="Left">Left</option>
-              </select>
-            </label>
           </div>
           <div className="line-break"></div>
           <h4>Onto the neck</h4>
           <div className="frets-neck">
             <label>
-              Fretboard Material
+              <div>Fretboard Material</div>
               <select
                 value={fretboard_material}
                 onChange={(e) => set_fretboard_material(e.target.value)}
@@ -401,17 +400,9 @@ const UpdateListing = () => {
                 <option value="Exotic">Exotic</option>
               </select>
             </label>
+
             <label>
-              Number of Frets
-              <input
-                type="number"
-                value={frets}
-                onChange={(e) => setFrets(e.target.value)}
-              />
-              {errors.frets && <span className="error">{errors.frets}</span>}
-            </label>
-            <label>
-              Inlays
+              <div>Inlays</div>
               <select
                 value={inlays}
                 onChange={(e) => setInlays(e.target.value)}
@@ -423,7 +414,7 @@ const UpdateListing = () => {
               </select>
             </label>
             <label>
-              Neck Joint
+              <div>Neck Joint</div>
               <select
                 value={joint_type}
                 onChange={(e) => set_joint_type(e.target.value)}
@@ -432,29 +423,54 @@ const UpdateListing = () => {
                 <option value="Bolt-on-Neck">Bolt-on-Neck</option>
               </select>
             </label>
+            <label>
+              <div>Number of Frets</div>
+              <input
+                type="number"
+                value={frets}
+                onChange={(e) => setFrets(e.target.value)}
+              />
+              <div>
+                {errors.frets && <span className="error">{errors.frets}</span>}
+              </div>
+            </label>
           </div>
           <div className="line-break"></div>
           <h4>Tell the world about your axe</h4>
           <div className="create-description">
             <label>
-              Description
+              <div>Handedness</div>
+              <select
+                value={handedness}
+                onChange={(e) => setHandedness(e.target.value)}
+              >
+                <option value="Right">Right</option>
+                <option value="Left">Left</option>
+              </select>
+            </label>
+            <label>
+              <div>Description</div>
               <textarea
                 rows="5"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-              {errors.description && (
-                <span className="error">{errors.description}</span>
-              )}
+              <div>
+                {errors.description && (
+                  <span className="error">{errors.description}</span>
+                )}
+              </div>
             </label>
             <label>
-              Price
+              <div>Price</div>
               <input
                 type="number"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-              {errors.price && <span className="error">{errors.price}</span>}
+              <div>
+                {errors.price && <span className="error">{errors.price}</span>}
+              </div>
             </label>
           </div>
           <div className="line-break"></div>
