@@ -44,7 +44,8 @@ const GuitarDetail = () => {
               <Carousel
                 className="carousel"
                 autoPlay={true}
-                width={800}
+                // width={"40%"}
+                // height={400}
                 infiniteLoop={true}
               >
                 {listing[0].images &&
@@ -56,18 +57,22 @@ const GuitarDetail = () => {
                     />
                   ))}
               </Carousel>
-            </div>
-            <div className="single-guitar-info-container">
-              <h2>
-                {listing[0].guitar.year} {listing[0].guitar.make}{" "}
-                {listing[0].guitar.model}
-              </h2>
-              <h4>Finish: {listing[0].guitar.color}</h4>
-              <h4>Handedness: {listing[0].guitar.handedness}</h4>
-              <h4>Price: ${listing[0].guitar.price}</h4>
-              {sessionUser && (
-                <button onClick={handleAddToCart}>Add to Cart</button>
-              )}
+              <div className="single-guitar-info-container">
+                <h2>
+                  {listing[0].guitar.year} {listing[0].guitar.make}{" "}
+                  {listing[0].guitar.model}
+                </h2>
+                <div className="line-break"></div>
+                <h4>Finish: {listing[0].guitar.color}</h4>
+                <div className="line-break"></div>
+                <h4>Handedness: {listing[0].guitar.handedness}</h4>
+                <div className="line-break"></div>
+                <h4>Price: ${listing[0].guitar.price}</h4>
+                <div className="line-break"></div>
+                {sessionUser && (
+                  <button onClick={handleAddToCart}>Add to Cart</button>
+                )}
+              </div>
             </div>
           </>
         )}
@@ -80,17 +85,29 @@ const GuitarDetail = () => {
             {listing[0].guitar.model}
           </h2>
           <h4>{listing[0].guitar.description}</h4>
-          <h2>Specs</h2>
-          <p>Type: {listing[0].guitar.guitar_type}</p>
-          <p>Body Type: {listing[0].guitar.body_type}</p>
-          <p>Wood: {listing[0].guitar.wood_type}</p>
-          <p>Pickup Type: {listing[0].guitar.pickup_type}</p>
-          <p>Joint: {listing[0].guitar.joint_type}</p>
-          <p>Fretboard Wood: {listing[0].guitar.fretboard_material}</p>
-          <p>Fret Count: {listing[0].guitar.frets}</p>
-          <p>Inlay Design: {listing[0].guitar.inlays}</p>
-          <p>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</p>
-          <p>Pickup Selector: {listing[0].guitar.pickup_selector}</p>
+          <div className="new-line-break"></div>
+            <h2>Specs</h2>
+          <div className="specs">
+            <div>
+              <h3>Materials</h3>
+              <p>Type: {listing[0].guitar.guitar_type}</p>
+              <p>Body Type: {listing[0].guitar.body_type}</p>
+              <p>Wood: {listing[0].guitar.wood_type}</p>
+            </div>
+            <div>
+              <h3>Pickups</h3>
+              <p>Pickup Type: {listing[0].guitar.pickup_type}</p>
+              <p>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</p>
+              <p>Pickup Selector: {listing[0].guitar.pickup_selector}</p>
+            </div>
+            <div>
+              <h3>Neck</h3>
+              <p>Joint: {listing[0].guitar.joint_type}</p>
+              <p>Fretboard Wood: {listing[0].guitar.fretboard_material}</p>
+              <p>Fret Count: {listing[0].guitar.frets}</p>
+              <p>Inlay Design: {listing[0].guitar.inlays}</p>
+            </div>
+          </div>
         </div>
       )}
     </>

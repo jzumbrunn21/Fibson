@@ -57,55 +57,64 @@ const ShoppingCart = () => {
                   {item.images && <img src={item.images[0].url} alt="Guitar" />}
                 </div>
                 <div className="cart-info-section">
-                  <div>
-                    <h4>
+                  <div className="cart-title-price">
+                    <h2>
                       {item.guitar.year} {item.guitar.make} {item.guitar.model}
-                    </h4>
-                  </div>
-                  <div>${item.guitar.price}</div>
-
-                  <div>
-                    <OpenModalButton
-                      className="delete-button"
-                      buttonText="Delete"
-                      modalComponent={
-                        <DeleteCartItemModal
-                          guitarId={item.guitar.id}
-                          userId={sessionUser.id}
-                        />
-                      }
-                    />
+                    </h2>
                     <div>
-                      <button
-                        onClick={async () => {
-                          dispatch(
-                            await decrementItemThunk(
-                              sessionUser.id,
-                              item.guitar.id
-                            )
-                          );
-                          // .then(() => {
-                          await dispatch(readUserCartThunk(sessionUser.id));
-                          // });
-                        }}
-                        disabled={item.quantity < 2}
-                      >
-                        -
-                      </button>
-                      Quantity: {item.quantity}
-                      <button
-                        onClick={async () => {
-                          await dispatch(
-                            incrementItemThunk(sessionUser.id, item.guitar.id)
-                          );
-                          // .then(() => {
-                          await dispatch(readUserCartThunk(sessionUser.id));
-                          // });
-                        }}
-                        disabled={item.quantity > 9}
-                      >
-                        +
-                      </button>
+                      <h3>${item.guitar.price}</h3>
+                    </div>
+                  </div>
+
+                  <div className="quant-del-sec">
+                    <div className="quantity">
+                      <div>
+                        <button
+                          onClick={async () => {
+                            dispatch(
+                              await decrementItemThunk(
+                                sessionUser.id,
+                                item.guitar.id
+                              )
+                            );
+                            // .then(() => {
+                            await dispatch(readUserCartThunk(sessionUser.id));
+                            // });
+                          }}
+                          disabled={item.quantity < 2}
+                        >
+                          -
+                        </button>
+                      </div>
+                      <div>
+                        <h3>{item.quantity}</h3>
+                      </div>
+                      <div>
+                        <button
+                          onClick={async () => {
+                            await dispatch(
+                              incrementItemThunk(sessionUser.id, item.guitar.id)
+                            );
+                            // .then(() => {
+                            await dispatch(readUserCartThunk(sessionUser.id));
+                            // });
+                          }}
+                          disabled={item.quantity > 9}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div id="delete-button">
+                      <OpenModalButton
+                        buttonText="Delete"
+                        modalComponent={
+                          <DeleteCartItemModal
+                            guitarId={item.guitar.id}
+                            userId={sessionUser.id}
+                          />
+                        }
+                      />
                     </div>
                   </div>
                 </div>
