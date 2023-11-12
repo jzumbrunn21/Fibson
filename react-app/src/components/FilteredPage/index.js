@@ -22,7 +22,11 @@ const FilteredPage = () => {
   return (
     <>
       <div className="listings-filter">
-        <h2>Check out our {category} collection:</h2>
+        {listings && listings.length > 0 ? (
+          <h2>Check out our {category} collection:</h2>
+        ) : (
+          <h2>There are no {category} guitars in our inventory yet!</h2>
+        )}
       </div>
       <div className="all-listings-container">
         {listings.map(

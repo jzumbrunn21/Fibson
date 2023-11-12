@@ -100,7 +100,6 @@ const CreateListing = () => {
 
     setIsLoading(true);
     const createdListing = await dispatch(createListingThunk(listingData));
-    console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
     // console.log("GUITAR ID", guitarId);
     for (let url of urls) {

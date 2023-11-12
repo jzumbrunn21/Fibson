@@ -13,7 +13,8 @@ const UpdateListing = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { guitarId } = useParams();
-  //   console.log("guitarID", guitarId);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -123,10 +124,9 @@ const UpdateListing = () => {
     );
   };
 
-  console.log(imageIdOne, imageIdTwo);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const newErrors = {};
 
     if (!make || make.length < 1 || make.length > 50) {
@@ -232,6 +232,7 @@ const UpdateListing = () => {
       updateListingThunk(updatedListingData, guitarId)
     );
 
+    setIsLoading(false);
     if (updatedListing) {
       history.push(`/listings/${guitarId}`);
     } else {
@@ -243,6 +244,17 @@ const UpdateListing = () => {
     prepopulateFields();
   }, []);
 
+  if (isLoading)
+    return (
+      <div className="loading-image">
+        <img
+          src={
+            "https://gifdb.com/images/high/a-sharp-dressed-man-guitar-spin-wwog8yb3r73hkvf3.webp"
+          }
+          alt="Loading"
+        />
+      </div>
+    );
   return (
     <div className="create-listing-form-container">
       <div className="form-container">
