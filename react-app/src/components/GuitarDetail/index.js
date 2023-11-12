@@ -70,11 +70,12 @@ const GuitarDetail = () => {
                 <div className="newer-line-break"></div>
                 <h4>Price: ${listing[0].guitar.price}</h4>
                 <div className="newer-line-break"></div>
-                {sessionUser && (
+                {sessionUser &&
+                sessionUser.id !== listing[0].guitar.merchant_id ? (
                   <button onClick={handleAddToCart}>
                     <h3>Add to Cart</h3>
                   </button>
-                )}
+                ) : null}
               </div>
             </div>
           </>
