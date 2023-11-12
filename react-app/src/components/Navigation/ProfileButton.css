@@ -19,4 +19,11 @@
   height: 35px;
   width: 80%;
   cursor: pointer;
+  align-items: center;
+}
+
+#profile-email {
+  word-break: break-all;
+  /* border: 1px solid green; */
+  max-width: 100%;
 }
