@@ -100,7 +100,6 @@ const CreateListing = () => {
 
     setIsLoading(true);
     const createdListing = await dispatch(createListingThunk(listingData));
-    console.log("CREATED LISTING", createdListing);
     const guitarId = createdListing.id;
     // console.log("GUITAR ID", guitarId);
     for (let url of urls) {
@@ -119,7 +118,17 @@ const CreateListing = () => {
     }
   };
 
-  if (isLoading) return <div>...Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="loading-image">
+        <img
+          src={
+            "https://gifdb.com/images/high/a-sharp-dressed-man-guitar-spin-wwog8yb3r73hkvf3.webp"
+          }
+          alt="Loading"
+        />
+      </div>
+    );
   return (
     <div className="create-listing-form-container">
       <div className="form-container">
