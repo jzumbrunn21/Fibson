@@ -62,8 +62,8 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} style={{ position: "absolute" }} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li id="profile-email">{user.username}</li>
+            <li id="profile-email">{user.email}</li>
             <li>
               <button onClick={handleManage}>Manage your Guitars</button>
             </li>
