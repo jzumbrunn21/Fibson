@@ -3,7 +3,7 @@ import "./GuitarDetail.css";
 import { readOneListingThunk } from "../../store/listings";
 import { addToCartThunk, readUserCartThunk } from "../../store/shoppingCart";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -14,6 +14,7 @@ const GuitarDetail = () => {
     (state) => Object.values(state.listings.listing)[0]
   );
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
   console.log("LISTING", listing);
   const [listingEdit, setListingEdit] = useState(listing);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +29,7 @@ const GuitarDetail = () => {
 
     await dispatch(addToCartThunk(listing, sessionUser.id, guitarId));
 
-    alert("Added to cart");
+    history.push(`/cart/${sessionUser.id}`);
   };
 
   if (isLoading) {
@@ -70,7 +71,9 @@ const GuitarDetail = () => {
                 <h4>Price: ${listing[0].guitar.price}</h4>
                 <div className="newer-line-break"></div>
                 {sessionUser && (
-                  <button onClick={handleAddToCart}>Add to Cart</button>
+                  <button onClick={handleAddToCart}>
+                    <h3>Add to Cart</h3>
+                  </button>
                 )}
               </div>
             </div>
@@ -89,23 +92,25 @@ const GuitarDetail = () => {
           <h2>Specs</h2>
           <div className="specs">
             <div>
-              <h3>Materials</h3>
-              <p>Type: {listing[0].guitar.guitar_type}</p>
-              <p>Body Type: {listing[0].guitar.body_type}</p>
-              <p>Wood: {listing[0].guitar.wood_type}</p>
+              <h2>Materials</h2>
+              <h4>Type: {listing[0].guitar.guitar_type}</h4>
+              <h4>Body Type: {listing[0].guitar.body_type}</h4>
+              <h4>Wood: {listing[0].guitar.wood_type}</h4>
             </div>
+            <div className="vert-line"></div>
             <div>
-              <h3>Pickups</h3>
-              <p>Pickup Type: {listing[0].guitar.pickup_type}</p>
-              <p>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</p>
-              <p>Pickup Selector: {listing[0].guitar.pickup_selector}</p>
+              <h2>Pickups</h2>
+              <h4>Pickup Type: {listing[0].guitar.pickup_type}</h4>
+              <h4>Pickguard: {listing[0].guitar.pickguard ? "Yes" : "No"}</h4>
+              <h4>Pickup Selector: {listing[0].guitar.pickup_selector}</h4>
             </div>
+            <div className="vert-line"></div>
             <div>
-              <h3>Neck</h3>
-              <p>Joint: {listing[0].guitar.joint_type}</p>
-              <p>Fretboard Wood: {listing[0].guitar.fretboard_material}</p>
-              <p>Fret Count: {listing[0].guitar.frets}</p>
-              <p>Inlay Design: {listing[0].guitar.inlays}</p>
+              <h2>Neck</h2>
+              <h4>Joint: {listing[0].guitar.joint_type}</h4>
+              <h4>Fretboard Wood: {listing[0].guitar.fretboard_material}</h4>
+              <h4>Fret Count: {listing[0].guitar.frets}</h4>
+              <h4>Inlay Design: {listing[0].guitar.inlays}</h4>
             </div>
           </div>
         </div>
