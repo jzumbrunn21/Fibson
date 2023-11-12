@@ -15,9 +15,6 @@
 }
 
 .carousel {
-  align-self: flex-start;
-  justify-content: flex-start;
-  /* width: 90%; */
   margin-bottom: 20px;
 }
 
@@ -64,9 +61,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  border-bottom: 3px solid #84734d;
+  margin-bottom: 20px;
 }
 
 .vert-line {
   border: 1px solid #84734d;
-  height: 100px;
+  height: 120px;
 }
