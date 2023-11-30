@@ -7,17 +7,18 @@ fake = Faker()
 
 def seed_reviews():
     users_num = db.session.query(User).count()
-    guitars_num = db.session.query(Guitar).count()
+    guitars = Guitar.query.all()
 
-    for _ in range(users_num):
-        review = Review(
-            userId = random.randint(1, users_num),
-            guitarId = random.randint(1, guitars_num),
-            description = fake.paragraph(nb_sentences=4),
-            stars = random.randint(1, 5)
-        )
+    for guitar in guitars:
+        for _ in range(5):
+            review = Review(
+                userId = random.randint(1, users_num),
+                guitarId = guitar.id,
+                description = fake.paragraph(nb_sentences=4),
+                stars = random.randint(1, 5)
+            )
 
-        db.session.add(review)
+            db.session.add(review)
 
     db.session.commit()
 
