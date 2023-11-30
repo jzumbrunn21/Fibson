@@ -13,12 +13,17 @@ const FilteredPage = () => {
   const listings = useSelector((state) =>
     Object.values(state.listings.listings)
   );
-  console.log("FILTERED LISTINGS", listings);
+  // console.log("FILTERED LISTINGS", listings);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(readAllListingsThunk(type, category));
+    dispatch(readAllListingsThunk(type, category)).then(() => setIsLoading(false));
   }, [dispatch, type, category]);
 
+  if (isLoading) {
+    return <div>...Loading</div>;
+  }
+  
   return (
     <>
       <div className="listings-filter">

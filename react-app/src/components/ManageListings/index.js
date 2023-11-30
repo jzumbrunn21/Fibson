@@ -14,13 +14,18 @@ const ManageListings = () => {
     Object.values(state.listings.listings)
   );
   const [usersListings, setUsersListings] = useState(listings);
+  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
+
 
   useEffect(() => {
     setUsersListings(listings);
-    dispatch(readAllUserListingsThunk());
+    dispatch(readAllUserListingsThunk()).then(() => setIsLoading(false));
   }, [dispatch]);
 
+  if (isLoading) {
+    return <div>...Loading</div>;
+  }
   return (
     <>
       <div className="manage-listings-filter">
