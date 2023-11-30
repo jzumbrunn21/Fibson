@@ -76,12 +76,12 @@ def upgrade():
     )
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=False),
-    sa.Column('guitarId', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('guitar_id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['guitarId'], ['guitars.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['guitar_id'], ['guitars.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

@@ -7,8 +7,8 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    guitarId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    guitar_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('guitars.id')), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
 
@@ -28,8 +28,8 @@ class Review(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'userId': self.userId,
-            'guitarId': self.guitarId,
+            'user_id': self.user_id,
+            'guitar_id': self.guitar_id,
             'description': self.description,
             'stars': self.stars
         }

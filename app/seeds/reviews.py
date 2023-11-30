@@ -12,8 +12,8 @@ def seed_reviews():
     for guitar in guitars:
         for _ in range(5):
             review = Review(
-                userId = random.randint(1, users_num),
-                guitarId = guitar.id,
+                user_id = random.randint(1, users_num),
+                guitar_id = guitar.id,
                 description = fake.paragraph(nb_sentences=4),
                 stars = random.randint(1, 5)
             )
