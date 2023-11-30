@@ -53,7 +53,7 @@ export const readUserCartThunk = (user_id) => async (dispatch) => {
 
 export const addToCartThunk =
   (listing, user_id, guitar_id) => async (dispatch) => {
-    console.log("USERID", user_id);
+    // console.log("USERID", user_id);
     const response = await fetch(`/api/cart/${user_id}/add/${guitar_id}`, {
       method: "POST",
       headers: {

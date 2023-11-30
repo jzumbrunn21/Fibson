@@ -13,12 +13,17 @@ const AllListingsPage = () => {
   );
   const allListingsReverse = allListings.reverse();
   const [listings, setListings] = useState(allListings);
-  console.log("ALL", allListings);
+  const [isLoading, setIsLoading] = useState(true);
+  // console.log("ALL", allListings);
 
   useEffect(() => {
     setListings(allListings);
-    dispatch(readAllListingsThunk());
+    dispatch(readAllListingsThunk()).then(() => setIsLoading(false));
   }, []);
+
+  if (isLoading) {
+    return <div>...Loading</div>;
+  }
 
   return (
     <>
