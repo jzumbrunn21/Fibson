@@ -24,42 +24,6 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // return (
-  //   <>
-  //     <Navigation isLoaded={isLoaded} />
-  //     <div id='app'>
-  //     {isLoaded && (
-  //       <Switch>
-  //         <Route exact path="/">
-  //           <SplashPage />
-  //         </Route>
-  //         <Route exact path="/listings">
-  //           <AllListingsPage />
-  //         </Route>
-  //         <Route exact path="/listings/:guitarId">
-  //           <GuitarDetail />
-  //         </Route>
-  //         <Route exact path="/listings/filter/:type/:category">
-  //           <FilteredPage />
-  //         </Route>
-  //         <Route exact path="/manage">
-  //           <ManageListings />
-  //         </Route>
-  //         <Route exact path="/create">
-  //           <CreateListing />
-  //         </Route>
-  //         <Route exact path="/update/:guitarId">
-  //           <UpdateListing />
-  //         </Route>
-  //         <Route exact path="/cart/:userId">
-  //           <ShoppingCart />
-  //         </Route>
-  //       </Switch>
-  //     )}
-  //     </div>
-  //     <Footer />
-  //   </>
-  // );
   return (
     <>
       <Navigation isLoaded={isLoaded} />
