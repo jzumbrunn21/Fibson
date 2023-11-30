@@ -18,11 +18,13 @@
   background-color: #212529;
   color: white;
   margin: 10px;
+  padding: 10px;
 }
 
 .cart-item img {
   height: 100%;
   width: 225px;
+  /* padding: 5px; */
 }
 .cart-info-section {
   display: flex;
@@ -42,13 +44,17 @@
 .price-checkout-container {
   /* justify-self: flex-end; */
   align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   border: 4px solid #84734d;
   border-radius: 5px;
   height: 120px;
   background-color: #212529;
   color: white;
-  padding: 10px;
+  padding: 15px;
   margin: 82px;
 }
 
