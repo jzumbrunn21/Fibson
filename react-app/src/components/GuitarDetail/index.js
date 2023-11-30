@@ -15,7 +15,7 @@ const GuitarDetail = () => {
   );
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
-  console.log("LISTING", listing);
+  // console.log("LISTING", listing);
   const [listingEdit, setListingEdit] = useState(listing);
   const [isLoading, setIsLoading] = useState(true);
 
