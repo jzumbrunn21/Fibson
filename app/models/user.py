@@ -28,6 +28,12 @@ class User(db.Model, UserMixin):
         cascade='all, delete-orphan'
     )
 
+    reviews = db.relationship(
+    'Review',
+    back_populates='user',
+    cascade='all, delete-orphan'
+    )
+
     @property
     def password(self):
         return self.hashed_password

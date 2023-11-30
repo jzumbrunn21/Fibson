@@ -45,6 +45,11 @@ class Guitar(db.Model):
         cascade='all, delete-orphan'
     )
 
+    reviews = db.relationship(
+        'Review',
+        back_populates='guitar',
+        cascade='all, delete-orphan'
+    )
 
 
 
