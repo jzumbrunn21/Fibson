@@ -27,35 +27,39 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route exact path="/listings">
-            <AllListingsPage />
-          </Route>
-          <Route exact path="/listings/:guitarId">
-            <GuitarDetail />
-          </Route>
-          <Route exact path="/listings/filter/:type/:category">
-            <FilteredPage />
-          </Route>
-          <Route exact path="/manage">
-            <ManageListings />
-          </Route>
-          <Route exact path="/create">
-            <CreateListing />
-          </Route>
-          <Route exact path="/update/:guitarId">
-            <UpdateListing />
-          </Route>
-          <Route exact path="/cart/:userId">
-            <ShoppingCart />
-          </Route>
-        </Switch>
-      )}
-      <Footer />
+      <div id='app' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ flex: '1 0 auto' }}>
+          {isLoaded && (
+            <Switch>
+              <Route exact path="/">
+                <SplashPage />
+              </Route>
+              <Route exact path="/listings">
+                <AllListingsPage />
+              </Route>
+              <Route exact path="/listings/:guitarId">
+                <GuitarDetail />
+              </Route>
+              <Route exact path="/listings/filter/:type/:category">
+                <FilteredPage />
+              </Route>
+              <Route exact path="/manage">
+                <ManageListings />
+              </Route>
+              <Route exact path="/create">
+                <CreateListing />
+              </Route>
+              <Route exact path="/update/:guitarId">
+                <UpdateListing />
+              </Route>
+              <Route exact path="/cart/:userId">
+                <ShoppingCart />
+              </Route>
+            </Switch>
+          )}
+        </div>
+        <Footer style={{ flexShrink: '0' }} />
+      </div>
     </>
   );
 }

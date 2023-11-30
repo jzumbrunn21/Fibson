@@ -2,3 +2,7 @@
 #root {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+#app {
+  flex: 1 0 auto;
+}

@@ -24,7 +24,8 @@ const ShoppingCart = () => {
   }, [dispatch, sessionUser]);
 
   useEffect(() => {
-    userCart.sort((a, b) => a.id - b.id);
+    let sortedCart = [...userCart];
+    sortedCart.sort((a, b) => a.id - b.id);
   }, [userCart]);
 
   let subtotalCalc = 0;
@@ -76,10 +77,9 @@ const ShoppingCart = () => {
                                 sessionUser.id,
                                 item.guitar.id
                               )
-                            );
-                            // .then(() => {
-                            await dispatch(readUserCartThunk(sessionUser.id));
-                            // });
+                            ).then(() => {
+                              dispatch(readUserCartThunk(sessionUser.id));
+                            });
                           }}
                           disabled={item.quantity < 2}
                         >
@@ -94,10 +94,9 @@ const ShoppingCart = () => {
                           onClick={async () => {
                             await dispatch(
                               incrementItemThunk(sessionUser.id, item.guitar.id)
-                            );
-                            // .then(() => {
-                            await dispatch(readUserCartThunk(sessionUser.id));
-                            // });
+                            ).then(() => {
+                              dispatch(readUserCartThunk(sessionUser.id));
+                            });
                           }}
                           disabled={item.quantity > 9}
                         >
