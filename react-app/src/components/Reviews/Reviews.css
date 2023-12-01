@@ -1,4 +1,11 @@
 .reviews-container {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 5px;
+}
+
+.review {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
 }

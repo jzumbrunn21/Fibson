@@ -3,6 +3,8 @@ import "./Reviews.css";
 import { useDispatch, useSelector } from "react-redux";
 import { readReviewsThunk } from "../../store/reviews";
 import { useParams } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
+import CreateReviewModal from "../CreateReviewModal";
 
 const Reviews = () => {
   const dispatch = useDispatch();
@@ -21,17 +23,25 @@ const Reviews = () => {
     <div className="reviews-container">
       <div className="reviews-header">
         <h1>Reviews</h1>
-        <h2>Average Stars: {averageStars}</h2>
+        <h3>Average Stars:⭐{averageStars}</h3>
+        <OpenModalButton
+          className="create-review-button"
+          buttonText="Write a Review"
+          modalComponent={<CreateReviewModal guitarId={guitarId} />}
+        />
       </div>
       <div className="reviews">
         {reviews &&
           reviews.map((review) => (
             <div className="review" key={review.id}>
-              <div className="review-header">
-                <h2>{review.username}</h2>
-                <h3>{review.stars}</h3>
-              </div>
               <div className="review-body">
+                <h2>{review.username}</h2>
+                <h3>
+                  {Array.from({ length: review.stars }, (_, index) => (
+                    <span key={index}>⭐</span>
+                  ))}
+                </h3>
+
                 <p>{review.description}</p>
               </div>
             </div>
