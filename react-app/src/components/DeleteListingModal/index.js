@@ -11,7 +11,6 @@ const DeleteListingModal = ({ guitarId }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     await dispatch(deleteListingThunk(guitarId));
-    dispatch()
     closeModal();
   };
 
