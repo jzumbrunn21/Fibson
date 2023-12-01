@@ -28,7 +28,7 @@ const Reviews = () => {
   return (
     <div className="reviews-container">
       <div className="reviews-header">
-        <h1>Reviews ⭐{averageStars}</h1>
+        <h1>Reviews ⭐{averageStars > 0 ? averageStars : <h5>Be the first to post a review!</h5>}</h1>
         <h2></h2>
 
         {currentUser &&
