@@ -7,13 +7,13 @@ from app.forms import ReviewForm
 reviews_routes = Blueprint('reviews', __name__)
 
 #Reviews by guitar id
-@reviews_routes.route('/listings/<int:id>')
+@reviews_routes.route('/<int:id>')
 def all_reviews(id):
     reviews = Review.query.filter_by(guitar_id=id).all()
     return {'reviews': [review.to_dict() for review in reviews]}
 
 #Create Review by guitar id
-@reviews_routes.route('/listings/<int:id>/create', methods=['POST'])
+@reviews_routes.route('/<int:id>/create', methods=['POST'])
 @login_required
 def create_review(id):
     form = ReviewForm()
