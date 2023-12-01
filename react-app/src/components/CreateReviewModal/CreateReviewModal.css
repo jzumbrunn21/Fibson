@@ -1,0 +1,46 @@
+.create-review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+}
+
+.create-review-input {
+  width: 100%;
+  padding: 10px;
+}
+
+.create-review-input textarea {
+  height: 100px;
+  width: 100%;
+}
+
+.create-review-errors {
+  color: red;
+}
+
+.create-review-button {
+    background-color: #84734d;
+    color: white;
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+.fa-star {
+  color: #84734d;
+  font-size: 20px;
+  cursor: pointer;
+}
