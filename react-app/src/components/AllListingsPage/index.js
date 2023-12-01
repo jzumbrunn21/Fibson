@@ -37,7 +37,7 @@ const AllListingsPage = () => {
             key={listing.guitar.id}
             className="single-listing-container"
           >
-            <div className="all-listing-image">
+            <div >
               {/* <img
                 src={listing.images[0]}
                 alt={`${listing.guitar.make}, ${listing.guitar.model}`}
@@ -52,7 +52,7 @@ const AllListingsPage = () => {
               >
                 {listing.images &&
                   listing.images.map((image, index) => (
-                    <img key={index} src={image} alt={listing.guitar.model} />
+                    <img key={index} src={image} alt={listing.guitar.model} className="all-listing-image" />
                   ))}
               </Carousel>
             </div>

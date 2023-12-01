@@ -15,6 +15,7 @@ import UpdateListing from "./components/UpdateListing";
 import ShoppingCart from "./components/ShoppingCart";
 import Footer from "./components/Footer";
 import FilteredPage from "./components/FilteredPage";
+import Reviews from "./components/Reviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,8 +28,11 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <div id='app' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <div style={{ flex: '1 0 auto' }}>
+      <div
+        id="app"
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <div style={{ flex: "1 0 auto" }}>
           {isLoaded && (
             <Switch>
               <Route exact path="/">
@@ -39,6 +43,7 @@ function App() {
               </Route>
               <Route exact path="/listings/:guitarId">
                 <GuitarDetail />
+                <Reviews />
               </Route>
               <Route exact path="/listings/filter/:type/:category">
                 <FilteredPage />
@@ -58,7 +63,7 @@ function App() {
             </Switch>
           )}
         </div>
-        <Footer style={{ flexShrink: '0' }} />
+        <Footer style={{ flexShrink: "0" }} />
       </div>
     </>
   );

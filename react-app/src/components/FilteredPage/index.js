@@ -23,7 +23,7 @@ const FilteredPage = () => {
   if (isLoading) {
     return <div>...Loading</div>;
   }
-  
+
   return (
     <>
       <div className="listings-filter">
@@ -42,7 +42,7 @@ const FilteredPage = () => {
                 key={listing.guitar.id}
                 className="single-listing-container"
               >
-                <div className="all-listing-image">
+                <div>
                   {/* <img
                 src={listing.images[0]}
                 alt={`${listing.guitar.make}, ${listing.guitar.model}`}
@@ -61,6 +61,7 @@ const FilteredPage = () => {
                           key={index}
                           src={image}
                           alt={listing.guitar.model}
+                          className="all-listing-image"
                         />
                       ))}
                   </Carousel>

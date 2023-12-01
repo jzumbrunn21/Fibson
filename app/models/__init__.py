@@ -5,3 +5,4 @@ from .guitar import Guitar
 from .guitar_image import GuitarImage
 from .cart_item import CartItem
 from .shopping_cart import ShoppingCart
+from .review import Review

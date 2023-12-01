@@ -17,7 +17,6 @@ const ManageListings = () => {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
-
   useEffect(() => {
     setUsersListings(listings);
     dispatch(readAllUserListingsThunk()).then(() => setIsLoading(false));
@@ -43,7 +42,7 @@ const ManageListings = () => {
                 <div className="manage-single-listing-container">
                   {listing && listings[0] && (
                     <Link to={`/listings/${listing.guitar.id}`}>
-                      <div className="manage-all-listing-image">
+                      <div>
                         <Carousel
                           showThumbs={false}
                           showArrows={false}
@@ -57,6 +56,7 @@ const ManageListings = () => {
                                 key={index}
                                 src={image.url}
                                 alt={listing.guitar.model}
+                                className="manage-all-listing-image"
                               />
                             ))}
                         </Carousel>
