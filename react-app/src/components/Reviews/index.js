@@ -15,9 +15,10 @@ const Reviews = () => {
   const [reviewDeleted, setReviewDeleted] = useState(false);
   const reviews = useSelector((state) => Object.values(state.reviews.reviews));
   const currentUser = useSelector((state) => state.session.user);
-  const averageStars =
-    reviews.reduce((total, review) => total + review.stars, 0) / reviews.length;
-  // console.log("REVIEWS", reviews);
+
+  const averageStars = (
+    reviews.reduce((total, review) => total + review.stars, 0) / reviews.length
+  ).toFixed(2);
 
   useEffect(() => {
     dispatch(readReviewsThunk(guitarId)).then(() => setLoaded(true));
@@ -27,8 +28,8 @@ const Reviews = () => {
   return (
     <div className="reviews-container">
       <div className="reviews-header">
-        <h1>Reviews</h1>
-        <h3>Average Stars:⭐{averageStars}</h3>
+        <h1>Reviews ⭐{averageStars}</h1>
+        <h2></h2>
 
         {currentUser &&
           !reviews.some((review) => review.user_id === currentUser.id) &&
@@ -45,14 +46,17 @@ const Reviews = () => {
           reviews.map((review) => (
             <div className="review" key={review.id}>
               <div className="review-body">
-                <h2>{review.username}</h2>
-                <h3>
-                  {Array.from({ length: review.stars }, (_, index) => (
-                    <span key={index}>⭐</span>
-                  ))}
-                </h3>
-
-                <p>{review.description}</p>
+                <div className="review-header">
+                  <h2>{review.username}</h2>
+                  <h3>
+                    {Array.from({ length: review.stars }, (_, index) => (
+                      <span key={index}>⭐</span>
+                    ))}
+                  </h3>
+                </div>
+                <div className="review-description">
+                  <p>{review.description}</p>
+                </div>
                 {currentUser && currentUser.id === review.user_id && (
                   <div className="review-buttons">
                     <OpenModalButton
