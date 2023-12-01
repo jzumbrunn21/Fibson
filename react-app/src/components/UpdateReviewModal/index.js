@@ -11,6 +11,7 @@ const UpdateReviewModal = ({ reviewId }) => {
 
   const [description, setDescription] = useState("");
   const [stars, setStars] = useState(0);
+  const [hover, setHover] = useState(0);
 
   useEffect(() => {
     prepopulateFields();
@@ -32,7 +33,7 @@ const UpdateReviewModal = ({ reviewId }) => {
     }
 
     if (!stars || stars < 1 || stars > 5) {
-      newErrors.stars = "Stars must be between 1 and 5.";
+      newErrors.stars = "Select at least one star";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -58,7 +59,9 @@ const UpdateReviewModal = ({ reviewId }) => {
         <form className="update-review-form" onSubmit={handleSubmit}>
           <div></div>
           <div className="update-review-input">
-            <label htmlFor="description">Description</label>
+            <label>
+              <h3>Description</h3>
+            </label>
             <textarea
               name="description"
               value={description}
@@ -69,13 +72,24 @@ const UpdateReviewModal = ({ reviewId }) => {
             <div className="update-review-errors">{errors.description}</div>
           )}
           <div className="update-review-input">
-            <label htmlFor="stars">Stars</label>
-            <input
-              type="number"
-              name="stars"
-              value={stars}
-              onChange={(e) => setStars(e.target.value)}
-            />
+            <label>
+              <h3>Stars</h3>
+            </label>
+            <div>
+              {Array(5)
+                .fill(0)
+                .map((_, index) => (
+                  <i
+                    key={index}
+                    className={`fa-star ${
+                      index < (hover || stars) ? "fas" : "far"
+                    }`}
+                    onMouseEnter={() => setHover(index + 1)}
+                    onMouseLeave={() => setHover(0)}
+                    onClick={() => setStars(index + 1)}
+                  />
+                ))}
+            </div>
           </div>
           {errors.stars && (
             <div className="update-review-errors">{errors.stars}</div>

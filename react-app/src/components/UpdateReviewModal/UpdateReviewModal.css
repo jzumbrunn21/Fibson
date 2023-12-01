@@ -1,0 +1,39 @@
+.update-review-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .update-review-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .update-review-input {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .update-review-input textarea {
+    height: 100px;
+    width: 100%;
+  }
+
+  .update-review-errors {
+    color: red;
+  }
+
+  .update-review-button {
+      background-color: #84734d;
+      color: white;
+      width: 130px;
+      height: 40px;
+      cursor: pointer;
+      margin: 10px;
+  }

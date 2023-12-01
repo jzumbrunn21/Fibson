@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReviewThunk, updateReviewThunk } from "../../store/reviews";
+import { createReviewThunk} from "../../store/reviews";
 import { useModal } from "../../context/Modal";
 import "./CreateReviewModal.css";
 
@@ -11,6 +11,7 @@ const CreateReviewModal = ({ guitarId }) => {
 
   const [description, setDescription] = useState("");
   const [stars, setStars] = useState(0);
+  const [hover, setHover] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ const CreateReviewModal = ({ guitarId }) => {
     }
 
     if (!stars || stars < 1 || stars > 5) {
-      newErrors.stars = "Stars must be between 1 and 5.";
+      newErrors.stars = "Select at least one star";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -44,11 +45,12 @@ const CreateReviewModal = ({ guitarId }) => {
   return (
     <>
       <div className="create-review-container">
-        <h1>Write a Review</h1>
+        <h1>Post your Review</h1>
         <form className="create-review-form" onSubmit={handleSubmit}>
-          <div></div>
           <div className="create-review-input">
-            <label htmlFor="description">Description</label>
+            <label>
+              <h3>Description</h3>
+            </label>
             <textarea
               name="description"
               value={description}
@@ -59,13 +61,22 @@ const CreateReviewModal = ({ guitarId }) => {
             <div className="create-review-errors">{errors.description}</div>
           )}
           <div className="create-review-input">
-            <label htmlFor="stars">Stars</label>
-            <input
-              type="number"
-              name="stars"
-              value={stars}
-              onChange={(e) => setStars(e.target.value)}
-            />
+            <label>
+              <h3>Stars</h3>
+            </label>
+            <div>
+              {Array(5)
+                .fill(0)
+                .map((_, index) => (
+                  <i
+                    key={index}
+                    className={`fa-star ${index < (hover || stars) ? "fas" : "far"}`}
+                    onMouseEnter={() => setHover(index + 1)}
+                    onMouseLeave={() => setHover(0)}
+                    onClick={() => setStars(index + 1)}
+                  />
+                ))}
+            </div>
           </div>
           {errors.stars && (
             <div className="create-review-errors">{errors.stars}</div>

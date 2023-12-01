@@ -29,11 +29,16 @@ const Reviews = () => {
       <div className="reviews-header">
         <h1>Reviews</h1>
         <h3>Average Stars:⭐{averageStars}</h3>
-        <OpenModalButton
-          className="create-review-button"
-          buttonText="Write a Review"
-          modalComponent={<CreateReviewModal guitarId={guitarId} />}
-        />
+
+        {currentUser &&
+          !reviews.some((review) => review.user_id === currentUser.id) &&
+          currentUser.id !== guitarId && (
+            <OpenModalButton
+              className="create-review-button"
+              buttonText="Write a Review"
+              modalComponent={<CreateReviewModal guitarId={guitarId} />}
+            />
+          )}
       </div>
       <div className="reviews">
         {reviews &&
