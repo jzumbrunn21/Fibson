@@ -1,17 +1,17 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import "./DeleteListingModal.css";
+import "./DeleteReviewModal.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteReviewThunk } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
-import { deleteListingThunk } from "../../store/listings";
+import { useParams } from "react-router-dom";
 
-const DeleteListingModal = ({ guitarId }) => {
-  const dispatch = useDispatch();
+const DeleteReviewModal = ({ reviewId, setReviewDeleted }) => {
   const { closeModal } = useModal();
+  const dispatch = useDispatch();
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(deleteListingThunk(guitarId));
-    dispatch()
+    await dispatch(deleteReviewThunk(reviewId));
+    setReviewDeleted(true);
     closeModal();
   };
 
@@ -21,9 +21,9 @@ const DeleteListingModal = ({ guitarId }) => {
   };
   return (
     <div className="delete-modal">
-      <h2>Are you sure you want to delete this guitar?</h2>
+      <h2>Are you sure you want to delete this review?</h2>
       <button className="yay-button" onClick={handleDelete}>
-        Delete Guitar
+        Delete Review
       </button>
       <button className="nay-button" onClick={handleCancel}>
         Cancel
@@ -31,5 +31,4 @@ const DeleteListingModal = ({ guitarId }) => {
     </div>
   );
 };
-
-export default DeleteListingModal;
+export default DeleteReviewModal;

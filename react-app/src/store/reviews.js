@@ -1,6 +1,7 @@
 // Constants
 
 const READ_ALL_REVIEWS = "reviews/READ_ALL_REVIEWS";
+const READ_ONE_REVIEW = "reviews/READ_ONE_REVIEW";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -10,6 +11,11 @@ const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 const readAllReviews = (reviews) => ({
   type: READ_ALL_REVIEWS,
   reviews,
+});
+
+const readOneReview = (review) => ({
+  type: READ_ONE_REVIEW,
+  review,
 });
 
 const createReview = (review, guitarId) => ({
@@ -38,6 +44,15 @@ export const readReviewsThunk = (guitarId) => async (dispatch) => {
   }
 };
 
+export const readOneReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}/single`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(readOneReview(data));
+    return data;
+  }
+};
+
 export const createReviewThunk = (review, guitarId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${guitarId}/create`, {
     method: "POST",
@@ -54,31 +69,31 @@ export const createReviewThunk = (review, guitarId) => async (dispatch) => {
   }
 };
 
-// export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/${reviewId}/update`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(review),
-//   });
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(updateReview(data));
-//     return data;
-//   }
-// };
+export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(review),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateReview(data));
+    return data;
+  }
+};
 
-// export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/${reviewId}/delete`, {
-//     method: "DELETE",
-//   });
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(deleteReview(data));
-//     return data;
-//   }
-// };
+export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${reviewId}/delete`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteReview(data));
+    return data;
+  }
+};
 
 // Initial State
 const initialState = { reviews: {} };
@@ -91,6 +106,10 @@ export default function reviewsReducer(state = initialState, action) {
       action.reviews.reviews.forEach((review) => {
         newState.reviews[review.id] = review;
       });
+      return newState;
+    case READ_ONE_REVIEW:
+      newState = { ...state };
+      newState.reviews[action.review.id] = action.review;
       return newState;
     case CREATE_REVIEW:
       newState = { ...state };

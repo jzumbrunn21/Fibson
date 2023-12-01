@@ -5,19 +5,24 @@ import { readReviewsThunk } from "../../store/reviews";
 import { useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateReviewModal from "../CreateReviewModal";
+import UpdateReviewModal from "../UpdateReviewModal";
+import DeleteReviewModal from "../DeleteReviewModal";
 
 const Reviews = () => {
   const dispatch = useDispatch();
   const { guitarId } = useParams();
   const [loaded, setLoaded] = useState(false);
+  const [reviewDeleted, setReviewDeleted] = useState(false);
   const reviews = useSelector((state) => Object.values(state.reviews.reviews));
+  const currentUser = useSelector((state) => state.session.user);
   const averageStars =
     reviews.reduce((total, review) => total + review.stars, 0) / reviews.length;
   // console.log("REVIEWS", reviews);
 
   useEffect(() => {
     dispatch(readReviewsThunk(guitarId)).then(() => setLoaded(true));
-  }, []);
+    setReviewDeleted(false);
+  }, [reviewDeleted]);
 
   return (
     <div className="reviews-container">
@@ -43,6 +48,31 @@ const Reviews = () => {
                 </h3>
 
                 <p>{review.description}</p>
+                {currentUser && currentUser.id === review.user_id && (
+                  <div className="review-buttons">
+                    <OpenModalButton
+                      className="update-review-button"
+                      buttonText="Update"
+                      modalComponent={
+                        <UpdateReviewModal
+                          guitarId={guitarId}
+                          reviewId={review.id}
+                        />
+                      }
+                    />
+                    <OpenModalButton
+                      className="delete-review-button"
+                      buttonText="Delete"
+                      modalComponent={
+                        <DeleteReviewModal
+                          guitarId={guitarId}
+                          reviewId={review.id}
+                          setReviewDeleted={setReviewDeleted}
+                        />
+                      }
+                    />
+                  </div>
+                )}
               </div>
             </div>
           ))}

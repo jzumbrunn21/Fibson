@@ -12,6 +12,13 @@ def all_reviews(id):
     reviews = Review.query.filter_by(guitar_id=id).all()
     return {'reviews': [review.to_dict() for review in reviews]}
 
+#Single Review by ID
+@reviews_routes.route('/<int:id>/single')
+def single_review(id):
+    review = Review.query.get(id)
+    return review.to_dict()
+
+
 #Create Review by guitar id
 @reviews_routes.route('/<int:id>/create', methods=['POST'])
 @login_required
@@ -46,7 +53,6 @@ def update_review(id):
         reviewUpdated.description=form.data['description']
         reviewUpdated.stars=form.data['stars']
 
-        db.session.add(reviewUpdated)
         db.session.commit()
         return reviewUpdated.to_dict(), 200
     else:
