@@ -21,3 +21,42 @@ https://fibson.onrender.com/
 
 ## Wiki Links
 [DB Schema](https://github.com/jzumbrunn21/Fibson/wiki/DB-Schema) | [Feature List](https://github.com/jzumbrunn21/Fibson/wiki/Fibson-Features) | [User Stories](https://github.com/jzumbrunn21/Fibson/wiki/User-Stories) | [Wireframes](https://github.com/jzumbrunn21/Fibson/wiki/Wireframes)
+
+## Features
+
+### Splash Page & Guitar Listings
+A user is greeted with a splash page that can direct to many different filtered guitar listings.
+
+
+https://github.com/jzumbrunn21/Fibson/assets/126112107/50a90de2-9a8c-45c2-bc1f-30e5c1a2f48a
+
+### Guitar Detail Page & Shopping Cart
+The guitar detail page uses React Carousel to display the guitar's image. Below the carousel are sections for guitar specifications and a user posted reviews. If the user does not own the guitar listing, they will be able to add it to their shopping cart. The cart can increment and decrement an item. Finally, a user can 'checkout' and finalize their shopping cart for purchase.
+
+
+https://github.com/jzumbrunn21/Fibson/assets/126112107/9d00059a-8209-4bc1-adc8-46133c8e85c4
+
+### Forms and Error Handling
+-Creating a guitar listing with error handling
+
+![Screenshot 2023-12-03 114418](https://github.com/jzumbrunn21/Fibson/assets/126112107/6bfe79c4-132d-46f9-80d6-72bf35bea297)
+
+-Updating an existing guitar listing
+
+![Screenshot 2023-12-03 114645-update](https://github.com/jzumbrunn21/Fibson/assets/126112107/2de3b322-6cce-4750-ab1f-bef12bb64076)
+
+-Review Form 
+
+![review](https://github.com/jzumbrunn21/Fibson/assets/126112107/ae2e08d3-1e49-40eb-a9f0-a0021d7466a0)
+
+-Signup and Login Forms
+
+![signup](https://github.com/jzumbrunn21/Fibson/assets/126112107/bddafe4a-f76b-4f33-80e5-f30f02113b11)
+![login](https://github.com/jzumbrunn21/Fibson/assets/126112107/6e06d20a-caa5-4e0d-8b5d-1d1f76509193)
+
+
+
+
+
+
+
