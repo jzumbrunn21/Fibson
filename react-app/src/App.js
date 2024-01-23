@@ -28,41 +28,39 @@ function App() {
 
   return (
     <>
-      {/* <Container> */}
-        <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} />
 
-        {isLoaded && (
-          <Switch>
-            <Route exact path="/">
-              <SplashPage />
-            </Route>
-            <Route exact path="/listings">
-              <AllListingsPage />
-            </Route>
-            <Route exact path="/listings/:guitarId">
-              <GuitarDetail />
-              <Reviews />
-            </Route>
-            <Route exact path="/listings/filter/:type/:category">
-              <FilteredPage />
-            </Route>
-            <Route exact path="/manage">
-              <ManageListings />
-            </Route>
-            <Route exact path="/create">
-              <CreateListing />
-            </Route>
-            <Route exact path="/update/:guitarId">
-              <UpdateListing />
-            </Route>
-            <Route exact path="/cart/:userId">
-              <ShoppingCart />
-            </Route>
-          </Switch>
-        )}
+      {isLoaded && (
+        <Switch>
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/listings">
+            <AllListingsPage />
+          </Route>
+          <Route exact path="/listings/:guitarId">
+            <GuitarDetail />
+            <Reviews />
+          </Route>
+          <Route exact path="/listings/filter/:type/:category">
+            <FilteredPage />
+          </Route>
+          <Route exact path="/manage">
+            <ManageListings />
+          </Route>
+          <Route exact path="/create">
+            <CreateListing />
+          </Route>
+          <Route exact path="/update/:guitarId">
+            <UpdateListing />
+          </Route>
+          <Route exact path="/cart/:userId">
+            <ShoppingCart />
+          </Route>
+        </Switch>
+      )}
 
-        <Footer />
-      {/* </Container> */}
+      <Footer />
     </>
   );
 }
