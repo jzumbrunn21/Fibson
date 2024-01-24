@@ -1,5 +1,7 @@
 # Fibson
 
+Currently refactoring with Material UI instead of vanilla CSS.
+
 Fibson, an e-commerce platform, is a haven for guitar enthusiasts worldwide. Drawing inspiration from the renowned Gibson.com, Fibson offers a comprehensive and user-friendly interface that caters to every guitar lover’s needs. Upon creating an account, users are welcomed into a vibrant marketplace where they can explore a vast array of guitars for sale. From novice musicians looking for their first instrument to seasoned professionals seeking a unique addition to their collection, everyone can find something that resonates with them. But Fibson’s offerings don’t stop at buying guitars. It also provides a platform for users to sell their own guitars, fostering a dynamic community of buyers and sellers. This feature not only allows users to declutter their collection but also gives others the opportunity to own pre-loved guitars with a history. In essence, Fibson is more than just a marketplace; it’s a community that brings guitar enthusiasts together, fueling their passion for music.
 
 
