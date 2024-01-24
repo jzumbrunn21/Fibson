@@ -11,11 +11,6 @@ import { AppBar, Container, Toolbar, Box, Button, Stack } from "@mui/material";
 
 function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
-  const [open, setOpen] = useState(false);
-
-  const handleDropdown = () => {
-    setOpen(!open);
-  };
 
   return (
     <AppBar
@@ -98,15 +93,7 @@ function Navigation() {
             </Button>
           )}
 
-          <Button onClick={handleDropdown} sx={{ m: "20px" }}>
-            <img
-              className="profile-icon"
-              src={guitar}
-              alt="Profile Menu"
-              style={{ height: "50px", width: "50px" }}
-            />
-          </Button>
-          {open && <ProfileButton user={sessionUser} />}
+          <ProfileButton user={sessionUser} />
         </Box>
       </Toolbar>
     </AppBar>
