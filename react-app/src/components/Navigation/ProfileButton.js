@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { useHistory } from "react-router-dom";
-import { Menu, MenuItem, Button, Dialog, Modal, Box } from "@mui/material";
+import {
+  Menu,
+  MenuItem,
+  Button,
+  Dialog,
+  DialogContent,
+  Modal,
+  Box,
+  Typography,
+} from "@mui/material";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import OpenModalButton from "../OpenModalButton";
@@ -50,6 +59,7 @@ function ProfileButton({ user }) {
 
   const handleSignup = () => {
     setOpenSignupModal(true);
+    handleClose();
   };
 
   const handleCloseSignup = () => {
@@ -82,12 +92,16 @@ function ProfileButton({ user }) {
           </>
         )}
       </Menu>
-      <Modal open={openLoginModal} onClose={handleCloseLogin}>
-        <LoginFormModal setOpenLoginModal={setOpenLoginModal} />
-      </Modal>
-      <Modal open={openSignupModal} onClose={handleCloseSignup}>
+      {/* <Modal > */}
+      <Dialog open={openLoginModal} onClose={handleCloseLogin}>
+        <DialogContent>
+          <LoginFormModal setOpenLoginModal={setOpenLoginModal} />
+        </DialogContent>
+      </Dialog>
+      {/* </Modal> */}
+      <Dialog open={openSignupModal} onClose={handleCloseSignup}>
         <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
-      </Modal>
+      </Dialog>
     </>
   );
 }
