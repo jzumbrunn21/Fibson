@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
-function LoginFormModal() {
+function LoginFormModal({ setOpenLoginModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,14 +17,14 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal();
+      setOpenLoginModal(false);
     }
   };
 
   const handleDemoUser = async (e) => {
     e.preventDefault();
     return dispatch(login("demo@aa.io", "password")).then(() => {
-      closeModal();
+      setOpenLoginModal(false);
     });
   };
 
