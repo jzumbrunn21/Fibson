@@ -92,16 +92,16 @@ function ProfileButton({ user }) {
           </>
         )}
       </Menu>
-      {/* <Modal > */}
       <Dialog open={openLoginModal} onClose={handleCloseLogin}>
         <DialogContent>
           <LoginFormModal setOpenLoginModal={setOpenLoginModal} />
         </DialogContent>
       </Dialog>
-      {/* </Modal> */}
-      <Dialog open={openSignupModal} onClose={handleCloseSignup}>
-        <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
-      </Dialog>
+      <Modal>
+        <Dialog open={openSignupModal} onClose={handleCloseSignup}>
+          <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
+        </Dialog>
+      </Modal>
     </>
   );
 }
