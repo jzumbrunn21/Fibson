@@ -48,11 +48,6 @@ function SignupFormModal({ setOpenSignupModal }) {
           </Typography>
         </DialogTitle>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
           <Stack my="10px" direction="row" spacing="5px">
             <TextField
               type="text"
@@ -150,7 +145,6 @@ function SignupFormModal({ setOpenSignupModal }) {
                 errors.includes(
                   "password : Password must be between 6 and 255 characters"
                 )
-                // || errors.includes("password : Password was incorrect.")
               }
               helperText={
                 errors.includes(
