@@ -50,7 +50,7 @@ function LoginFormModal({ setOpenLoginModal }) {
               <li key={idx}>{error}</li>
             ))}
           </ul> */}
-          <div>{console.log(errors)}</div>
+          {/* <div>{console.log(errors)}</div> */}
           <Box my="10px">
             <TextField
               type="text"
