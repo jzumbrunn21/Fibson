@@ -97,11 +97,10 @@ function ProfileButton({ user }) {
           <LoginFormModal setOpenLoginModal={setOpenLoginModal} />
         </DialogContent>
       </Dialog>
-      <Modal>
-        <Dialog open={openSignupModal} onClose={handleCloseSignup}>
-          <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
-        </Dialog>
-      </Modal>
+
+      <Dialog open={openSignupModal} onClose={handleCloseSignup}>
+        <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
+      </Dialog>
     </>
   );
 }
