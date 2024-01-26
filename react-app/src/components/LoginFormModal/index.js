@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Input,
+  TextField,
   Typography,
 } from "@mui/material";
 
@@ -40,32 +40,50 @@ function LoginFormModal({ setOpenLoginModal }) {
     <>
       <DialogContent>
         <DialogTitle>
-          <Typography variant="h6" align="center">
+          <Typography variant="h5" align="center">
             Log In
           </Typography>
         </DialogTitle>
         <form onSubmit={handleSubmit}>
-          <ul>
+          {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
-          </ul>
+          </ul> */}
+          <div>{console.log(errors)}</div>
           <Box my="10px">
-            <Input
+            <TextField
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Email"
+              error={errors.includes("email : Email provided not found.")}
+              helperText={
+                errors.includes("email : Email provided not found.")
+                  ? "No such user exists."
+                  : ""
+              }
             />
           </Box>
           <Box my="10px">
-            <Input
+            <TextField
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="Password"
+              error={
+                errors.includes("password : No such user exists.") ||
+                errors.includes("password : Password was incorrect.")
+              }
+              helperText={
+                errors.includes("password : Password was incorrect.")
+                  ? "Password was incorrect."
+                  : errors.includes("password : No such user exists.")
+                  ? "No such user exists."
+                  : ""
+              }
             />
           </Box>
           <Box
@@ -73,7 +91,7 @@ function LoginFormModal({ setOpenLoginModal }) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: 'center',
+              alignItems: "center",
               py: "15px",
             }}
           >
