@@ -1,56 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import "./Navigation.css";
 import logo from "./logo.png";
 import cart from "./cart.png";
+import guitar from "./guitar.png";
 
-function Navigation({ isLoaded }) {
+// Material UI
+import { AppBar, Container, Toolbar, Box, Button, Stack } from "@mui/material";
+
+function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
-  // console.log(sessionUser);
 
   return (
-    <div className="navigation">
-      <div className="nav-grey">
-        <div className="nav-links">
-          <div className="nav-logo">
-            <NavLink exact to="/">
-              <img src={logo} alt={"Home Button"} />
-            </NavLink>
+    <AppBar
+      position="static"
+      sx={{
+        width: "100%",
+      }}
+    >
+      <Toolbar
+        disableGutters
+        sx={{
+          flexDirection: "row",
+          // justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "primary.light",
+          padding: "10px",
+        }}
+      >
+        {/* Home/Logo Button */}
+        <Box sx={{ justifyContent: "center" }}>
+          <Button href="/">
+            <img src={logo} href="/" alt={"home"} />
+          </Button>
+        </Box>
+        {/* Guitar Type */}
+        <Box>
+          <Stack spacing={5} direction="row" sx={{ pl: "30px" }}>
+            <Button
+              href="/listings/filter/guitar_type/Electric"
+              sx={{
+                color: "secondary.light",
+                typography: "subtitle1",
+                fontWeight: 600,
+              }}
+              size="large"
+            >
+              Electric
+            </Button>
+            <Button
+              href="/listings/filter/guitar_type/Acoustic"
+              sx={{
+                color: "secondary.light",
+                typography: "subtitle1",
+                fontWeight: 600,
+              }}
+              size="large"
+            >
+              Acoustic
+            </Button>
+            <Button
+              href="/listings/filter/guitar_type/Bass"
+              sx={{
+                color: "secondary.light",
+                typography: "subtitle1",
+                fontWeight: 600,
+              }}
+              size="large"
+            >
+              Bass
+            </Button>
+          </Stack>
+        </Box>
 
-            <ul>
-              <li>
-                <NavLink exact to="/listings/filter/guitar_type/Electric">
-                  <h4>Electric</h4>
-                </NavLink>
-              </li>
+        {/* Cart & Menu Buttons */}
+        <Box
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            justifyContent: "flex-end",
+            pr: "30px",
+          }}
+        >
+          {sessionUser && (
+            <Button href={`/cart/${sessionUser.id}`} sx={{ m: "20px" }}>
+              <img
+                src={cart}
+                alt="Shopping Cart"
+                style={{ height: "50px", width: "50px" }}
+              />
+            </Button>
+          )}
 
-              <li>
-                <NavLink exact to="/listings/filter/guitar_type/Acoustic">
-                  <h4>Acoustic</h4>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink exact to="/listings/filter/guitar_type/Bass">
-                  <h4>Bass</h4>
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-          <div className="directory">
-            <div>
-              {sessionUser && (
-                <NavLink exact to={`/cart/${sessionUser.id}`}>
-                  <img className="cart-icon" src={cart} alt="Shopping Cart" />
-                </NavLink>
-              )}
-            </div>
-            <div>{isLoaded && <ProfileButton user={sessionUser} />}</div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <ProfileButton user={sessionUser} />
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

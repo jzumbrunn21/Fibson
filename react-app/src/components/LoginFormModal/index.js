@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
 
-function LoginFormModal() {
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+  Typography,
+} from "@mui/material";
+
+function LoginFormModal({ setOpenLoginModal }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,57 +25,103 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-      closeModal();
+      setOpenLoginModal(false);
     }
   };
 
   const handleDemoUser = async (e) => {
     e.preventDefault();
     return dispatch(login("demo@aa.io", "password")).then(() => {
-      closeModal();
+      setOpenLoginModal(false);
     });
   };
 
   return (
     <>
-      <div className="login-modal-container">
-        <h1>Log In</h1>
+      <DialogContent>
+        <DialogTitle>
+          <Typography variant="h5" align="center">
+            Log In
+          </Typography>
+        </DialogTitle>
         <form onSubmit={handleSubmit}>
-          <ul>
+          {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
-          </ul>
-          <div>
-            <label>
-              Email
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Password
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <button type="submit">Log In</button>
-          </div>
-          <div>
-            <button onClick={handleDemoUser}>Log in as Demo User</button>
-          </div>
+          </ul> */}
+          <div>{console.log(errors)}</div>
+          <Box my="10px">
+            <TextField
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Email"
+              error={errors.includes("email : Email provided not found.")}
+              helperText={
+                errors.includes("email : Email provided not found.")
+                  ? "No such user exists."
+                  : ""
+              }
+            />
+          </Box>
+          <Box my="10px">
+            <TextField
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Password"
+              error={
+                errors.includes("password : No such user exists.") ||
+                errors.includes("password : Password was incorrect.")
+              }
+              helperText={
+                errors.includes("password : Password was incorrect.")
+                  ? "Password was incorrect."
+                  : errors.includes("password : No such user exists.")
+                  ? "No such user exists."
+                  : ""
+              }
+            />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              py: "15px",
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "secondary.dark",
+                color: "secondary.light",
+                my: "5px",
+                width: "fit-content",
+              }}
+              type="submit"
+            >
+              <Typography>Log In</Typography>
+            </Button>
+
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "secondary.dark",
+                color: "secondary.light",
+                my: "5px",
+              }}
+              onClick={handleDemoUser}
+            >
+              <Typography>Log in as Demo User</Typography>
+            </Button>
+          </Box>
         </form>
-      </div>
+      </DialogContent>
     </>
   );
 }

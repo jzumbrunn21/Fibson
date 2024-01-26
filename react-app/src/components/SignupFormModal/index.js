@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 
-function SignupFormModal() {
+function SignupFormModal({setOpenSignupModal}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -13,7 +13,7 @@ function SignupFormModal() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ function SignupFormModal() {
       if (data) {
         setErrors(data);
       } else {
-        closeModal();
+        setOpenSignupModal(false);
       }
     } else {
       setErrors([
@@ -94,7 +94,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-          
+
             <label>
               Confirm Password
               <input

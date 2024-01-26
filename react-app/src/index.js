@@ -8,8 +8,7 @@ import configureStore from "./store";
 import * as sessionActions from "./store/session";
 // import * as listingsActions from "./store/listings";
 import App from "./App";
-
-import "./index.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const store = configureStore();
 
@@ -19,19 +18,36 @@ if (process.env.NODE_ENV !== "production") {
   // window.listingsActions = listingsActions;
 }
 
+// Material UI Theme
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#1c1c1c", //grey
+      main: "#000000", //black
+    },
+    secondary: {
+      light: "#fafafa", //white
+      main: "#84734d", //gold
+    },
+  },
+});
+
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
 // HTML elements on top of the all the other HTML elements:
 function Root() {
   return (
-    <ModalProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-          <Modal />
-        </BrowserRouter>
-      </Provider>
-    </ModalProvider>
+    <ThemeProvider theme={theme}>
+      <ModalProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+            <Modal />
+          </BrowserRouter>
+        </Provider>
+      </ModalProvider>
+    </ThemeProvider>
   );
 }
 
