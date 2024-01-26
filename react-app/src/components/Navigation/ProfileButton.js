@@ -1,94 +1,106 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./ProfileButton.css";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
+import { useHistory } from "react-router-dom";
+import {
+  Menu,
+  MenuItem,
+  Button,
+  Dialog,
+  DialogContent,
+  Modal,
+  Box,
+  Typography,
+} from "@mui/material";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton";
 import guitar from "./guitar.png";
-import player from "./guitar-player.png";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
   const history = useHistory();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openSignupModal, setOpenSignupModal] = useState(false);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
     history.push("/");
-    closeMenu();
+    handleClose();
   };
+
   const handleManage = (e) => {
     e.preventDefault();
     history.push("/manage");
+    handleClose();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+  const handleLogin = () => {
+    setOpenLoginModal(true);
+    handleClose();
+  };
+
+  const handleCloseLogin = () => {
+    setOpenLoginModal(false);
+    handleClose();
+  };
+
+  const handleSignup = () => {
+    setOpenSignupModal(true);
+    handleClose();
+  };
+
+  const handleCloseSignup = () => {
+    setOpenSignupModal(false);
+    handleClose();
+  };
 
   return (
     <>
-      <button
-        style={{
-          background: "transparent",
-          border: "none",
-        }}
-        onClick={openMenu}
-      >
-        <img className="profile-icon" src={guitar} alt="Profile Menu" />
-      </button>
-      <ul className={ulClassName} style={{ position: "absolute" }} ref={ulRef}>
+      <Button onClick={handleClick} sx={{ m: "20px" }}>
+        <img
+          className="profile-icon"
+          src={guitar}
+          alt="Profile Menu"
+          style={{ height: "50px", width: "50px" }}
+        />
+      </Button>
+
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {user ? (
           <>
-            <li id="profile-email">{user.username}</li>
-            <li id="profile-email">{user.email}</li>
-            <li>
-              <button onClick={handleManage}>Manage your Guitars</button>
-            </li>
-            <li id="logout-button">
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <MenuItem onClick={handleManage}>Manage your Guitars</MenuItem>
+            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-              className="logged-out-buttons"
-            />
+            <MenuItem onClick={handleLogin}>Login</MenuItem>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-              className="logged-out-buttons"
-            />
+            <MenuItem onClick={handleSignup}>Sign Up</MenuItem>
           </>
         )}
-      </ul>
+      </Menu>
+      <Dialog open={openLoginModal} onClose={handleCloseLogin}>
+        <DialogContent>
+          <LoginFormModal setOpenLoginModal={setOpenLoginModal} />
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={openSignupModal} onClose={handleCloseSignup}>
+        <SignupFormModal setOpenSignupModal={setOpenSignupModal} />
+      </Dialog>
     </>
   );
 }
