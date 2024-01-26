@@ -1,60 +1,58 @@
 import React from "react";
-import "./Footer.css";
+import { Box, Container, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <div className="page-container">
-      <div className="footy-container">
-        <div className="footy-title">
-          <h5>Technology Used:</h5>
-        </div>
-        <div className="tech-used">
-          <ul>
-            <li>
-              <img
-                src={"https://img.icons8.com/?size=48&id=20909&format=png"}
-                alt="HTML"
-              />
-            </li>
-            <li>
-              <img
-                src={"https://img.icons8.com/?size=48&id=21278&format=png"}
-                alt="CSS"
-              />
-            </li>
-            <li>
-              <img
-                src={
-                  "https://img.icons8.com/?size=48&id=PXTY4q2Sq2lG&format=png"
-                }
-                alt="Javascript"
-              />
-            </li>
-            <li>
-              <img
-                src={
-                  "https://img.icons8.com/?size=40&id=bzf0DqjXFHIW&format=png"
-                }
-                alt="React"
-              />
-            </li>
-            <li>
-              <img
-                src={"https://img.icons8.com/?size=48&id=13441&format=png"}
-                alt="Python"
-              />
-            </li>
-            <li>
-              <img
-                src={
-                  "https://img.icons8.com/?size=64&id=ewGOClUtmFX4&format=png"
-                }
-                alt="Flask"
-              />
-            </li>
-          </ul>
-        </div>
-        <div className="footy-me">
+    <Container
+      maxWidth="xl"
+      sx={{
+        backgroundColor: "primary.dark",
+        color: "secondary.light",
+        maxHeight: "fit-content",
+      }}
+    >
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box>
+          <Typography variant="h5">Technology Used:</Typography>
+        </Box>
+        <Box display="flex" direction="row" spacing={2}>
+          <img
+            src={"https://img.icons8.com/?size=48&id=20909&format=png"}
+            alt="HTML"
+          />
+
+          <img
+            src={"https://img.icons8.com/?size=48&id=21278&format=png"}
+            alt="CSS"
+          />
+
+          <img
+            src={"https://img.icons8.com/?size=48&id=PXTY4q2Sq2lG&format=png"}
+            alt="Javascript"
+          />
+
+          <img
+            src={"https://img.icons8.com/?size=40&id=bzf0DqjXFHIW&format=png"}
+            alt="React"
+          />
+
+          <img
+            src={"https://img.icons8.com/?size=48&id=13441&format=png"}
+            alt="Python"
+          />
+
+          <img
+            src={"https://img.icons8.com/?size=64&id=ewGOClUtmFX4&format=png"}
+            alt="Flask"
+          />
+        </Box>
+
+        <Box>
           <h5>Fibson by Josh Zumbrunn</h5>
           <h5>Check out more!</h5>
           <div className="socials">
@@ -77,9 +75,9 @@ const Footer = () => {
               </a>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
