@@ -16,6 +16,7 @@ const Footer = () => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
+        padding="10px"
       >
         <Typography variant="h5">Fibson by Josh Zumbrunn</Typography>
         <Box

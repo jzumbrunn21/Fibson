@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import logo from "./logo.png";
 import cart from "./cart.png";
-import guitar from "./guitar.png";
+
 
 // Material UI
 import { AppBar, Container, Toolbar, Box, Button, Stack } from "@mui/material";
