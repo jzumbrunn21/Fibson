@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
     <Container
-      maxWidth="xl"
+      maxWidth="100%"
       sx={{
         backgroundColor: "primary.dark",
         color: "secondary.light",
@@ -17,10 +17,14 @@ const Footer = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box>
-          <Typography variant="h5">Technology Used:</Typography>
-        </Box>
-        <Box display="flex" direction="row" spacing={2}>
+        <Typography variant="h5">Fibson by Josh Zumbrunn</Typography>
+        <Box
+          id="skills"
+          display="flex"
+          direction="row"
+          alignItems="center"
+          spacing={2}
+        >
           <img
             src={"https://img.icons8.com/?size=48&id=20909&format=png"}
             alt="HTML"
@@ -53,28 +57,32 @@ const Footer = () => {
         </Box>
 
         <Box>
-          <h5>Fibson by Josh Zumbrunn</h5>
-          <h5>Check out more!</h5>
-          <div className="socials">
-            <div>
-              <a href="https://github.com/jzumbrunn21">
-                <img
-                  src={"https://img.icons8.com/?size=64&id=52539&format=png"}
-                  alt="Github"
-                />
-              </a>
-            </div>
-            <div>
-              <a href="https://www.linkedin.com/in/josh-zumbrunn-622622274/">
-                <img
-                  src={
-                    "https://img.icons8.com/?size=48&id=xuvGCOXi8Wyg&format=png"
-                  }
-                  alt="Linkedin"
-                />
-              </a>
-            </div>
-          </div>
+          {/* <Typography variant="h7">Check out more!</Typography> */}
+
+          <Box
+            id="socials"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Link href="https://github.com/jzumbrunn21">
+              <img
+                src={"https://img.icons8.com/?size=64&id=52539&format=png"}
+                alt="Github"
+              />
+            </Link>
+
+            <Link href="https://www.linkedin.com/in/josh-zumbrunn-622622274/">
+              <img
+                src={
+                  "https://img.icons8.com/?size=48&id=xuvGCOXi8Wyg&format=png"
+                }
+                alt="Linkedin"
+              />
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Container>
