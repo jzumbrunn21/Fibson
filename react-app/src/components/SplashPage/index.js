@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ImageList,
+  ImageListItem,
+  Typography,
+} from "@mui/material";
 import guitar from "./guitar.jpg";
 const SplashPage = () => {
   return (
@@ -16,7 +22,13 @@ const SplashPage = () => {
       <Box
         className="splash-page-header"
         backgroundColor="primary.dark"
-        sx={{ height: "400px", width: "100%", mb: "15px", display: "flex" }}
+        sx={{
+          height: "400px",
+          width: "100%",
+          mb: "15px",
+          display: "flex",
+          justifyContent: "center",
+        }}
       >
         <Box className="header-title" padding="40px">
           <Typography variant="h5" color="secondary.light">
@@ -26,13 +38,13 @@ const SplashPage = () => {
             Explore our newest guitars in stock
           </Typography>
         </Box>
-        <Box className="splash-page-header-image">
+        <ImageListItem className="splash-page-header-image">
           <img
             src={guitar}
             alt="All Listings"
             style={{ height: "400px", width: "800px" }}
           />
-        </Box>
+        </ImageListItem>
         <Box
           className="header-all-listings"
           alignSelf="flex-end"
@@ -54,25 +66,25 @@ const SplashPage = () => {
       </Box>
 
       {/* Info Boxes */}
-      <Box
+      <ImageList
         className="info-boxes"
-        sx={{ display: "flex", justifyContent: "space-evenly", width: "100%" }}
+        sx={{ display: "flex", justifyContent: "space-evenly", width: "80%" }}
       >
-        <Box className="black-box">
+        <ImageListItem className="black-box">
           <img
             src={
               "https://images.ctfassets.net/m8onsx4mm13s/4qm6G6cNU4mSAb566UuIJ1/5dfd9c110728306b565b59671a95cc83/In-Time-For-Holidays__2_.png"
             }
             alt="Free Shipping"
             className="black-box-image"
-            objectFit="contain"
+            objectFit="cover"
           />
           {/* <Box className="black-box-deets1">
             <h2>Free Shipping</h2>
             <h5>On online orders over $50.</h5>
           </Box> */}
-        </Box>
-        <Box className="black-box">
+        </ImageListItem>
+        <ImageListItem className="black-box">
           <img
             src={
               "https://images.ctfassets.net/m8onsx4mm13s/6IvzKzqfqdVRKgZHjBqFIk/de259c13ae15133900b72c494b76c694/Lifetime-Warranty__2_.png"
@@ -85,22 +97,22 @@ const SplashPage = () => {
             <h2>Lifetime Warranty</h2>
             <h5>Free, limited warranty on material and workmanship</h5>
           </Box> */}
-        </Box>
-        <Box className="black-box">
+        </ImageListItem>
+        <ImageListItem className="black-box">
           <img
             src={
               "https://images.ctfassets.net/m8onsx4mm13s/24dB0X9zp0nHGgGooFJUGn/2d7bed365abe0a24ffa79eb21b4e1f3a/Financing-Available__2_.png"
             }
             alt="Financing Available"
             className="black-box-image"
-            objectFit="contain"
+            object-fit="contain"
           />
           {/* <Box className="black-box-deets3">
             <h2>Financing Available</h2>
             <h5>Options available through your wallet at checkout.</h5>
         </Box>*/}
-        </Box>
-      </Box>
+        </ImageListItem>
+      </ImageList>
 
       {/* Splash Categories */}
       <Box className="splash-categories">
