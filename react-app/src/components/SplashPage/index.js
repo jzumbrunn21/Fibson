@@ -48,13 +48,16 @@ const SplashPage = () => {
               height: "fit-content",
             }}
           >
-            <Typography>Shop All guitars</Typography>
+            <Typography>Shop All Guitars</Typography>
           </Button>
         </Box>
       </Box>
 
       {/* Info Boxes */}
-      <Box className="info-boxes" display="flex">
+      <Box
+        className="info-boxes"
+        sx={{ display: "flex", justifyContent: "space-evenly", width: "100%" }}
+      >
         <Box className="black-box">
           <img
             src={
@@ -62,11 +65,12 @@ const SplashPage = () => {
             }
             alt="Free Shipping"
             className="black-box-image"
+            objectFit="contain"
           />
-          <Box className="black-box-deets1">
+          {/* <Box className="black-box-deets1">
             <h2>Free Shipping</h2>
             <h5>On online orders over $50.</h5>
-          </Box>
+          </Box> */}
         </Box>
         <Box className="black-box">
           <img
@@ -75,11 +79,12 @@ const SplashPage = () => {
             }
             alt="Lifetime Warranty"
             className="black-box-image"
+            objectFit="contain"
           />
-          <Box className="black-box-deets2">
+          {/* <Box className="black-box-deets2">
             <h2>Lifetime Warranty</h2>
             <h5>Free, limited warranty on material and workmanship</h5>
-          </Box>
+          </Box> */}
         </Box>
         <Box className="black-box">
           <img
@@ -88,13 +93,16 @@ const SplashPage = () => {
             }
             alt="Financing Available"
             className="black-box-image"
+            objectFit="contain"
           />
-          <Box className="black-box-deets3">
+          {/* <Box className="black-box-deets3">
             <h2>Financing Available</h2>
             <h5>Options available through your wallet at checkout.</h5>
-          </Box>
+        </Box>*/}
         </Box>
       </Box>
+
+      {/* Splash Categories */}
       <Box className="splash-categories">
         <h2>Shop by Category</h2>
         <ul>
