@@ -25,9 +25,10 @@ const SplashPage = () => {
         sx={{
           height: "400px",
           width: "100%",
-          mb: "15px",
+          // mb: "15px",
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Box className="header-title" padding="40px">
@@ -38,7 +39,10 @@ const SplashPage = () => {
             Explore our newest guitars in stock
           </Typography>
         </Box>
-        <ImageListItem className="splash-page-header-image">
+        <ImageListItem
+          className="splash-page-header-image"
+          justifySelf="center"
+        >
           <img
             src={guitar}
             alt="All Listings"
@@ -48,7 +52,7 @@ const SplashPage = () => {
         <Box
           className="header-all-listings"
           alignSelf="flex-end"
-          mx="120px"
+          // mx="100px"
           mb="40px"
         >
           <Button
@@ -77,12 +81,22 @@ const SplashPage = () => {
             }
             alt="Free Shipping"
             className="black-box-image"
-            objectFit="cover"
+            // objectFit="cover"
           />
-          {/* <Box className="black-box-deets1">
-            <h2>Free Shipping</h2>
-            <h5>On online orders over $50.</h5>
-          </Box> */}
+          <Box
+            className="black-box-deets1"
+            position="absolute"
+            top={0}
+            left={0}
+            zIndex={1}
+          >
+            <Typography variant="h6" color="secondary.light">
+              Free Shipping
+            </Typography>
+            <Typography variant="h7" color="secondary.light">
+              On online orders over $50.
+            </Typography>
+          </Box>
         </ImageListItem>
         <ImageListItem className="black-box">
           <img
@@ -93,10 +107,20 @@ const SplashPage = () => {
             className="black-box-image"
             objectFit="contain"
           />
-          {/* <Box className="black-box-deets2">
-            <h2>Lifetime Warranty</h2>
-            <h5>Free, limited warranty on material and workmanship</h5>
-          </Box> */}
+          <Box
+            className="black-box-deets2"
+            position="absolute"
+            top={0}
+            left={0}
+            zIndex={1}
+          >
+            <Typography variant="h6" color="secondary.light">
+              Lifetime Warranty
+            </Typography>
+            <Typography variant="h7" color="secondary.light">
+              Free, limited warranty on material and workmanship
+            </Typography>
+          </Box>
         </ImageListItem>
         <ImageListItem className="black-box">
           <img
@@ -107,10 +131,20 @@ const SplashPage = () => {
             className="black-box-image"
             object-fit="contain"
           />
-          {/* <Box className="black-box-deets3">
-            <h2>Financing Available</h2>
-            <h5>Options available through your wallet at checkout.</h5>
-        </Box>*/}
+          <Box
+            className="black-box-deets3"
+            position="absolute"
+            top={0}
+            left={0}
+            zIndex={1}
+          >
+            <Typography variant="h6" color="secondary.light">
+              Financing Available
+            </Typography>
+            <Typography variant="h7" color="secondary.light">
+              Options available through your wallet at checkout.
+            </Typography>
+          </Box>
         </ImageListItem>
       </ImageList>
 
