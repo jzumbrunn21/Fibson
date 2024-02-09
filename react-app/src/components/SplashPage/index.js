@@ -16,13 +16,13 @@ const SplashPage = () => {
       <Box
         className="splash-page-header"
         backgroundColor="primary.dark"
-        sx={{ height: "450px", width: "100%", mb: "150px", display: "flex" }}
+        sx={{ height: "400px", width: "100%", mb: "15px", display: "flex" }}
       >
         <Box className="header-title" padding="40px">
           <Typography variant="h5" color="secondary.light">
             Find your dream guitar!
           </Typography>
-          <Typography variant="h5" color="secondary.light">
+          <Typography variant="h5" color="secondary.light" mt="15px">
             Explore our newest guitars in stock
           </Typography>
         </Box>
@@ -30,26 +30,22 @@ const SplashPage = () => {
           <img
             src={guitar}
             alt="All Listings"
-            style={{ height: "350px", width: "800px" }}
+            style={{ height: "400px", width: "800px" }}
           />
         </Box>
         <Box
           className="header-all-listings"
-          display="flex"
-          justifyContent="flex-end"
-          alignContent="flex-end"
+          alignSelf="flex-end"
+          mx="120px"
+          mb="40px"
         >
           <Button
             href="/listings"
-            
             sx={{
               backgroundColor: "secondary.dark",
               color: "secondary.light",
               p: "10px",
               height: "fit-content",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-
             }}
           >
             <Typography>Shop All guitars</Typography>
