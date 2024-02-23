@@ -32,7 +32,7 @@ function Navigation() {
         {/* Home/Logo Button */}
         <Box sx={{ justifyContent: "center" }}>
           <Button href="/">
-            <img src={logo} href="/" alt={"home"} />
+            <img src={logo} alt={"home"} />
           </Button>
         </Box>
         {/* Guitar Type */}

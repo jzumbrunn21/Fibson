@@ -140,7 +140,7 @@ const SplashPage = () => {
       </ImageList>
 
       {/* Splash Categories */}
-      <Typography variant="h5" padding="10px" mb="30px">
+      <Typography variant="h5" padding="10px">
         Shop by Category
       </Typography>
       <Box
@@ -152,23 +152,28 @@ const SplashPage = () => {
           my: "85px",
         }}
       >
-        <Box sx={{ width: "50px", height: "100%" }}>
-          {/* <NavLink
-            className="splash-nav"
-            exact
-            // to="/listings/filter/make/Gibson"
-          > */}
-          <img
-            src={
-              "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
-            }
-            width="90px"
-            height="150px"
-            alt="Gibson"
+        <Box
+          sx={{
+            width: "50px",
+            height: "100%",
+          }}
+        >
+          <Button
             href="/listings/filter/make/Gibson"
-          />{" "}
-          <Typography variant="h6">Gibson ▸ </Typography>
-          {/* </NavLink> */}
+            style={{ "&:hover": { backgroundColor: "transparent" } }}
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Gibson"
+              href="/listings/filter/make/Gibson"
+            />{" "}
+            <Typography variant="subtitle1">Gibson▸ </Typography>
+          </Button>
         </Box>
         <Box sx={{ width: "50px", height: "100%" }}>
           <NavLink
