@@ -25,13 +25,12 @@ const SplashPage = () => {
         sx={{
           height: "400px",
           width: "100%",
-          // mb: "15px",
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "space-evenly",
+          // alignItems: "center",
         }}
       >
-        <Box className="header-title" padding="40px">
+        <Box className="header-title" padding="40px" alignSelf="flex-start">
           <Typography variant="h5" color="secondary.light">
             Find your dream guitar!
           </Typography>
@@ -39,22 +38,14 @@ const SplashPage = () => {
             Explore our newest guitars in stock
           </Typography>
         </Box>
-        <ImageListItem
-          className="splash-page-header-image"
-          justifySelf="center"
-        >
+        <Box className="splash-page-header-image" justifySelf="center">
           <img
             src={guitar}
             alt="All Listings"
-            style={{ height: "400px", width: "800px" }}
+            style={{ height: "400px", width: "100%" }}
           />
-        </ImageListItem>
-        <Box
-          className="header-all-listings"
-          alignSelf="flex-end"
-          // mx="100px"
-          mb="40px"
-        >
+        </Box>
+        <Box className="header-all-listings" alignSelf="flex-end" mb="40px">
           <Button
             href="/listings"
             sx={{
@@ -149,100 +140,115 @@ const SplashPage = () => {
       </ImageList>
 
       {/* Splash Categories */}
-      <Box className="splash-categories">
-        <h2>Shop by Category</h2>
-        <ul>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/Gibson"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
-                }
-                alt="Gibson"
-              />{" "}
-              <h4>Gibson ▸ </h4>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/Fender"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-57de9073231835d223baf4c6f759fae3.jpg"
-                }
-                alt="Fender"
-              />{" "}
-              <h4>Fender ▸</h4>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/PRS"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-318bf1e9f2d567cbff3e388f316482fe.jpg"
-                }
-                alt="PRS"
-              />{" "}
-              <h4>PRS ▸</h4>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/Ibanez"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-ee30d18005405a5b3834b59504affcd3.jpg"
-                }
-                alt="Ibanez"
-              />{" "}
-              <h4>Ibanez ▸</h4>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/Taylor"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-a51a32c0d34978c1aae618063eb8a7a9.jpg"
-                }
-                alt="Taylor"
-              />{" "}
-              <h4>Taylor ▸</h4>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="splash-nav"
-              exact
-              to="/listings/filter/make/Martin"
-            >
-              <img
-                src={
-                  "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_48136-165007dfb2a0ed24e91646c479093d05.jpg"
-                }
-                alt="Martin"
-              />{" "}
-              <h4>Martin ▸</h4>
-            </NavLink>
-          </li>
-        </ul>
+      <Typography variant="h4" padding="10px" mb="30px">
+        Shop by Category
+      </Typography>
+      <Box
+        className="splash-categories"
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          width: "100%",
+        }}
+      >
+        <ImageListItem>
+          <NavLink
+            className="splash-nav"
+            exact
+            to="/listings/filter/make/Gibson"
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Gibson"
+            />{" "}
+            <h4>Gibson ▸ </h4>
+          </NavLink>
+        </ImageListItem>
+        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+          <NavLink
+            className="splash-nav"
+            exact
+            to="/listings/filter/make/Fender"
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-57de9073231835d223baf4c6f759fae3.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Fender"
+            />{" "}
+            <h4>Fender ▸</h4>
+          </NavLink>
+        </ImageListItem>
+        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+          <NavLink className="splash-nav" exact to="/listings/filter/make/PRS">
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-318bf1e9f2d567cbff3e388f316482fe.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="PRS"
+            />{" "}
+            <h4>PRS ▸</h4>
+          </NavLink>
+        </ImageListItem>
+        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+          <NavLink
+            className="splash-nav"
+            exact
+            to="/listings/filter/make/Ibanez"
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-ee30d18005405a5b3834b59504affcd3.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Ibanez"
+            />{" "}
+            <h4>Ibanez ▸</h4>
+          </NavLink>
+        </ImageListItem>
+        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+          <NavLink
+            className="splash-nav"
+            exact
+            to="/listings/filter/make/Taylor"
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_NA-a51a32c0d34978c1aae618063eb8a7a9.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Taylor"
+            />{" "}
+            <h4>Taylor ▸</h4>
+          </NavLink>
+        </ImageListItem>
+        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+          <NavLink
+            className="splash-nav"
+            exact
+            to="/listings/filter/make/Martin"
+          >
+            <img
+              src={
+                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_48136-165007dfb2a0ed24e91646c479093d05.jpg"
+              }
+              width="90px"
+              height="150px"
+              alt="Martin"
+            />{" "}
+            <h4>Martin ▸</h4>
+          </NavLink>
+        </ImageListItem>
       </Box>
     </Box>
   );
