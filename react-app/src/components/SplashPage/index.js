@@ -140,7 +140,7 @@ const SplashPage = () => {
       </ImageList>
 
       {/* Splash Categories */}
-      <Typography variant="h4" padding="10px" mb="30px">
+      <Typography variant="h5" padding="10px" mb="30px">
         Shop by Category
       </Typography>
       <Box
@@ -149,26 +149,28 @@ const SplashPage = () => {
           display: "flex",
           justifyContent: "space-evenly",
           width: "100%",
+          my: "85px",
         }}
       >
-        <ImageListItem>
-          <NavLink
+        <Box sx={{ width: "50px", height: "100%" }}>
+          {/* <NavLink
             className="splash-nav"
             exact
-            to="/listings/filter/make/Gibson"
-          >
-            <img
-              src={
-                "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
-              }
-              width="90px"
-              height="150px"
-              alt="Gibson"
-            />{" "}
-            <h4>Gibson ▸ </h4>
-          </NavLink>
-        </ImageListItem>
-        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+            // to="/listings/filter/make/Gibson"
+          > */}
+          <img
+            src={
+              "https://cf1.zzounds.com/media/productmedia/fit,600by800/quality,85/8_Full_Left_Front_49354-7e457b83dc9420b5962a29e23635caac.jpg"
+            }
+            width="90px"
+            height="150px"
+            alt="Gibson"
+            href="/listings/filter/make/Gibson"
+          />{" "}
+          <Typography variant="h6">Gibson ▸ </Typography>
+          {/* </NavLink> */}
+        </Box>
+        <Box sx={{ width: "50px", height: "100%" }}>
           <NavLink
             className="splash-nav"
             exact
@@ -182,10 +184,10 @@ const SplashPage = () => {
               height="150px"
               alt="Fender"
             />{" "}
-            <h4>Fender ▸</h4>
+            <Typography>Fender ▸</Typography>
           </NavLink>
-        </ImageListItem>
-        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+        </Box>
+        <Box>
           <NavLink className="splash-nav" exact to="/listings/filter/make/PRS">
             <img
               src={
@@ -195,10 +197,10 @@ const SplashPage = () => {
               height="150px"
               alt="PRS"
             />{" "}
-            <h4>PRS ▸</h4>
+            <Typography>PRS ▸</Typography>
           </NavLink>
-        </ImageListItem>
-        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+        </Box>
+        <Box>
           <NavLink
             className="splash-nav"
             exact
@@ -212,10 +214,10 @@ const SplashPage = () => {
               height="150px"
               alt="Ibanez"
             />{" "}
-            <h4>Ibanez ▸</h4>
+            <Typography>Ibanez ▸</Typography>
           </NavLink>
-        </ImageListItem>
-        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+        </Box>
+        <Box>
           <NavLink
             className="splash-nav"
             exact
@@ -229,10 +231,10 @@ const SplashPage = () => {
               height="150px"
               alt="Taylor"
             />{" "}
-            <h4>Taylor ▸</h4>
+            <Typography>Taylor ▸</Typography>
           </NavLink>
-        </ImageListItem>
-        <ImageListItem sx={{ width: "90px", height: "150px" }}>
+        </Box>
+        <Box>
           <NavLink
             className="splash-nav"
             exact
@@ -246,9 +248,9 @@ const SplashPage = () => {
               height="150px"
               alt="Martin"
             />{" "}
-            <h4>Martin ▸</h4>
+            <Typography>Martin ▸</Typography>
           </NavLink>
-        </ImageListItem>
+        </Box>
       </Box>
     </Box>
   );
